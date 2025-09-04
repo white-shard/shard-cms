@@ -23,6 +23,12 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      graphics: {
+        Icon: "/components/payload/Icon",
+        Logo: "/components/payload/Logo",
+      },
+    },
   },
   collections: [Users, Media],
   email: nodemailerAdapter(smtpNodemailerConfig),

@@ -2227,7 +2227,7 @@
   resolved "https://registry.yarnpkg.com/@nolyfill/is-core-module/-/is-core-module-1.0.39.tgz#3dc35ba0f1e66b403c00b39344f870298ebb1c8e"
   integrity sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==
 
-"@payloadcms/db-postgres@3.54.0":
+"@payloadcms/db-postgres@^3.54.0":
   version "3.54.0"
   resolved "https://registry.yarnpkg.com/@payloadcms/db-postgres/-/db-postgres-3.54.0.tgz#0d97da4ce7f920cc28b1ed53c877f93224c298de"
   integrity sha512-C1tADNHHRTfXyJ6UXTPrHhDVji8kQFKPmT3R/LxOfXwMX5SQanfGx4dGotug647EuZCLgP9YH/ASmGgSFG2RjQ==
@@ -2254,7 +2254,7 @@
     to-snake-case "1.0.0"
     uuid "9.0.0"
 
-"@payloadcms/email-nodemailer@3.54.0":
+"@payloadcms/email-nodemailer@3.54.0", "@payloadcms/email-nodemailer@^3.54.0":
   version "3.54.0"
   resolved "https://registry.yarnpkg.com/@payloadcms/email-nodemailer/-/email-nodemailer-3.54.0.tgz#f86b38783b79b4ff5c25eb860a7006187ba68e28"
   integrity sha512-9BYXS4WV4K56EgFBfwkNZ32sNNsEmcIqqTTb8LkhY/kCqPteFOa7zLMzbTCjHr72KdzU2lGTfqK7tSFOw3+UQQ==
@@ -2291,7 +2291,7 @@
     sass "1.77.4"
     uuid "10.0.0"
 
-"@payloadcms/payload-cloud@3.54.0":
+"@payloadcms/payload-cloud@^3.54.0":
   version "3.54.0"
   resolved "https://registry.yarnpkg.com/@payloadcms/payload-cloud/-/payload-cloud-3.54.0.tgz#bcce231d55227193816718e8442710111d8ab3dd"
   integrity sha512-xvDkyW0n8s9cGymC+b2HpoPhmWUMQchy3oHGtjWY3xPkxfOTdhmCgFBzWUh44Jy1ZQhQxnHmjYesy16lyC6WDw==

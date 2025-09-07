@@ -11,6 +11,7 @@ import { fileURLToPath } from "url"
 import { s3Storage } from "@payloadcms/storage-s3"
 
 import { Media } from "./collections/Media"
+import { Pages } from "./collections/Pages"
 import { Users } from "./collections/Users"
 import smtpNodemailerConfig from "./config/nodemailer.config"
 
@@ -30,7 +31,7 @@ export default buildConfig({
       },
     },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Pages],
   email: nodemailerAdapter(smtpNodemailerConfig),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

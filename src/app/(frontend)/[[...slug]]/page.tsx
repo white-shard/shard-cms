@@ -1,6 +1,9 @@
+import { getBlockRenderer } from "@/blocks"
 import { Page } from "@/payload-types"
 import config from "@payload-config"
+import { notFound } from "next/navigation"
 import { getPayload } from "payload"
+import { Fragment } from "react"
 import "../styles.css"
 
 type SitePageProps = {
@@ -12,7 +15,14 @@ export default async function SitePage(props: SitePageProps) {
   const slug = params?.slug?.join("/") || "index"
   const page = await getPageData(slug)
 
-  return <div>{page?.layout?.map((block) => block.blockType)}</div>
+  if (!page) return notFound()
+
+  return page?.layout?.map((block, index) => {
+    const renderer = getBlockRenderer(block.blockType)
+    return (
+      renderer && <Fragment key={index}>{renderer(block as never)}</Fragment>
+    )
+  })
 }
 
 export async function generateStaticParams() {

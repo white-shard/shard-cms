@@ -14,5 +14,22 @@ export const Media: CollectionConfig = {
   ],
   upload: {
     mimeTypes: ["image/*"],
+    imageSizes: [
+      {
+        name: "lg",
+        width: 2560,
+        height: 1440,
+      },
+      {
+        name: "md",
+        width: 1920,
+        height: 1080,
+      },
+      {
+        name: "sm",
+        width: 1080,
+        height: 720,
+      },
+    ],
   },
 }

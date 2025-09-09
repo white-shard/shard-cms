@@ -12,6 +12,9 @@ const nextConfig = {
 
     return webpackConfig
   },
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })

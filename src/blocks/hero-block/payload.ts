@@ -31,6 +31,12 @@ export const HeroBlock: Block = {
       ],
     },
     {
+      name: "img",
+      label: "Изображение",
+      type: "upload",
+      relationTo: "media",
+    },
+    {
       name: "beforeHeading",
       label: "Пред заголовок",
       type: "text",

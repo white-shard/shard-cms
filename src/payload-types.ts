@@ -145,7 +145,7 @@ export interface User {
  */
 export interface Media {
   id: number;
-  alt: string;
+  alt?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -171,6 +171,7 @@ export interface Page {
   layout?:
     | {
         variant?: ('default' | 'service1' | 'service2') | null;
+        img?: (number | null) | Media;
         beforeHeading?: string | null;
         heading: string;
         description?: string | null;
@@ -307,6 +308,7 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               variant?: T;
+              img?: T;
               beforeHeading?: T;
               heading?: T;
               description?: T;

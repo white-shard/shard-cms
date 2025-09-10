@@ -1,3 +1,4 @@
+import { iconList } from "@/lib/icons"
 import { Block } from "payload"
 
 export const HeroBlock: Block = {
@@ -72,30 +73,28 @@ export const HeroBlock: Block = {
               name: "icon",
               label: "Иконка",
               type: "select",
-              options: [
-                {
-                  label: "Иконка 1",
-                  value: "icon_1",
-                },
-              ],
+              options: Object.keys(iconList).map((key) => ({
+                label: key,
+                value: key,
+              })),
             },
             {
               name: "color",
               label: "Цвет",
               type: "select",
-              defaultValue: "black",
+              defaultValue: "primary",
               options: [
                 {
                   label: "Черный",
-                  value: "black",
+                  value: "primary",
                 },
                 {
                   label: "Розовый",
-                  value: "pink",
+                  value: "accent",
                 },
                 {
                   label: "Серый",
-                  value: "gray",
+                  value: "secondary",
                 },
               ],
             },

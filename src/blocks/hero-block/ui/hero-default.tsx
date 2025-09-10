@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { iconList } from "@/lib/icons"
 import Image from "next/image"
 import { HeroBlockFields } from "../types"
 
@@ -7,45 +8,72 @@ type Props = {
 }
 
 export function HeroBlockDefault({ fields }: Props) {
-  console.log(fields.img)
-
   return (
-    <div className="flex justify-center items-center w-screen h-screen bg-gray-400 relative">
-      <div className="flex flex-col items-center z-10">
-        {fields.beforeHeading && (
-          <h2 className="text-[40px] text-gray-400">{fields.beforeHeading}</h2>
-        )}
-        <h1 className="text-white text-8xl">{fields.heading}</h1>
+    <div className="flex justify-center items-center w-screen h-screen bg-white relative">
+      <div className="flex flex-col justify-between md:justify-center items-center min-h-full pt-16 z-10">
+        <div className="flex-col hidden md:flex md:items-center">
+          {fields.beforeHeading && (
+            <h2 className="text-[40px] text-gray-400 -mb-4">
+              {fields.beforeHeading}
+            </h2>
+          )}
+          <h1 className="text-white text-7xl md:text-8xl drop-shadow-lg md:drop-shadow-none">
+            {fields.heading}
+          </h1>
+        </div>
 
-        {fields.actions.length && (
-          <div className="w-full flex flex-wrap justify-center gap-[20px] my-12">
-            {fields.actions.map((action, index) => (
-              <Button className="flex-1" size="lg" key={index}>
-                {action.name}
-              </Button>
-            ))}
-          </div>
-        )}
+        <div className="flex-1 md:flex-0 flex items-center">
+          <Image
+            alt="background"
+            className="block md:hidden"
+            src={fields.img.url!}
+            width={512}
+            height={512}
+          />
+        </div>
 
-        {fields.description && (
-          <p className="text-3xl text-center text-[#383838] max-w-[480px]">
-            {fields.description}
-          </p>
-        )}
+        <div className="flex flex-col">
+          {!!fields.actions.length && (
+            <div className="w-full flex flex-wrap flex-col md:flex-row justify-center gap-[20px] my-12 order-2 md:order-0">
+              {fields.actions.map((action, index) => {
+                const Icon = iconList[action.icon as keyof typeof iconList]
+
+                return (
+                  <Button
+                    className="flex-1 text-xl md:text-base"
+                    variant={action.color as never}
+                    size="lg"
+                    key={index}
+                  >
+                    {!!action.icon && <Icon className="size-6 md:size-5" />}
+                    {action.name}
+                  </Button>
+                )
+              })}
+            </div>
+          )}
+
+          {fields.description && (
+            <p className="text-3xl text-center text-gray-200 md:text-gray-800 max-w-[480px] order-1 md:order-0">
+              {fields.description}
+            </p>
+          )}
+        </div>
       </div>
 
       <Image
         alt="background"
         src={fields.img.url!}
-        className="absolute"
+        className="absolute hidden md:block"
         quality={100}
         fill
         sizes="100vw"
         style={{
-          objectFit: "cover",
+          objectFit: "contain",
         }}
       />
-      <div className="w-full h-full absolute bg-gradient-to-t from-[#454545] to-[#ffffff00] z-0" />
+
+      <div className="w-full bottom-0 h-full absolute bg-gradient-to-t from-[#454545]  to-[#ffffff00] z-0" />
     </div>
   )
 }

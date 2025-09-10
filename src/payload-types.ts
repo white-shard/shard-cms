@@ -204,8 +204,8 @@ export interface Page {
         actions?:
           | {
               name: string;
-              icon?: 'icon_1' | null;
-              color?: ('black' | 'pink' | 'gray') | null;
+              icon?: ('clipboard-list' | 'cog') | null;
+              color?: ('primary' | 'accent' | 'secondary') | null;
               id?: string | null;
             }[]
           | null;

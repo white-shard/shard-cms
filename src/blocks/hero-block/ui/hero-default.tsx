@@ -11,18 +11,18 @@ export function HeroBlockDefault({ fields }: Props) {
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-white relative">
       <div className="flex flex-col justify-between md:justify-center items-center min-h-full pt-16 z-10">
-        <div className="flex-col hidden md:flex md:items-center">
+        <div className="flex-col flex lg:items-center w-full lg:w-auto px-4">
           {fields.beforeHeading && (
             <h2 className="text-[40px] text-gray-400 -mb-4">
               {fields.beforeHeading}
             </h2>
           )}
-          <h1 className="text-white text-7xl md:text-8xl drop-shadow-lg md:drop-shadow-none">
+          <h1 className="text-primary lg:text-white text-7xl md:text-8xl drop-shadow-lg md:drop-shadow-none">
             {fields.heading}
           </h1>
         </div>
 
-        <div className="flex-1 md:flex-0 flex items-center">
+        <div className="flex-1 lg:flex-0 flex items-center">
           <Image
             alt="background"
             className="block md:hidden"
@@ -32,9 +32,9 @@ export function HeroBlockDefault({ fields }: Props) {
           />
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4 lg:gap-0">
           {!!fields.actions.length && (
-            <div className="w-full flex flex-wrap flex-col md:flex-row justify-center gap-[20px] my-12 order-2 md:order-0">
+            <div className="w-full flex flex-wrap flex-col md:flex-row justify-center gap-[20px] my-4 lg:my-12 order-2 lg:order-0">
               {fields.actions.map((action, index) => {
                 const Icon = iconList[action.icon as keyof typeof iconList]
 
@@ -54,7 +54,7 @@ export function HeroBlockDefault({ fields }: Props) {
           )}
 
           {fields.description && (
-            <p className="text-3xl text-center text-gray-200 md:text-gray-800 max-w-[480px] order-1 md:order-0">
+            <p className="text-2xl lg:text-3xl text-center text-secondary-foreground max-w-[480px] order-1 lg:order-0">
               {fields.description}
             </p>
           )}
@@ -73,7 +73,7 @@ export function HeroBlockDefault({ fields }: Props) {
         }}
       />
 
-      <div className="w-full bottom-0 h-full absolute bg-gradient-to-t from-[#454545]  to-[#ffffff00] z-0" />
+      <div className="w-full bottom-0 h-1/2 absolute bg-gradient-to-t from-[#454545] to-[#ffffff00] hidden lg:block z-0" />
     </div>
   )
 }

@@ -22,12 +22,12 @@ export const HeroBlock: Block = {
           value: "default",
         },
         {
-          label: "Услуга 1",
-          value: "service1",
+          label: "Услуга",
+          value: "service",
         },
         {
-          label: "Услуга 2",
-          value: "service2",
+          label: "Особый",
+          value: "custom",
         },
       ],
     },
@@ -48,6 +48,39 @@ export const HeroBlock: Block = {
       label: "Заголовок",
       type: "text",
       required: true,
+    },
+    {
+      name: "thesis",
+      label: "Тезис",
+      type: "textarea",
+      required: false,
+      admin: {
+        condition: (_, siblingData) => {
+          return siblingData?.variant === "service"
+        },
+      },
+    },
+    {
+      type: "row",
+      fields: [
+        {
+          name: "price",
+          label: "Цена",
+          type: "text",
+          required: false,
+        },
+        {
+          name: "old_price",
+          label: "Старая цена",
+          type: "text",
+          required: false,
+        },
+      ],
+      admin: {
+        condition: (_, siblingData) => {
+          return siblingData?.variant === "service"
+        },
+      },
     },
     {
       name: "description",

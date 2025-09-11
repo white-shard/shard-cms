@@ -196,10 +196,13 @@ export interface Page {
   keywords?: string | null;
   layout?:
     | {
-        variant?: ('default' | 'service1' | 'service2') | null;
+        variant?: ('default' | 'service' | 'custom') | null;
         img?: (number | null) | Media;
         beforeHeading?: string | null;
         heading: string;
+        thesis?: string | null;
+        price?: string | null;
+        old_price?: string | null;
         description?: string | null;
         actions?:
           | {
@@ -371,6 +374,9 @@ export interface PagesSelect<T extends boolean = true> {
               img?: T;
               beforeHeading?: T;
               heading?: T;
+              thesis?: T;
+              price?: T;
+              old_price?: T;
               description?: T;
               actions?:
                 | T

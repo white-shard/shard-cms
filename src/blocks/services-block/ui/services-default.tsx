@@ -4,6 +4,7 @@ import { Service } from "@/payload-types"
 import { useEffect, useState } from "react"
 import { ServicesBlockFields } from "../types"
 import { getServices } from "../vm/get-services"
+import { ServicesCard } from "./services-card"
 import { ServicesBlockMain } from "./services-main"
 
 type Props = {
@@ -22,11 +23,11 @@ export function ServicesBlockDefault({ fields }: Props) {
   return (
     <div className="flex flex-col gap-4">
       {fields.main && <ServicesBlockMain service={fields.main} />}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="container my-8 mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
         {services?.map(
           (service) =>
             service.id !== fields.main?.id && (
-              <div key={service.id}>{service.title}</div>
+              <ServicesCard key={service.id} service={service} />
             ),
         )}
       </div>

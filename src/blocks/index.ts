@@ -1,9 +1,19 @@
+import { Advantages } from "./advantages-block"
+import { Founder } from "./founder-block"
 import { Hero } from "./hero-block"
+import { Services } from "./services-block"
+import { Statistic } from "./statistic-block"
 import { RegisteredBlockData } from "./types"
 
-export const registeredBlocks: RegisteredBlockData[] = [Hero]
+export const registeredPageBlocks: RegisteredBlockData[] = [
+  Hero,
+  Statistic,
+  Founder,
+  Advantages,
+  Services,
+]
 
 export function getBlockRenderer(blockType: string) {
-  return registeredBlocks.find((block) => block.blockType === blockType)
+  return registeredPageBlocks.find((block) => block.blockType === blockType)
     ?.renderer
 }

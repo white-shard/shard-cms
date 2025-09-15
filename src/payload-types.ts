@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     pages: Page;
+    services: Service;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -86,8 +88,12 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    navigation: Navigation;
+  };
+  globalsSelect: {
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -195,28 +201,90 @@ export interface Page {
   description?: string | null;
   keywords?: string | null;
   layout?:
+    | (
+        | {
+            variant?: ('default' | 'service' | 'custom') | null;
+            img?: (number | null) | Media;
+            beforeHeading?: string | null;
+            heading: string;
+            thesis?: string | null;
+            price?: string | null;
+            old_price?: string | null;
+            description?: string | null;
+            actions?:
+              | {
+                  name: string;
+                  icon?: ('clipboard-list' | 'cog') | null;
+                  color?: ('primary' | 'accent' | 'secondary') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+        | {
+            expirience: number;
+            patients: number;
+            reviews: number;
+            support: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'statistic';
+          }
+        | {
+            img: number | Media;
+            heading: string;
+            description: string;
+            quote?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'founder';
+          }
+        | {
+            heading: string;
+            description: string;
+            advantages?:
+              | {
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'advantages';
+          }
+        | {
+            main?: (number | null) | Service;
+            count: number;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'services';
+          }
+      )[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services".
+ */
+export interface Service {
+  id: number;
+  img?: (number | null) | Media;
+  title: string;
+  url?: string | null;
+  description?: string | null;
+  advantages?:
     | {
-        variant?: ('default' | 'service' | 'custom') | null;
-        img?: (number | null) | Media;
-        beforeHeading?: string | null;
-        heading: string;
-        thesis?: string | null;
-        price?: string | null;
-        old_price?: string | null;
-        description?: string | null;
-        actions?:
-          | {
-              name: string;
-              icon?: ('clipboard-list' | 'cog') | null;
-              color?: ('primary' | 'accent' | 'secondary') | null;
-              id?: string | null;
-            }[]
-          | null;
+        title: string;
         id?: string | null;
-        blockName?: string | null;
-        blockType: 'hero';
       }[]
     | null;
+  price?: string | null;
+  old_price?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -238,6 +306,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'services';
+        value: number | Service;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -389,7 +461,70 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        statistic?:
+          | T
+          | {
+              expirience?: T;
+              patients?: T;
+              reviews?: T;
+              support?: T;
+              id?: T;
+              blockName?: T;
+            };
+        founder?:
+          | T
+          | {
+              img?: T;
+              heading?: T;
+              description?: T;
+              quote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        advantages?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              advantages?:
+                | T
+                | {
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        services?:
+          | T
+          | {
+              main?: T;
+              count?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "services_select".
+ */
+export interface ServicesSelect<T extends boolean = true> {
+  img?: T;
+  title?: T;
+  url?: T;
+  description?: T;
+  advantages?:
+    | T
+    | {
+        title?: T;
+        id?: T;
+      };
+  price?: T;
+  old_price?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -424,6 +559,70 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: number;
+  items?:
+    | {
+        label: string;
+        url?: string | null;
+        hasCategories?: boolean | null;
+        categories?:
+          | {
+              label: string;
+              url?: string | null;
+              hasItems?: boolean | null;
+              items?:
+                | {
+                    label: string;
+                    url?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        hasCategories?: T;
+        categories?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              hasItems?: T;
+              items?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                    id?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

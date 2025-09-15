@@ -1,4 +1,4 @@
-import { HeroBlock } from "@/blocks/hero-block/payload"
+import { registeredPageBlocks } from "@/blocks"
 import { CollectionConfig } from "payload"
 
 export const Pages: CollectionConfig = {
@@ -51,7 +51,7 @@ export const Pages: CollectionConfig = {
       name: "layout",
       label: "Layout",
       type: "blocks",
-      blocks: [HeroBlock],
+      blocks: registeredPageBlocks.map((block) => block.payload),
     },
   ],
 }

@@ -1,5 +1,8 @@
+import config from "@/payload.config"
+import { Header } from "@/widgets/header"
 import { Roboto } from "next/font/google"
 import localFont from "next/font/local"
+import { getPayload } from "payload"
 import React from "react"
 import "./styles.css"
 
@@ -21,11 +24,19 @@ const roboto = Roboto({
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
+  const payload = await getPayload({ config })
+
+  const navigation = await payload.findGlobal({
+    slug: "navigation",
+  })
 
   return (
     <html lang="ru">
-      <body className={`${itcConduit.variable} ${roboto.variable} antialiased`}>
-        {children}
+      <body
+        className={`${itcConduit.variable} ${roboto.variable} antialiased max-w-screen overflow-x-hidden`}
+      >
+        <Header navigation={navigation} />
+        <main className="flex flex-col gap-16">{children}</main>
       </body>
     </html>
   )

@@ -35,7 +35,7 @@ export default buildConfig({
   },
   collections: [Users, Media, Pages, Services],
   globals: [Navigation],
-  email: nodemailerAdapter(smtpNodemailerConfig),
+  // email: nodemailerAdapter(smtpNodemailerConfig),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -49,20 +49,20 @@ export default buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
-    s3Storage({
-      collections: {
-        media: true,
-      },
-      bucket: process.env.S3_BUCKET_NAME || "",
-      config: {
-        region: process.env.S3_REGION || "",
-        endpoint: process.env.S3_ENDPOINT || "",
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY || "",
-          secretAccessKey: process.env.S3_SECRET_KEY || "",
-        },
-      },
-    }),
+    // s3Storage({
+    //   collections: {
+    //     media: true,
+    //   },
+    //   bucket: process.env.S3_BUCKET_NAME || "",
+    //   config: {
+    //     region: process.env.S3_REGION || "",
+    //     endpoint: process.env.S3_ENDPOINT || "",
+    //     credentials: {
+    //       accessKeyId: process.env.S3_ACCESS_KEY || "",
+    //       secretAccessKey: process.env.S3_SECRET_KEY || "",
+    //     },
+    //   },
+    // }),
     // storage-adapter-placeholder
   ],
 })

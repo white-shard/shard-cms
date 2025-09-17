@@ -30,7 +30,7 @@ export function MobileHeader({ navigation }: Props) {
           </Button>
         </SheetTrigger>
         <SheetContent side="left">
-          <SheetHeader className=" border-b pb-5">
+          <SheetHeader className="border-b pb-5">
             <Logo />
           </SheetHeader>
 

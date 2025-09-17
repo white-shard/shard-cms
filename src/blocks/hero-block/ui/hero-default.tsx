@@ -10,31 +10,33 @@ type Props = {
 export function HeroBlockDefault({ fields }: Props) {
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-white relative">
-      <div className="flex flex-col justify-between md:justify-center items-center min-h-full pt-16 z-10">
-        <div className="flex-col flex lg:items-center w-full lg:w-auto px-4">
+      <div className="w-full flex flex-col justify-center items-center min-h-full pt-16 z-10">
+        <div className="mt-48 flex-col flex items-center w-full lg:w-auto px-4">
           {fields.beforeHeading && (
-            <h2 className="text-[40px] text-gray-400 -mb-4">
+            <h2 className="text-2xl text-gray-400 -mb-2 md:-mb-4">
               {fields.beforeHeading}
             </h2>
           )}
-          <h1 className="text-primary lg:text-white text-7xl md:text-8xl drop-shadow-lg md:drop-shadow-none">
+          <h1 className="text-primary lg:text-white text-4xl md:text-8xl drop-shadow-lg md:drop-shadow-none">
             {fields.heading}
           </h1>
         </div>
 
         <div className="flex-1 lg:flex-0 flex items-center">
-          <Image
-            alt="background"
-            className="block md:hidden"
-            src={fields.img.url!}
-            width={512}
-            height={512}
-          />
+          {fields.img?.url ? (
+            <Image
+              alt="background"
+              className="block md:hidden"
+              src={fields.img.url || ""}
+              width={512}
+              height={512}
+            />
+          ) : null}
         </div>
 
-        <div className="flex flex-col gap-4 lg:gap-0">
+        <div className="flex w-full md:w-auto flex-col gap-4 lg:gap-0">
           {!!fields.actions.length && (
-            <div className="w-full flex flex-wrap flex-col md:flex-row justify-center gap-[20px] my-4 lg:my-12 order-2 lg:order-0">
+            <div className="w-full flex flex-wrap flex-col px-4 md:flex-row justify-center gap-[20px] my-4 lg:my-12 order-2 lg:order-0">
               {fields.actions.map((action, index) => {
                 const Icon = iconList[action.icon as keyof typeof iconList]
 
@@ -63,13 +65,14 @@ export function HeroBlockDefault({ fields }: Props) {
 
       <Image
         alt="background"
-        src={fields.img.url!}
-        className="absolute hidden md:block"
+        src={fields.img?.url || "/"}
+        className="absolute bg-white hidden md:block"
         quality={100}
         fill
         sizes="100vw"
         style={{
           objectFit: "contain",
+          backgroundColor: fields.img?.url ? "white" : "gray",
         }}
       />
 

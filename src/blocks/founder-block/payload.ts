@@ -15,7 +15,7 @@ export const FounderBlock: Block = {
       label: "Изображение",
       type: "upload",
       relationTo: "media",
-      required: true,
+      required: false,
     },
     {
       name: "heading",

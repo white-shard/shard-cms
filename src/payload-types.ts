@@ -233,7 +233,7 @@ export interface Page {
             blockType: 'statistic';
           }
         | {
-            img: number | Media;
+            img?: (number | null) | Media;
             heading: string;
             description: string;
             quote?: string | null;

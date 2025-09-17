@@ -7,13 +7,13 @@ type Props = {
 
 export function StatisticBlockDefault({ fields }: Props) {
   return (
-    <div className="container mx-auto flex justify-between">
+    <div className="container mx-auto grid grid-cols-2 gap-8 md:flex justify-between text-center leading-4">
       <div className="flex flex-col items-center">
         <div className="size-12 rounded-full bg-black flex justify-center items-center mb-1">
           <ChartNoAxesColumn className="size-6 text-white" />
         </div>
         <span className="text-2xl text-primary">{fields.expirience}+</span>
-        <p className="text-gray-600">Лет опыта</p>
+        <p className="text-gray-600 max-w-2/3">Лет опыта</p>
       </div>
 
       <div className="flex flex-col items-center">
@@ -21,7 +21,7 @@ export function StatisticBlockDefault({ fields }: Props) {
           <User className="size-6 text-white" />
         </div>
         <span className="text-2xl text-primary">{fields.patients}+</span>
-        <p className="text-gray-600">Довольных пациентов</p>
+        <p className="text-gray-600 max-w-2/3">Довольных пациентов</p>
       </div>
 
       <div className="flex flex-col items-center">
@@ -29,7 +29,7 @@ export function StatisticBlockDefault({ fields }: Props) {
           <Star className="size-6 text-white" />
         </div>
         <span className="text-2xl text-primary">{fields.reviews}%</span>
-        <p className="text-gray-600">Положительных отзывов</p>
+        <p className="text-gray-600 max-w-2/3">Положительных отзывов</p>
       </div>
 
       <div className="flex flex-col items-center">
@@ -37,7 +37,7 @@ export function StatisticBlockDefault({ fields }: Props) {
           <MessageSquare className="size-6 text-white" />
         </div>
         <span className="text-2xl text-primary">{fields.support}</span>
-        <p className="text-gray-600">Поддержка и консультация</p>
+        <p className="text-gray-600 max-w-2/3">Поддержка и консультация</p>
       </div>
     </div>
   )

@@ -1,10 +1,10 @@
 import { Block } from "payload"
 
-export const MethodsBlock: Block = {
-  slug: "methods",
+export const StagesBlock: Block = {
+  slug: "stages",
   labels: {
-    singular: "Methods Block",
-    plural: "Methods Blocks",
+    singular: "Stages Block",
+    plural: "Stages Blocks",
   },
   admin: {
     disableBlockName: true,
@@ -21,15 +21,9 @@ export const MethodsBlock: Block = {
       required: true,
     },
     {
-      name: "methods",
+      name: "stages",
       type: "array",
       fields: [
-        {
-          name: "img",
-          type: "upload",
-          relationTo: "media",
-          required: false,
-        },
         {
           name: "heading",
           type: "text",
@@ -38,7 +32,7 @@ export const MethodsBlock: Block = {
         {
           name: "description",
           type: "textarea",
-          required: true,
+          required: false,
         },
       ],
     },

@@ -5,7 +5,9 @@ import { Founder } from "./founder-block"
 import { Hero } from "./hero-block"
 import { IndicationsContraindications } from "./indications-contraindications-block"
 import { Installment } from "./installment"
+import { Methods } from "./methods-block"
 import { Services } from "./services-block"
+import { Stages } from "./stages-block"
 import { RegisteredBlockData } from "./types"
 
 export const registeredPageBlocks: RegisteredBlockData[] = [
@@ -17,6 +19,8 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   Installment,
   AdvantagesChallenges,
   IndicationsContraindications,
+  Methods,
+  Stages,
 ]
 
 export function getBlockRenderer(blockType: string) {

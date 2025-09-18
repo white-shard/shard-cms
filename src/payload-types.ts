@@ -311,6 +311,35 @@ export interface Page {
             blockName?: string | null;
             blockType: 'indications-contraindications';
           }
+        | {
+            heading: string;
+            description: string;
+            methods?:
+              | {
+                  img?: (number | null) | Media;
+                  heading: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'methods';
+          }
+        | {
+            heading: string;
+            description: string;
+            stages?:
+              | {
+                  heading: string;
+                  description?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'stages';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -604,6 +633,37 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     item?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        methods?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              methods?:
+                | T
+                | {
+                    img?: T;
+                    heading?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        stages?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              stages?:
+                | T
+                | {
+                    heading?: T;
+                    description?: T;
                     id?: T;
                   };
               id?: T;

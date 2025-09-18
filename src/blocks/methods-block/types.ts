@@ -1,6 +1,13 @@
-export interface StatisticBlockFields {
-  expirience: number
-  patients: number
-  reviews: number
-  support: string
+import { Media } from "@/payload-types"
+
+export interface MethodsBlockFields {
+  heading: string
+  description: string
+  methods: Method[]
+}
+
+export interface Method {
+  img: Media
+  heading: string
+  description: string
 }

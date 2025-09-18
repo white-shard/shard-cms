@@ -1,5 +1,6 @@
 import { Check } from "lucide-react"
 import { AdvantagesChallangesBlockFields } from "../types"
+import Image from "next/image"
 
 type Props = {
   fields: AdvantagesChallangesBlockFields
@@ -17,7 +18,16 @@ export function ACDefault({ fields }: Props) {
             </p>
           )}
           <div className="grid grid-cols-2 gap-32 justify-between mt-8">
-            <div>Фото чела</div>
+            <div className="flex justify-start">
+              {fields.advantages.img ? (
+                <Image
+                  src={fields.advantages.img.url!}
+                  width={512}
+                  height={512}
+                  alt={fields.advantages.img.alt || ""}
+                />
+              ) : null}
+            </div>
             <div className="grid gap-6 w-4/5">
               {fields.advantages.advantages.map((advantage, index) => (
                 <div key={index} className="flex gap-2">
@@ -60,7 +70,16 @@ export function ACDefault({ fields }: Props) {
                 </div>
               ))}
             </div>
-            <div>Фото чела</div>
+            <div className="flex justify-end">
+              {fields.challenges.img ? (
+                <Image
+                  src={fields.challenges.img.url!}
+                  width={512}
+                  height={512}
+                  alt={fields.challenges.img.alt || ""}
+                />
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

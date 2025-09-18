@@ -15,6 +15,12 @@ export const AdvantagesChallengesBlock: Block = {
       type: "group",
       fields: [
         {
+          name: "img",
+          type: "upload",
+          relationTo: "media",
+          required: false,
+        },
+        {
           name: "heading",
           type: "text",
           required: true,
@@ -46,6 +52,12 @@ export const AdvantagesChallengesBlock: Block = {
       name: "challenges",
       type: "group",
       fields: [
+        {
+          name: "img",
+          type: "upload",
+          relationTo: "media",
+          required: false,
+        },
         {
           name: "heading",
           type: "text",

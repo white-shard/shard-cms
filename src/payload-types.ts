@@ -267,6 +267,7 @@ export interface Page {
           }
         | {
             advantages: {
+              img?: (number | null) | Media;
               heading: string;
               description?: string | null;
               advantages?:
@@ -278,6 +279,7 @@ export interface Page {
                 | null;
             };
             challenges: {
+              img?: (number | null) | Media;
               heading: string;
               description?: string | null;
               challenges?:
@@ -561,6 +563,7 @@ export interface PagesSelect<T extends boolean = true> {
               advantages?:
                 | T
                 | {
+                    img?: T;
                     heading?: T;
                     description?: T;
                     advantages?:
@@ -574,6 +577,7 @@ export interface PagesSelect<T extends boolean = true> {
               challenges?:
                 | T
                 | {
+                    img?: T;
                     heading?: T;
                     description?: T;
                     challenges?:

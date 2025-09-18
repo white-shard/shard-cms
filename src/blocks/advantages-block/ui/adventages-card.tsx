@@ -9,7 +9,7 @@ type Props = {
 
 export function AdvantagesCard({ advantage }: Props) {
   return (
-    <div className="flip-card flex-1 min-w-1/4 min-h-48">
+    <div className="flip-card flex-1 min-w-full md:min-w-1/3 lg:min-w-1/4 min-h-48">
       <div className="flip-card-inner">
         {/* Передняя сторона */}
         <div className="flip-card-front bg-gray-100 rounded-xl flex items-center justify-center">

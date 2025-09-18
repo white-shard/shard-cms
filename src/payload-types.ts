@@ -224,15 +224,6 @@ export interface Page {
             blockType: 'hero';
           }
         | {
-            expirience: number;
-            patients: number;
-            reviews: number;
-            support: string;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'statistic';
-          }
-        | {
             img?: (number | null) | Media;
             heading: string;
             description: string;
@@ -261,6 +252,62 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'services';
+          }
+        | {
+            beforeHeading?: string | null;
+            heading: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contact';
+          }
+        | {
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'installment';
+          }
+        | {
+            advantages: {
+              heading: string;
+              description?: string | null;
+              advantages?:
+                | {
+                    heading: string;
+                    description?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+            };
+            challenges: {
+              heading: string;
+              description?: string | null;
+              challenges?:
+                | {
+                    heading: string;
+                    description?: string | null;
+                    id?: string | null;
+                  }[]
+                | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'advantages-challenges';
+          }
+        | {
+            indications?:
+              | {
+                  item: string;
+                  id?: string | null;
+                }[]
+              | null;
+            contraindications?:
+              | {
+                  item: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'indications-contraindications';
           }
       )[]
     | null;
@@ -461,16 +508,6 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        statistic?:
-          | T
-          | {
-              expirience?: T;
-              patients?: T;
-              reviews?: T;
-              support?: T;
-              id?: T;
-              blockName?: T;
-            };
         founder?:
           | T
           | {
@@ -501,6 +538,70 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               main?: T;
               count?: T;
+              id?: T;
+              blockName?: T;
+            };
+        contact?:
+          | T
+          | {
+              beforeHeading?: T;
+              heading?: T;
+              id?: T;
+              blockName?: T;
+            };
+        installment?:
+          | T
+          | {
+              id?: T;
+              blockName?: T;
+            };
+        'advantages-challenges'?:
+          | T
+          | {
+              advantages?:
+                | T
+                | {
+                    heading?: T;
+                    description?: T;
+                    advantages?:
+                      | T
+                      | {
+                          heading?: T;
+                          description?: T;
+                          id?: T;
+                        };
+                  };
+              challenges?:
+                | T
+                | {
+                    heading?: T;
+                    description?: T;
+                    challenges?:
+                      | T
+                      | {
+                          heading?: T;
+                          description?: T;
+                          id?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'indications-contraindications'?:
+          | T
+          | {
+              indications?:
+                | T
+                | {
+                    item?: T;
+                    id?: T;
+                  };
+              contraindications?:
+                | T
+                | {
+                    item?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

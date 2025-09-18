@@ -36,12 +36,12 @@ export function FounderBlockDefault({ fields }: Props) {
             </p>
           </div>
         )}
-        <div className="flex gap-8 lg:gap-2 justify-around mt-4 text-sm flex-wrap">
+        <div className="grid grid-cols-3 gap-8 lg:gap-2 mt-4 text-sm">
           <div className="flex flex-col gap-2 items-center">
             <div className="size-8 lg:size-12 rounded-full bg-secondary flex items-center justify-center">
               <Medal className="size-3 lg:size-5 text-primary" />
             </div>
-            <span className="max-w-2/3 lg:w-32 text-gray-600 text-center">
+            <span className="w-2/3 text-gray-600 text-center">
               Сертифицированный специалист
             </span>
           </div>
@@ -50,7 +50,7 @@ export function FounderBlockDefault({ fields }: Props) {
             <div className="size-8 lg:size-12 rounded-full bg-secondary flex items-center justify-center">
               <Heart className="size-3 lg:size-5 text-primary" />
             </div>
-            <span className="max-w-2/3 lg:w-32 text-gray-600 text-center">
+            <span className="w-2/3 text-gray-600 text-center">
               Индивидуальный подход
             </span>
           </div>
@@ -59,7 +59,7 @@ export function FounderBlockDefault({ fields }: Props) {
             <div className="size-8 lg:size-12 rounded-full bg-secondary flex items-center justify-center">
               <Shield className="size-3 lg:size-5 text-primary" />
             </div>
-            <span className="max-w-2/3 lg:w-32 text-gray-600 text-center">
+            <span className="w-2/3 text-gray-600 text-center">
               Гарантия качества
             </span>
           </div>

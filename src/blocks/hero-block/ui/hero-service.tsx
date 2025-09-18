@@ -62,16 +62,18 @@ export function HeroBlockService({ fields }: Props) {
         )}
       </div>
       <div className="flex-1 flex items-center">
-        <Image
-          alt="service image"
-          src={fields.img.url!}
-          quality={100}
-          width={640}
-          height={512}
-          style={{
-            objectFit: "contain",
-          }}
-        />
+        {fields.img?.url ? (
+          <Image
+            alt="service image"
+            src={fields.img.url!}
+            quality={100}
+            width={640}
+            height={512}
+            style={{
+              objectFit: "contain",
+            }}
+          />
+        ) : null}
       </div>
     </div>
   )

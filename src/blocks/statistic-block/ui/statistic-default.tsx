@@ -7,7 +7,7 @@ type Props = {
 
 export function StatisticBlockDefault({ fields }: Props) {
   return (
-    <div className="container mx-auto grid grid-cols-2 gap-8 md:flex justify-between text-center leading-4">
+    <div className="container mx-auto grid grid-cols-2 gap-8 md:flex justify-between px-4 text-center leading-4">
       <div className="flex flex-col items-center">
         <div className="size-12 rounded-full bg-black flex justify-center items-center mb-1">
           <ChartNoAxesColumn className="size-6 text-white" />

@@ -14,13 +14,13 @@ export function StagesBlockDefault({ fields }: Props) {
         )}
       </div>
 
-      <div className="grid grid-cols-3 mt-8 gap-4 ">
+      <div className="grid grid-cols-3 mt-8 ">
         {fields.stages.map((stage, index) => (
           <div
             key={index}
             style={{
-              marginTop: `${index * 50}px`,
-              marginBottom: `-${index * 50}px`,
+              marginTop: `${(index % 3) * 50}px`,
+              marginBottom: `${100 - (index % 3) * 50}px`,
             }}
             className="flex flex-col gap-2 bg-gray-200 rounded-lg p-4 w-4/5"
           >

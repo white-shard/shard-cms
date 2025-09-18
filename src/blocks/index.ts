@@ -7,6 +7,7 @@ import { IndicationsContraindications } from "./indications-contraindications-bl
 import { Installment } from "./installment"
 import { Methods } from "./methods-block"
 import { Services } from "./services-block"
+import { ServicesCost } from "./services-cost-block"
 import { Stages } from "./stages-block"
 import { RegisteredBlockData } from "./types"
 
@@ -21,6 +22,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   IndicationsContraindications,
   Methods,
   Stages,
+  ServicesCost,
 ]
 
 export function getBlockRenderer(blockType: string) {

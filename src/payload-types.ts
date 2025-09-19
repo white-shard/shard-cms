@@ -353,6 +353,21 @@ export interface Page {
             blockName?: string | null;
             blockType: 'services-cost';
           }
+        | {
+            heading: string;
+            description: string;
+            photos?:
+              | {
+                  beforeImg: number | Media;
+                  afterImg: number | Media;
+                  heading: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'works-photos';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -691,6 +706,22 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     item?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'works-photos'?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              photos?:
+                | T
+                | {
+                    beforeImg?: T;
+                    afterImg?: T;
+                    heading?: T;
                     id?: T;
                   };
               id?: T;

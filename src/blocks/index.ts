@@ -10,6 +10,7 @@ import { Services } from "./services-block"
 import { ServicesCost } from "./services-cost-block"
 import { Stages } from "./stages-block"
 import { RegisteredBlockData } from "./types"
+import { WorksPhotos } from "./works-photos-block"
 
 export const registeredPageBlocks: RegisteredBlockData[] = [
   Hero,
@@ -23,6 +24,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   Methods,
   Stages,
   ServicesCost,
+  WorksPhotos,
 ]
 
 export function getBlockRenderer(blockType: string) {

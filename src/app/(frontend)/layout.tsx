@@ -38,7 +38,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       >
         <Header navigation={navigation} />
         <main className="flex flex-col gap-16">{children}</main>
-        <Footer />
+        <Footer navigation={navigation} />
       </body>
     </html>
   )

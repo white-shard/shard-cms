@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     pages: Page;
     services: Service;
+    staff: Staff;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -81,6 +82,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
+    staff: StaffSelect<false> | StaffSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -398,6 +400,24 @@ export interface Service {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "staff".
+ */
+export interface Staff {
+  id: number;
+  img: number | Media;
+  fullname: string;
+  description?: string | null;
+  features?:
+    | {
+        item: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -418,6 +438,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'services';
         value: number | Service;
+      } | null)
+    | ({
+        relationTo: 'staff';
+        value: number | Staff;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -750,6 +774,23 @@ export interface ServicesSelect<T extends boolean = true> {
       };
   price?: T;
   old_price?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "staff_select".
+ */
+export interface StaffSelect<T extends boolean = true> {
+  img?: T;
+  fullname?: T;
+  description?: T;
+  features?:
+    | T
+    | {
+        item?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

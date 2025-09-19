@@ -48,22 +48,22 @@ export function ACDefault({ fields }: Props) {
         <div className="flex flex-col gap-4">
           <div className="w-full flex flex-col items-end">
             <span className="text-4xl">{fields.advantages.heading}</span>
-            {fields.advantages.description && (
+            {fields.challenges.description && (
               <p className="text-xl text-gray-600">
-                {fields.advantages.description}
+                {fields.challenges.description}
               </p>
             )}
           </div>
           <div className="grid grid-cols-2 gap-32 justify-between mt-8">
             <div className="grid gap-6 w-4/5">
-              {fields.advantages.advantages.map((advantage, index) => (
+              {fields.challenges.challenges.map((challenge, index) => (
                 <div key={index} className="flex gap-2">
                   <Check className="size-10 text-accent" />
                   <div className="flex flex-col items-center gap-2">
-                    <span className="text-2xl">{advantage.heading}</span>
-                    {advantage.description && (
+                    <span className="text-2xl">{challenge.heading}</span>
+                    {challenge.description && (
                       <p className="text-xl text-gray-600">
-                        {advantage.description}
+                        {challenge.description}
                       </p>
                     )}
                   </div>

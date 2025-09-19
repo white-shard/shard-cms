@@ -18,7 +18,7 @@ export function ServicesCostBlockDefault({ fields }: Props) {
           <span className="text-2xl text-primary">
             Профессиональная гигиена <span className="text-accent">GBT</span>
           </span>
-          <span className="text-2xl">от 13 500</span>
+          <span className="text-2xl">13 500</span>
         </li>
         {fields.services.map((service) => (
           <li className="flex justify-between" key={service.item.id}>
@@ -29,7 +29,7 @@ export function ServicesCostBlockDefault({ fields }: Props) {
                   {service.item.old_price}
                 </span>
               )}
-              <span className="text-2xl">от {service.item.price}</span>
+              <span className="text-2xl">{service.item.price}</span>
             </div>
           </li>
         ))}

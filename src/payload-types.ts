@@ -90,9 +90,11 @@ export interface Config {
   };
   globals: {
     navigation: Navigation;
+    globalSettings: GlobalSetting;
   };
   globalsSelect: {
     navigation: NavigationSelect<false> | NavigationSelect<true>;
+    globalSettings: GlobalSettingsSelect<false> | GlobalSettingsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -214,7 +216,7 @@ export interface Page {
             actions?:
               | {
                   name: string;
-                  icon?: ('clipboard-list' | 'cog') | null;
+                  icon?: ('clipboard-list' | 'cog' | 'instagram') | null;
                   color?: ('primary' | 'accent' | 'secondary') | null;
                   id?: string | null;
                 }[]
@@ -817,6 +819,33 @@ export interface Navigation {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "globalSettings".
+ */
+export interface GlobalSetting {
+  id: number;
+  display: {
+    thesis: string;
+    links?:
+      | {
+          icon: 'clipboard-list' | 'cog' | 'instagram';
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  footer?: {
+    services?:
+      | {
+          item?: (number | null) | Service;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "navigation_select".
  */
 export interface NavigationSelect<T extends boolean = true> {
@@ -842,6 +871,37 @@ export interface NavigationSelect<T extends boolean = true> {
               id?: T;
             };
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "globalSettings_select".
+ */
+export interface GlobalSettingsSelect<T extends boolean = true> {
+  display?:
+    | T
+    | {
+        thesis?: T;
+        links?:
+          | T
+          | {
+              icon?: T;
+              url?: T;
+              id?: T;
+            };
+      };
+  footer?:
+    | T
+    | {
+        services?:
+          | T
+          | {
+              item?: T;
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

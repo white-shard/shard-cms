@@ -1,6 +1,5 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from "@payloadcms/db-postgres"
-import { nodemailerAdapter } from "@payloadcms/email-nodemailer"
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import path from "path"
@@ -8,14 +7,12 @@ import { buildConfig } from "payload"
 import sharp from "sharp"
 import { fileURLToPath } from "url"
 
-import { s3Storage } from "@payloadcms/storage-s3"
-
+import { GlobalSettings } from "./collections/globals/GeneralSettings"
 import { Navigation } from "./collections/globals/Navigation"
 import { Media } from "./collections/Media"
 import { Pages } from "./collections/Pages"
 import { Services } from "./collections/Services"
 import { Users } from "./collections/Users"
-import smtpNodemailerConfig from "./config/nodemailer.config"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -34,7 +31,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Pages, Services],
-  globals: [Navigation],
+  globals: [Navigation, GlobalSettings],
   // email: nodemailerAdapter(smtpNodemailerConfig),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

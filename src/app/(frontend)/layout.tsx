@@ -5,6 +5,7 @@ import localFont from "next/font/local"
 import { getPayload } from "payload"
 import React from "react"
 import "./styles.css"
+import { Footer } from "@/widgets/footer"
 
 export const metadata = {
   description: "A blank template using Payload in a Next.js app.",
@@ -37,6 +38,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       >
         <Header navigation={navigation} />
         <main className="flex flex-col gap-16">{children}</main>
+        <Footer />
       </body>
     </html>
   )

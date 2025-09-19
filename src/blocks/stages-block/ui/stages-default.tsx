@@ -6,7 +6,7 @@ type Props = {
 
 export function StagesBlockDefault({ fields }: Props) {
   return (
-    <div className="flex flex-col container mx-auto gap-4">
+    <div className="flex flex-col container mx-auto gap-4 h-full">
       <div className="grid gap-2">
         <span className="text-4xl">{fields.heading}</span>
         {fields.description && (
@@ -14,7 +14,7 @@ export function StagesBlockDefault({ fields }: Props) {
         )}
       </div>
 
-      <div className="grid grid-cols-3 mt-8 ">
+      <div className="grid grid-cols-3 mt-8 gap-32">
         {fields.stages.map((stage, index) => (
           <div
             key={index}
@@ -22,7 +22,7 @@ export function StagesBlockDefault({ fields }: Props) {
               marginTop: `${(index % 3) * 50}px`,
               marginBottom: `${100 - (index % 3) * 50}px`,
             }}
-            className="flex flex-col gap-2 bg-gray-200 rounded-lg p-4 w-4/5"
+            className="flex flex-col gap-2 bg-gray-200 rounded-lg p-4 h-48"
           >
             <span className="text-2xl">{stage.heading}</span>
             {stage.description && (

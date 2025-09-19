@@ -17,19 +17,19 @@ export function ContactBlockDefault({ fields }: Props) {
           <div className="flex gap-2 items-center">
             <MapPin className="text-primary size-4 md:size-6" />
             <span className="flex-1 md:text-xl">
-              Екатеринбург, улица Пушкина, дом Колотушкина, 22а
+              Екатеринбург, Олимпийская набережная, 9/1
             </span>
           </div>
           <div className="flex gap-2 items-center">
             <Clock className="text-primary size-4  md:size-6" />
-            <span className="flex-1 md:text-xl">с 10 утра до 18 вечера</span>
+            <span className="flex-1 md:text-xl">Ежедневно: 9:00-21:00</span>
           </div>
           <div className="flex flex-col gap-4 my-8">
             <span className="text-primary text-2xl md:text-4xl">
-              +7 (987) 654-3210
+              +7 (343) 287-77-89
             </span>
             <span className="text-primary text-2xl md:text-4xl">
-              +7 (012) 345-6789
+              +7 (961) 771-17-74
             </span>
           </div>
         </div>

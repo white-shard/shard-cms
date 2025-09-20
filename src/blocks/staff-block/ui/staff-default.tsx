@@ -1,7 +1,6 @@
+import { Button } from "@/components/ui/button"
 import { Check, ClipboardList } from "lucide-react"
 import { StaffBlockFields } from "../types"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
 
 type Props = {
   fields: StaffBlockFields

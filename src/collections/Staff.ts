@@ -37,6 +37,20 @@ export const Staff: CollectionConfig = {
       required: false,
     },
     {
+      name: "specialty",
+      label: "Специальность",
+      type: "relationship",
+      relationTo: "specialties",
+      hasMany: true,
+      required: true,
+    },
+    {
+      name: "alternativeSpecialty",
+      label: "Альтернативные специализации",
+      type: "text",
+      required: false,
+    },
+    {
       name: "features",
       label: "Преимущества",
       type: "array",

@@ -72,6 +72,7 @@ export interface Config {
     pages: Page;
     services: Service;
     staff: Staff;
+    specialties: Specialty;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -83,6 +84,7 @@ export interface Config {
     pages: PagesSelect<false> | PagesSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     staff: StaffSelect<false> | StaffSelect<true>;
+    specialties: SpecialtiesSelect<false> | SpecialtiesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -378,6 +380,15 @@ export interface Page {
             blockName?: string | null;
             blockType: 'staff';
           }
+        | {
+            blockHeading?: string | null;
+            img?: (number | null) | Media;
+            heading: string;
+            description: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'team';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -414,12 +425,24 @@ export interface Staff {
   fullname: string;
   experience: number;
   description?: string | null;
+  specialty: (number | Specialty)[];
+  alternativeSpecialty?: string | null;
   features?:
     | {
         item: string;
         id?: string | null;
       }[]
     | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "specialties".
+ */
+export interface Specialty {
+  id: number;
+  name: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -449,6 +472,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'staff';
         value: number | Staff;
+      } | null)
+    | ({
+        relationTo: 'specialties';
+        value: number | Specialty;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -767,6 +794,16 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        team?:
+          | T
+          | {
+              blockHeading?: T;
+              img?: T;
+              heading?: T;
+              description?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
@@ -800,12 +837,23 @@ export interface StaffSelect<T extends boolean = true> {
   fullname?: T;
   experience?: T;
   description?: T;
+  specialty?: T;
+  alternativeSpecialty?: T;
   features?:
     | T
     | {
         item?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "specialties_select".
+ */
+export interface SpecialtiesSelect<T extends boolean = true> {
+  name?: T;
   updatedAt?: T;
   createdAt?: T;
 }

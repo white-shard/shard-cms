@@ -14,6 +14,7 @@ import { Pages } from "./collections/Pages"
 import { Services } from "./collections/Services"
 import { Users } from "./collections/Users"
 import { Staff } from "./collections/Staff"
+import { Specialties } from "./collections/Specialties"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -31,7 +32,7 @@ export default buildConfig({
       },
     },
   },
-  collections: [Users, Media, Pages, Services, Staff],
+  collections: [Users, Media, Pages, Services, Staff, Specialties],
   globals: [Navigation, GlobalSettings],
   // email: nodemailerAdapter(smtpNodemailerConfig),
   editor: lexicalEditor(),

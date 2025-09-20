@@ -10,6 +10,7 @@ import { Services } from "./services-block"
 import { ServicesCost } from "./services-cost-block"
 import { Staff } from "./staff-block"
 import { Stages } from "./stages-block"
+import { Team } from "./team-block"
 import { RegisteredBlockData } from "./types"
 import { WorksPhotos } from "./works-photos-block"
 
@@ -27,6 +28,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   ServicesCost,
   WorksPhotos,
   Staff,
+  Team,
 ]
 
 export function getBlockRenderer(blockType: string) {

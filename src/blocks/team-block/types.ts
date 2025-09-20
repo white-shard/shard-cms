@@ -1,4 +1,4 @@
-import { Media, Specialty } from "@/payload-types"
+import { Media, Page } from "@/payload-types"
 
 export interface TeamBlockFields {
   blockHeading?: string | null
@@ -7,15 +7,19 @@ export interface TeamBlockFields {
   description: string
 }
 
-export interface StaffListFields {
-  staffList: {
-    id: number
-    img: Media
-    fullname: string
-    experience: number
-    description: string
-    specialty: Specialty[]
-    alternativeSpecialty: string
-    features: { item: string }[]
-  }[]
+export interface StaffFields {
+  id: number
+  img: Media
+  fullname: string
+  experience: number
+  description: string
+  specialty: SpecialtyFields[]
+  staffPage: Page
+  alternativeSpecialty: string
+  features: { item: string }[]
+}
+
+export interface SpecialtyFields {
+  id: number
+  name: string
 }

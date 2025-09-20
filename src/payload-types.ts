@@ -427,6 +427,7 @@ export interface Staff {
   description?: string | null;
   specialty: (number | Specialty)[];
   alternativeSpecialty?: string | null;
+  staffPage?: (number | null) | Page;
   features?:
     | {
         item: string;
@@ -839,6 +840,7 @@ export interface StaffSelect<T extends boolean = true> {
   description?: T;
   specialty?: T;
   alternativeSpecialty?: T;
+  staffPage?: T;
   features?:
     | T
     | {

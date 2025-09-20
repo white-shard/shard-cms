@@ -51,6 +51,13 @@ export const Staff: CollectionConfig = {
       required: false,
     },
     {
+      name: "staffPage",
+      label: "Страница врача",
+      type: "relationship",
+      relationTo: "pages",
+      required: false,
+    },
+    {
       name: "features",
       label: "Преимущества",
       type: "array",

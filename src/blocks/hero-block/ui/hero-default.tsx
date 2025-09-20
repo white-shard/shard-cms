@@ -9,7 +9,7 @@ type Props = {
 
 export function HeroBlockDefault({ fields }: Props) {
   return (
-    <div className="flex justify-center items-center w-screen h-screen bg-white relative">
+    <div className="flex justify-center items-center w-screen h-[calc(100vh-100px)] bg-white relative">
       <div className="w-full flex flex-col justify-center items-center min-h-full pt-16 z-10">
         <div className="mt-48 flex-col flex items-center w-full lg:w-auto px-4">
           {fields.beforeHeading && (

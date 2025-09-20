@@ -1,5 +1,11 @@
-import { Staff } from "@/payload-types"
+import { Media } from "@/payload-types"
 
 export interface StaffBlockFields {
-  staff: Staff
+  staff: {
+    img: Media
+    fullname: string
+    expirience: number
+    description: string
+    features: { item: string }[]
+  }
 }

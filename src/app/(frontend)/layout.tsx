@@ -37,7 +37,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         className={`${itcConduit.variable} ${roboto.variable} antialiased max-w-screen overflow-x-hidden`}
       >
         <Header navigation={navigation} />
-        <main className="flex flex-col gap-16">{children}</main>
+        <main className="flex flex-col gap-16 pt-25">{children}</main>
         <Footer navigation={navigation} />
       </body>
     </html>

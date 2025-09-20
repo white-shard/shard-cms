@@ -8,6 +8,7 @@ import { Installment } from "./installment"
 import { Methods } from "./methods-block"
 import { Services } from "./services-block"
 import { ServicesCost } from "./services-cost-block"
+import { Staff } from "./staff-block"
 import { Stages } from "./stages-block"
 import { RegisteredBlockData } from "./types"
 import { WorksPhotos } from "./works-photos-block"
@@ -25,6 +26,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   Stages,
   ServicesCost,
   WorksPhotos,
+  Staff,
 ]
 
 export function getBlockRenderer(blockType: string) {

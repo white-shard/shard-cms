@@ -372,6 +372,12 @@ export interface Page {
             blockName?: string | null;
             blockType: 'works-photos';
           }
+        | {
+            staff: number | Staff;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'staff';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -406,6 +412,7 @@ export interface Staff {
   id: number;
   img: number | Media;
   fullname: string;
+  experience: number;
   description?: string | null;
   features?:
     | {
@@ -753,6 +760,13 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        staff?:
+          | T
+          | {
+              staff?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
@@ -784,6 +798,7 @@ export interface ServicesSelect<T extends boolean = true> {
 export interface StaffSelect<T extends boolean = true> {
   img?: T;
   fullname?: T;
+  experience?: T;
   description?: T;
   features?:
     | T

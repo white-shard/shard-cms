@@ -1,8 +1,13 @@
 import { Button } from "@/components/ui/button"
 import { Check, ClipboardList } from "lucide-react"
 import Image from "next/image"
+import { InstallmentBlockFields } from "../types"
 
-export function InstallmentBlockDefault() {
+type Props = {
+  fields: InstallmentBlockFields
+}
+
+export function InstallmentBlockDefault({ fields }: Props) {
   return (
     <div className="container mx-auto px-4 flex flex-col">
       <span className="text-3xl md:text-8xl text-primary">РАССРОЧКА 0%</span>
@@ -48,8 +53,16 @@ export function InstallmentBlockDefault() {
             </Button>
           </div>
         </div>
-        <div className="w-1/2 lg:w-96 aspect-square bg-gray-400 rounded-lg">
-          <Image src="/" alt="Installment" fill />
+        <div className="w-1/2 relative lg:w-96 aspect-square rounded-lg">
+          <Image
+            src={fields.img?.url || ""}
+            alt={fields.img?.alt || ""}
+            fill
+            style={{
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
+          />
         </div>
       </div>
       <div className="grid gap-4 lg:hidden">

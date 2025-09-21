@@ -267,6 +267,7 @@ export interface Page {
             blockType: 'contact';
           }
         | {
+            img?: (number | null) | Media;
             id?: string | null;
             blockName?: string | null;
             blockType: 'installment';
@@ -422,6 +423,15 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'why-are-we';
+          }
+        | {
+            img?: (number | null) | Media;
+            heading: string;
+            description: string;
+            quote?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'history';
           }
       )[]
     | null;
@@ -706,6 +716,7 @@ export interface PagesSelect<T extends boolean = true> {
         installment?:
           | T
           | {
+              img?: T;
               id?: T;
               blockName?: T;
             };
@@ -873,6 +884,16 @@ export interface PagesSelect<T extends boolean = true> {
                     description?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        history?:
+          | T
+          | {
+              img?: T;
+              heading?: T;
+              description?: T;
+              quote?: T;
               id?: T;
               blockName?: T;
             };

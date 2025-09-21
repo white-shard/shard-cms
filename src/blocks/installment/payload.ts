@@ -9,5 +9,12 @@ export const InstallmentBlock: Block = {
   admin: {
     disableBlockName: true,
   },
-  fields: [],
+  fields: [
+    {
+      name: "img",
+      type: "upload",
+      relationTo: "media",
+      required: false,
+    },
+  ],
 }

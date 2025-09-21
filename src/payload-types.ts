@@ -396,6 +396,19 @@ export interface Page {
             blockName?: string | null;
             blockType: 'expert-team';
           }
+        | {
+            heading: string;
+            description: string;
+            images?:
+              | {
+                  img: number | Media;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'gallery';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -817,6 +830,20 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               heading?: T;
               experts?: T;
+              id?: T;
+              blockName?: T;
+            };
+        gallery?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              images?:
+                | T
+                | {
+                    img?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

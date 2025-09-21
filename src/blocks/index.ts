@@ -14,6 +14,7 @@ import { Staff } from "./staff-block"
 import { Stages } from "./stages-block"
 import { Team } from "./team-block"
 import { RegisteredBlockData } from "./types"
+import { WhyAreWe } from "./why-are-we-block"
 import { WorksPhotos } from "./works-photos-block"
 
 export const registeredPageBlocks: RegisteredBlockData[] = [
@@ -33,6 +34,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   Team,
   ExpertTeam,
   Gallery,
+  WhyAreWe,
 ]
 
 export function getBlockRenderer(blockType: string) {

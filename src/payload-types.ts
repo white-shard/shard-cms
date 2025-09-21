@@ -409,6 +409,20 @@ export interface Page {
             blockName?: string | null;
             blockType: 'gallery';
           }
+        | {
+            heading: string;
+            items?:
+              | {
+                  icon?: ('clipboard-list' | 'cog' | 'instagram') | null;
+                  heading: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'why-are-we';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -842,6 +856,21 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     img?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'why-are-we'?:
+          | T
+          | {
+              heading?: T;
+              items?:
+                | T
+                | {
+                    icon?: T;
+                    heading?: T;
+                    description?: T;
                     id?: T;
                   };
               id?: T;

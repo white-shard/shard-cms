@@ -1,6 +1,7 @@
 import { Advantages } from "./advantages-block"
 import { AdvantagesChallenges } from "./advantages-challenges-block"
 import { Contact } from "./contact-block"
+import { ExpertTeam } from "./expert-team-block"
 import { Founder } from "./founder-block"
 import { Hero } from "./hero-block"
 import { IndicationsContraindications } from "./indications-contraindications-block"
@@ -29,6 +30,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   WorksPhotos,
   Staff,
   Team,
+  ExpertTeam,
 ]
 
 export function getBlockRenderer(blockType: string) {

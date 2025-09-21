@@ -389,6 +389,13 @@ export interface Page {
             blockName?: string | null;
             blockType: 'team';
           }
+        | {
+            heading: string;
+            experts: (number | Staff)[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'expert-team';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -802,6 +809,14 @@ export interface PagesSelect<T extends boolean = true> {
               img?: T;
               heading?: T;
               description?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'expert-team'?:
+          | T
+          | {
+              heading?: T;
+              experts?: T;
               id?: T;
               blockName?: T;
             };

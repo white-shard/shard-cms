@@ -45,10 +45,22 @@ export const FooterOptions: GlobalConfig = {
       type: "array",
       fields: [
         {
-          name: "service",
-          label: "Услуга",
-          type: "relationship",
-          relationTo: "services",
+          type: "row",
+          fields: [
+            {
+              name: "page",
+              label: "Страница",
+              type: "relationship",
+              relationTo: "pages",
+              required: true,
+            },
+            {
+              name: "title",
+              label: "Альтернативное название",
+              type: "text",
+              required: false,
+            },
+          ],
         },
       ],
     },

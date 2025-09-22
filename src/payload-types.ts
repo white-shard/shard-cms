@@ -1076,7 +1076,8 @@ export interface FooterOption {
     | null;
   services?:
     | {
-        service?: (number | null) | Service;
+        page: number | Page;
+        title?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1172,7 +1173,8 @@ export interface FooterOptionsSelect<T extends boolean = true> {
   services?:
     | T
     | {
-        service?: T;
+        page?: T;
+        title?: T;
         id?: T;
       };
   warning?: T;

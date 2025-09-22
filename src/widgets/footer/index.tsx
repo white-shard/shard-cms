@@ -1,9 +1,9 @@
 "use client"
 
+import { WhiteShard } from "@/components/icons/ws"
 import { Button } from "@/components/ui/button"
 import { useFooterOptions } from "@/lib/hooks/use-site-footer-options"
 import { useSiteOptions } from "@/lib/hooks/use-site-options"
-import { Navigation as PayloadNavigation } from "@/payload-types"
 import {
   Calendar,
   Clock,
@@ -13,17 +13,10 @@ import {
   Phone,
 } from "lucide-react"
 import Link from "next/link"
-import { Navigation } from "./types"
-import { WhiteShard } from "@/components/icons/ws"
 
-export type Props = {
-  navigation: PayloadNavigation
-}
-
-export function Footer({ navigation }: Props) {
+export function Footer() {
   const { options } = useSiteOptions()
   const { footerOptions } = useFooterOptions()
-  const data = navigation as Navigation
 
   return (
     <footer className="bg-black flex flex-col text-gray-400 mt-16 pt-16">
@@ -71,13 +64,13 @@ export function Footer({ navigation }: Props) {
         <div>
           <span className="text-lg text-white">Услуги</span>
           <div>
-            {footerOptions?.services?.map((service) => (
+            {footerOptions?.services?.map((item) => (
               <Link
                 className="hover:underline"
-                href={service.service?.url || ""}
-                key={service.service?.id}
+                href={`/${item.page?.slug}` || "#"}
+                key={item.page?.id}
               >
-                {service.service.title}
+                {item.title || item.page.title}
               </Link>
             ))}
           </div>
@@ -90,7 +83,7 @@ export function Footer({ navigation }: Props) {
             Записаться онлайн
           </Button>
           <Button
-            className="w-full border-green-600 border-1 text-green-600"
+            className="w-full border-green-800 border-1 text-green-800 hover:border-green-700 hover:text-green-700"
             size="lg"
             variant="primary"
           >

@@ -12,12 +12,12 @@ export function WhiteShard(props: React.SVGProps<SVGSVGElement>) {
       <path
         d="M2 0.999998L8.49794 14.9242C8.82048 15.6153 9.39416 16.1577 10.1023 16.4409L24 22"
         stroke="#404D57"
-        stroke-width="3"
+        strokeWidth="3"
       />
       <path
         d="M21.5 15.5L18.3327 7.35556C18.1215 6.81243 17.6839 6.38843 17.1344 6.19448L9.5 3.5"
         stroke="#61707A"
-        stroke-width="3"
+        strokeWidth="3"
       />
     </svg>
   )

@@ -1,4 +1,4 @@
-import { Document, Service } from "@/payload-types"
+import { Document, Page } from "@/payload-types"
 import { useEffect, useState } from "react"
 import { getFooterOptions } from "../api/get-footer-options"
 
@@ -25,7 +25,8 @@ type IFooterOptions = {
     url: string
   }[]
   services: {
-    service: Service
+    page: Page
+    title?: string
   }[]
   warning?: string
   documentLinks: {

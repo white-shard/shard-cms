@@ -1,3 +1,5 @@
+"use client"
+
 import {
   HoverCard,
   HoverCardContent,
@@ -11,12 +13,17 @@ import {
 import { ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { Navigation } from "../types"
+import { useState } from "react"
 
 export type Props = {
   navigation: Navigation
 }
 
 export function DesktopHeader({ navigation }: Props) {
+  const [open, setOpen] = useState(false)
+
+  const handleClose = () => setOpen(false)
+
   return (
     <div className="flex gap-8 items-center container mx-auto">
       <Link href="/">
@@ -26,13 +33,13 @@ export function DesktopHeader({ navigation }: Props) {
         <NavigationMenuList className="flex gap-8 text-lg">
           {navigation.items.map((item) =>
             item.hasCategories && item.categories.length ? (
-              <HoverCard key={item.id}>
+              <HoverCard onOpenChange={setOpen} open={open} key={item.id}>
                 <HoverCardTrigger className="cursor-pointer hover:text-accent flex items-center gap-2">
                   <span>{item.label}</span>
                   <ChevronDown className="size-4" />
                 </HoverCardTrigger>
                 <HoverCardContent className="mt-8 w-screen h-128 rounded-none">
-                  <div className="container mx-auto flex flex-wrap gap-16 justify-start">
+                  <div className="container mx-auto grid grid-cols-4 gap-16 justify-start">
                     {item.categories.map((category) => (
                       <div
                         key={category.id}
@@ -40,6 +47,7 @@ export function DesktopHeader({ navigation }: Props) {
                       >
                         <Link
                           className="cursor-pointer hover:text-accent text-3xl text-primary"
+                          onClick={handleClose}
                           href={category.url || "#"}
                         >
                           {category.label}
@@ -49,6 +57,7 @@ export function DesktopHeader({ navigation }: Props) {
                             {category.items.map((item) => (
                               <Link
                                 key={item.id}
+                                onClick={handleClose}
                                 className="hover:underline"
                                 href={item.url || "#"}
                               >

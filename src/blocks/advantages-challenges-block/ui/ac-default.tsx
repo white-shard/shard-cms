@@ -71,9 +71,9 @@ export function ACDefault({ fields }: Props) {
               ))}
             </div>
             <div className="flex-1 aspect-square relative">
-              {fields.advantages.img ? (
+              {fields.challenges.img ? (
                 <Image
-                  src={fields.advantages.img.url!}
+                  src={fields.challenges.img.url!}
                   fill
                   alt={fields.challenges?.img?.alt || ""}
                   className="object-contain"

@@ -22,9 +22,9 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
             <line
               x1="1%"
-              y1="96"
+              y1="128"
               x2="99%"
-              y2="96"
+              y2="128"
               stroke="#e91e63"
               strokeWidth="4"
               strokeDasharray="8,8"
@@ -36,7 +36,7 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
                 x1="0.1%"
                 y1="0"
                 x2="1%"
-                y2="96"
+                y2="128"
                 stroke="#e91e63"
                 strokeWidth="4"
                 strokeDasharray="8,8"
@@ -45,9 +45,9 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
             ) : (
               <line
                 x1="1%"
-                y1="96"
+                y1="128"
                 x2="0.1%"
-                y2="192"
+                y2="256"
                 stroke="#e91e63"
                 strokeWidth="4"
                 strokeDasharray="8,8"
@@ -59,9 +59,9 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
               0 ? (
               <line
                 x1="99%"
-                y1="96"
+                y1="128"
                 x2="99.9%"
-                y2="192"
+                y2="256"
                 stroke="#e91e63"
                 strokeWidth="4"
                 strokeDasharray="8,8"
@@ -72,7 +72,7 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
                 x1="99.9%"
                 y1="0"
                 x2="99%"
-                y2="96"
+                y2="128"
                 stroke="#e91e63"
                 strokeWidth="4"
                 strokeDasharray="8,8"
@@ -87,15 +87,15 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
             return (
               <div
                 key={`${groupIndex}-${index}`}
-                className="flex flex-col relative h-48 p-4 items-center hover:items-start hover:justify-center flex-1 gap-4 hover:gap-0 group hover:border-4 border-accent/50 hover:bg-white rounded-lg border-dashed"
+                className="flex flex-col relative h-64 p-4 items-center hover:items-start justify-center flex-1 gap-4 hover:gap-0 group hover:border-4 border-accent/50 hover:bg-white rounded-lg border-dashed"
               >
                 <div className="absolute top-1/2 -translate-y-1/2 size-16 bg-accent rounded-full flex items-center justify-center group-hover:hidden">
                   <Icon className="size-6 md:size-5 text-white" />
                 </div>
-                <span className="text-lg group-hover:text-accent mt-32 group-hover:mt-0">
+                <span className="text-lg group-hover:text-accent mt-32 group-hover:mt-0 group-hover:text-left">
                   {item.heading}
                 </span>
-                <p className="text-lg group-hover:block hidden text-gray-400">
+                <p className="text-lg group-hover:block hidden text-gray-400 text-left">
                   {item.description}
                 </p>
               </div>

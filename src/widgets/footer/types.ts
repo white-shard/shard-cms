@@ -1,3 +1,5 @@
+import { Service } from "@/payload-types"
+
 export type Navigation = {
   items: {
     id: string
@@ -20,4 +22,10 @@ export type NavigationItem = {
   id: string
   label: string
   url?: string
+}
+
+export type FooterSettings = {
+  services: {
+    item: Service
+  }[]
 }

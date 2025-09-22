@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    documents: Document;
     pages: Page;
     services: Service;
     staff: Staff;
@@ -81,6 +82,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    documents: DocumentsSelect<false> | DocumentsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     staff: StaffSelect<false> | StaffSelect<true>;
@@ -94,11 +96,13 @@ export interface Config {
   };
   globals: {
     navigation: Navigation;
-    globalSettings: GlobalSetting;
+    'footer-options': FooterOption;
+    options: Option;
   };
   globalsSelect: {
     navigation: NavigationSelect<false> | NavigationSelect<true>;
-    globalSettings: GlobalSettingsSelect<false> | GlobalSettingsSelect<true>;
+    'footer-options': FooterOptionsSelect<false> | FooterOptionsSelect<true>;
+    options: OptionsSelect<false> | OptionsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -195,6 +199,25 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents".
+ */
+export interface Document {
+  id: number;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -507,6 +530,10 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
+        relationTo: 'documents';
+        value: number | Document;
+      } | null)
+    | ({
         relationTo: 'pages';
         value: number | Page;
       } | null)
@@ -637,6 +664,24 @@ export interface MediaSelect<T extends boolean = true> {
               filename?: T;
             };
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents_select".
+ */
+export interface DocumentsSelect<T extends boolean = true> {
+  title?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1017,28 +1062,65 @@ export interface Navigation {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "globalSettings".
+ * via the `definition` "footer-options".
  */
-export interface GlobalSetting {
+export interface FooterOption {
   id: number;
-  display: {
-    thesis: string;
-    links?:
-      | {
-          icon: 'clipboard-list' | 'cog' | 'instagram';
-          url: string;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  footer?: {
-    services?:
-      | {
-          item?: (number | null) | Service;
-          id?: string | null;
-        }[]
-      | null;
-  };
+  thesis?: string | null;
+  links?:
+    | {
+        icon: 'clipboard-list' | 'cog' | 'instagram';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  services?:
+    | {
+        service?: (number | null) | Service;
+        id?: string | null;
+      }[]
+    | null;
+  warning?: string | null;
+  documentLinks?:
+    | {
+        document: number | Document;
+        id?: string | null;
+      }[]
+    | null;
+  rights?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "options".
+ */
+export interface Option {
+  id: number;
+  orgNameShort?: string | null;
+  orgNameFull?: string | null;
+  addressShort?: string | null;
+  addressFull?: string | null;
+  ogrn?: string | null;
+  inn?: string | null;
+  kpp?: string | null;
+  okpo?: string | null;
+  workTimeStart?: string | null;
+  workTimeEnd?: string | null;
+  phones?:
+    | {
+        phone: string;
+        hasTelegram: boolean;
+        hasWhatsapp: boolean;
+        id?: string | null;
+      }[]
+    | null;
+  emails?:
+    | {
+        mail: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1076,30 +1158,63 @@ export interface NavigationSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "globalSettings_select".
+ * via the `definition` "footer-options_select".
  */
-export interface GlobalSettingsSelect<T extends boolean = true> {
-  display?:
+export interface FooterOptionsSelect<T extends boolean = true> {
+  thesis?: T;
+  links?:
     | T
     | {
-        thesis?: T;
-        links?:
-          | T
-          | {
-              icon?: T;
-              url?: T;
-              id?: T;
-            };
+        icon?: T;
+        url?: T;
+        id?: T;
       };
-  footer?:
+  services?:
     | T
     | {
-        services?:
-          | T
-          | {
-              item?: T;
-              id?: T;
-            };
+        service?: T;
+        id?: T;
+      };
+  warning?: T;
+  documentLinks?:
+    | T
+    | {
+        document?: T;
+        id?: T;
+      };
+  rights?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "options_select".
+ */
+export interface OptionsSelect<T extends boolean = true> {
+  orgNameShort?: T;
+  orgNameFull?: T;
+  addressShort?: T;
+  addressFull?: T;
+  ogrn?: T;
+  inn?: T;
+  kpp?: T;
+  okpo?: T;
+  workTimeStart?: T;
+  workTimeEnd?: T;
+  phones?:
+    | T
+    | {
+        phone?: T;
+        hasTelegram?: T;
+        hasWhatsapp?: T;
+        id?: T;
+      };
+  emails?:
+    | T
+    | {
+        mail?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;

@@ -7,7 +7,6 @@ import { buildConfig } from "payload"
 import sharp from "sharp"
 import { fileURLToPath } from "url"
 
-import { GlobalSettings } from "./collections/globals/GeneralSettings"
 import { Navigation } from "./collections/globals/Navigation"
 import { Media } from "./collections/Media"
 import { Pages } from "./collections/Pages"
@@ -15,6 +14,9 @@ import { Services } from "./collections/Services"
 import { Users } from "./collections/Users"
 import { Staff } from "./collections/Staff"
 import { Specialties } from "./collections/Specialties"
+import { SiteOptions } from "./collections/globals/SiteOptions"
+import { FooterOptions } from "./collections/globals/FooterOptions"
+import { Documents } from "./collections/Documents"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,8 +34,8 @@ export default buildConfig({
       },
     },
   },
-  collections: [Users, Media, Pages, Services, Staff, Specialties],
-  globals: [Navigation, GlobalSettings],
+  collections: [Users, Media, Documents, Pages, Services, Staff, Specialties],
+  globals: [Navigation, FooterOptions, SiteOptions],
   // email: nodemailerAdapter(smtpNodemailerConfig),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

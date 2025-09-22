@@ -55,8 +55,8 @@ export function InstallmentBlockDefault({ fields }: Props) {
         </div>
         <div className="w-1/2 relative lg:w-96 aspect-square rounded-lg">
           <Image
-            src={fields.img?.url || ""}
-            alt={fields.img?.alt || ""}
+            src={fields?.img?.url || ""}
+            alt={fields?.img?.alt || ""}
             fill
             style={{
               objectFit: "cover",

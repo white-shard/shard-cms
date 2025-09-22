@@ -11,7 +11,9 @@ export function ACDefault({ fields }: Props) {
     <div className="stroke-accent relative pt-32 py-32">
       <div className="container mx-auto grid grid-rows-2 px-8 gap-32">
         <div className="flex flex-col gap-4">
-          <span className="text-4xl">{fields.advantages.heading}</span>
+          <span className="text-4xl md:max-w-3/5">
+            {fields.advantages.heading}
+          </span>
           {fields.advantages.description && (
             <p className="text-xl text-gray-600">
               {fields.advantages.description}
@@ -31,7 +33,7 @@ export function ACDefault({ fields }: Props) {
             <div className="flex-1 flex flex-col gap-6 w-4/5">
               {fields.advantages.advantages.map((advantage, index) => (
                 <div key={index} className="flex gap-2">
-                  <Check className="size-10 text-accent" />
+                  <Check className="w-8 h-8 text-accent flex-shrink-0" />
                   <div className="flex flex-col items-start gap-2">
                     <span className="text-2xl">{advantage.heading}</span>
                     {advantage.description && (
@@ -47,7 +49,9 @@ export function ACDefault({ fields }: Props) {
         </div>
         <div className="flex flex-col gap-4">
           <div className="w-full flex flex-col items-end gap-4">
-            <span className="text-4xl">{fields.challenges.heading}</span>
+            <span className="text-4xl text-right md:max-w-3/5">
+              {fields.challenges.heading}
+            </span>
             {fields.challenges.description && (
               <p className="text-xl text-gray-600">
                 {fields.challenges.description}
@@ -58,7 +62,7 @@ export function ACDefault({ fields }: Props) {
             <div className="flex-1 flex flex-col gap-6 w-4/5">
               {fields.challenges.challenges.map((challenge, index) => (
                 <div key={index} className="flex gap-2">
-                  <Check className="size-10 text-accent" />
+                  <Check className="w-8 h-8 text-accent flex-shrink-0" />
                   <div className="flex flex-col items-start gap-2">
                     <span className="text-2xl">{challenge.heading}</span>
                     {challenge.description && (

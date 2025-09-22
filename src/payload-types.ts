@@ -459,6 +459,14 @@ export interface Page {
             blockName?: string | null;
             blockType: 'history';
           }
+        | {
+            staff: number | Staff;
+            quote?: string | null;
+            description: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'gbt-hello';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -947,6 +955,15 @@ export interface PagesSelect<T extends boolean = true> {
               heading?: T;
               description?: T;
               quote?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'gbt-hello'?:
+          | T
+          | {
+              staff?: T;
+              quote?: T;
+              description?: T;
               id?: T;
               blockName?: T;
             };

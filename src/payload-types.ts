@@ -277,7 +277,10 @@ export interface Page {
           }
         | {
             main?: (number | null) | Service;
-            count: number;
+            services: {
+              service: number | Service;
+              id?: string | null;
+            }[];
             id?: string | null;
             blockName?: string | null;
             blockType: 'services';
@@ -746,7 +749,12 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               main?: T;
-              count?: T;
+              services?:
+                | T
+                | {
+                    service?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

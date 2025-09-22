@@ -18,11 +18,18 @@ export const ServicesBlock: Block = {
       required: false,
     },
     {
-      name: "count",
-      label: "Количество отображаемых услуг",
-      type: "number",
-      defaultValue: 4,
-      min: 0,
+      name: "services",
+      label: "Отображаемые услуги",
+      type: "array",
+      fields: [
+        {
+          name: "service",
+          label: "Услуга",
+          type: "relationship",
+          relationTo: "services",
+          required: true,
+        },
+      ],
       required: true,
     },
   ],

@@ -31,7 +31,9 @@ export function MobileHeader({ navigation }: Props) {
         </SheetTrigger>
         <SheetContent side="left">
           <SheetHeader className="border-b pb-5">
-            <Logo />
+            <Link href="/">
+              <Logo />
+            </Link>
           </SheetHeader>
 
           <nav className="flex items-start md:items-center text-2xl font-medium flex-col md:flex-row">

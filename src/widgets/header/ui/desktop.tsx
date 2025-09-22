@@ -19,7 +19,9 @@ export type Props = {
 export function DesktopHeader({ navigation }: Props) {
   return (
     <div className="flex gap-8 items-center container mx-auto">
-      <Logo />
+      <Link href="/">
+        <Logo />
+      </Link>
       <NavigationMenu>
         <NavigationMenuList className="flex gap-8 text-lg">
           {navigation.items.map((item) =>

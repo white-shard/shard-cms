@@ -20,7 +20,7 @@ export function Footer() {
 
   return (
     <footer className="bg-black flex flex-col text-gray-400 mt-16 pt-16">
-      <div className="grid grid-cols-4 container mx-auto">
+      <div className="grid grid-cols-4 container mx-auto gap-4">
         <div className="flex flex-col">
           <span className="text-2xl md:text-4xl text-white uppercase">
             Dr.Koshakov
@@ -63,7 +63,7 @@ export function Footer() {
         </div>
         <div>
           <span className="text-lg text-white">Услуги</span>
-          <div>
+          <div className="flex flex-col gap-2">
             {footerOptions?.services?.map((item) => (
               <Link
                 className="hover:underline"

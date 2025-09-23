@@ -38,6 +38,17 @@ export const HeroBlock: Block = {
       relationTo: "media",
     },
     {
+      name: "logo",
+      label: "Логотип услуги",
+      type: "upload",
+      relationTo: "media",
+      admin: {
+        condition: (_, siblingData) => {
+          return siblingData?.variant === "custom"
+        },
+      },
+    },
+    {
       name: "beforeHeading",
       label: "Пред заголовок",
       type: "text",
@@ -78,7 +89,7 @@ export const HeroBlock: Block = {
       ],
       admin: {
         condition: (_, siblingData) => {
-          return siblingData?.variant === "service"
+          return siblingData?.variant !== "default"
         },
       },
     },

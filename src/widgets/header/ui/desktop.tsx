@@ -10,7 +10,7 @@ import {
   NavigationMenu,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Instagram, MessageCircle } from "lucide-react"
 import Link from "next/link"
 import { Navigation } from "../types"
 import { useState } from "react"
@@ -25,7 +25,7 @@ export function DesktopHeader({ navigation }: Props) {
   const handleClose = () => setOpen(false)
 
   return (
-    <div className="flex gap-8 items-center container mx-auto">
+    <div className="flex gap-8 items-center justify-between container mx-auto">
       <Link href="/">
         <Logo />
       </Link>
@@ -38,7 +38,7 @@ export function DesktopHeader({ navigation }: Props) {
                   <span>{item.label}</span>
                   <ChevronDown className="size-4" />
                 </HoverCardTrigger>
-                <HoverCardContent className="mt-8 w-screen h-128 rounded-none">
+                <HoverCardContent className="mt-8 w-screen min-h-128 rounded-none">
                   <div className="container mx-auto grid grid-cols-4 gap-16 justify-start">
                     {item.categories.map((category) => (
                       <div
@@ -83,6 +83,13 @@ export function DesktopHeader({ navigation }: Props) {
           )}
         </NavigationMenuList>
       </NavigationMenu>
+      <div className="flex gap-8">
+        <Instagram className="size-6" />
+        <div className="flex items-center gap-2 ">
+          <MessageCircle className="text-accent size-6" />
+          <span className="text-accent">Чат заботы</span>
+        </div>
+      </div>
     </div>
   )
 }

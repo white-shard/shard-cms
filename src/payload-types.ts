@@ -234,6 +234,7 @@ export interface Page {
         | {
             variant?: ('default' | 'service' | 'custom') | null;
             img?: (number | null) | Media;
+            logo?: (number | null) | Media;
             beforeHeading?: string | null;
             heading: string;
             thesis?: string | null;
@@ -747,6 +748,7 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               variant?: T;
               img?: T;
+              logo?: T;
               beforeHeading?: T;
               heading?: T;
               thesis?: T;

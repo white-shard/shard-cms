@@ -1139,6 +1139,7 @@ export interface Navigation {
   items?:
     | {
         label: string;
+        color?: ('default' | 'accent') | null;
         url?: string | null;
         hasCategories?: boolean | null;
         categories?:
@@ -1236,6 +1237,7 @@ export interface NavigationSelect<T extends boolean = true> {
     | T
     | {
         label?: T;
+        color?: T;
         url?: T;
         hasCategories?: T;
         categories?:

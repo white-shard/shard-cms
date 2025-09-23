@@ -7,7 +7,10 @@ type Props = {
 
 export function ContactBlockDefault({ fields }: Props) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 px-4 lg:gap-32 items-center container mx-auto">
+    <div
+      id="contacts"
+      className="grid grid-cols-1 lg:grid-cols-2 px-4 lg:gap-32 items-center container mx-auto"
+    >
       <div className="flex flex-col lg:order-2">
         <span className="text-lg md:text-4xl text-gray-400 -mb-2">
           {fields.beforeHeading}

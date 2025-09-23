@@ -14,6 +14,7 @@ import { ChevronDown, Instagram, MessageCircle } from "lucide-react"
 import Link from "next/link"
 import { Navigation } from "../types"
 import { useState } from "react"
+import { cn } from "@/lib/utils"
 
 export type Props = {
   navigation: Navigation
@@ -35,7 +36,11 @@ export function DesktopHeader({ navigation }: Props) {
             item.hasCategories && item.categories.length ? (
               <HoverCard onOpenChange={setOpen} open={open} key={item.id}>
                 <HoverCardTrigger className="cursor-pointer hover:text-accent flex items-center gap-2">
-                  <span>{item.label}</span>
+                  <span
+                    className={item.color === "accent" ? "text-accent" : ""}
+                  >
+                    {item.label}
+                  </span>
                   <ChevronDown className="size-4" />
                 </HoverCardTrigger>
                 <HoverCardContent className="mt-8 w-screen min-h-128 rounded-none">
@@ -75,6 +80,10 @@ export function DesktopHeader({ navigation }: Props) {
               <Link
                 key={item.id}
                 href={item.url || "#"}
+                style={{
+                  color:
+                    item.color === "accent" ? "var(--color-accent)" : "auto",
+                }}
                 className="cursor-pointer hover:text-accent"
               >
                 {item.label}

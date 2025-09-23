@@ -2,6 +2,7 @@ export type Navigation = {
   items: {
     id: string
     label: string
+    color: "default" | "accent"
     url?: string
     hasCategories: boolean
     categories: NavigationCategory[]

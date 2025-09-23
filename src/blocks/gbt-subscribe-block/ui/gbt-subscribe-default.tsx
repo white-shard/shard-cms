@@ -9,7 +9,10 @@ type Props = {
 
 export function GbtSubscribeDefault({ fields }: Props) {
   return (
-    <div className="container mx-auto flex flex-col gap-4 justify-center items-center">
+    <div
+      id="subscribe"
+      className="container mx-auto flex flex-col gap-4 justify-center items-center"
+    >
       <p className="text-4xl text-center">
         Годовая подписка на <span className="text-accent">GBT</span>
       </p>

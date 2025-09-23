@@ -9,10 +9,31 @@ export const Navigation: GlobalConfig = {
       type: "array",
       fields: [
         {
-          name: "label",
-          label: "Заголовок",
-          type: "text",
-          required: true,
+          type: "row",
+          fields: [
+            {
+              name: "label",
+              label: "Заголовок",
+              type: "text",
+              required: true,
+            },
+            {
+              name: "color",
+              label: "Цвет",
+              type: "select",
+              defaultValue: "default",
+              options: [
+                {
+                  label: "Обычный",
+                  value: "default",
+                },
+                {
+                  label: "Акцент",
+                  value: "accent",
+                },
+              ],
+            },
+          ],
         },
         {
           name: "url",

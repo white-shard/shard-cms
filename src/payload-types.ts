@@ -487,6 +487,12 @@ export interface Page {
             blockType: 'image';
           }
         | {
+            video: number | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video';
+          }
+        | {
             description: string;
             included?:
               | {
@@ -1022,6 +1028,13 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               img?: T;
+              id?: T;
+              blockName?: T;
+            };
+        video?:
+          | T
+          | {
+              video?: T;
               id?: T;
               blockName?: T;
             };

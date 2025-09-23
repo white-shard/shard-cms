@@ -1,12 +1,12 @@
 import { RegisteredBlockData } from "../types"
-import { ImageBlock as Block } from "./payload"
-import { ImageBlockFields } from "./types"
-import { ImageDefault } from "./ui/image-default"
+import { VideoBlock as Block } from "./payload"
+import { VideoBlockFields } from "./types"
+import { VideoBlockDefault } from "./ui/image-default"
 
-export const Image: RegisteredBlockData = {
-  blockType: "image",
+export const Video: RegisteredBlockData = {
+  blockType: "video",
   payload: Block,
-  renderer: (data: ImageBlockFields) => {
-    return <ImageDefault fields={data} />
+  renderer: (data: VideoBlockFields) => {
+    return <VideoBlockDefault fields={data} />
   },
 }

@@ -1,17 +1,17 @@
 import { Block } from "payload"
 
-export const ImageBlock: Block = {
-  slug: "image",
+export const VideoBlock: Block = {
+  slug: "video",
   labels: {
-    singular: "Image Block",
-    plural: "Image Blocks",
+    singular: "Video Block",
+    plural: "Video Blocks",
   },
   admin: {
     disableBlockName: true,
   },
   fields: [
     {
-      name: "img",
+      name: "video",
       type: "upload",
       relationTo: "media",
       required: true,

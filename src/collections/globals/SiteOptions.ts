@@ -85,14 +85,6 @@ export const SiteOptions: GlobalConfig = {
           admin: {
             placeholder: "HH:MM",
           },
-          validate: (val: string) => {
-            if (!val) return true
-            const timeRegex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/
-            if (!timeRegex.test(val)) {
-              return "Введите время в формате HH:MM (например, 09:00)"
-            }
-            return true
-          },
         },
         {
           name: "workTimeEnd",
@@ -101,14 +93,6 @@ export const SiteOptions: GlobalConfig = {
           defaultValue: "21:00",
           admin: {
             placeholder: "HH:MM",
-          },
-          validate: (val: string) => {
-            if (!val) return true
-            const timeRegex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/
-            if (!timeRegex.test(val)) {
-              return "Введите время в формате HH:MM (например, 21:00)"
-            }
-            return true
           },
         },
       ],

@@ -21,7 +21,7 @@ export function WhatDoYourGetDefault({ fields }: Props) {
                 <div className="flex flex-col gap-4 w-96" key={index}>
                   <div className="flex gap-4 items-center">
                     <div className="size-12 aspect-square rounded-full bg-accent flex justify-center items-center text-white text-2xl">
-                      {index + 1}
+                      {index + 1}.
                     </div>
                     <div className="h-[2px] w-full bg-gradient-to-r from-accent to-transparent" />
                   </div>
@@ -38,7 +38,7 @@ export function WhatDoYourGetDefault({ fields }: Props) {
                 <div className="flex flex-col gap-4 w-96" key={index}>
                   <div className="flex gap-4 items-center">
                     <div className="size-12 aspect-square rounded-full bg-accent flex justify-center items-center text-white text-2xl">
-                      {index + 1}
+                      {index + 1}.
                     </div>
                     <div className="h-[2px] w-full bg-gradient-to-r from-accent to-transparent" />
                   </div>

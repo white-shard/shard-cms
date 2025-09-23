@@ -10,12 +10,12 @@ export function ACDefault({ fields }: Props) {
   return (
     <div className="stroke-accent relative pt-32 py-32">
       <div className="container mx-auto grid grid-rows-2 px-8 gap-32">
-        <div className="flex flex-col gap-4">
-          <span className="text-4xl md:max-w-3/5">
+        <div className="flex flex-col gap-4 ">
+          <span className="text-4xl md:max-w-2/5">
             {fields.advantages.heading}
           </span>
           {fields.advantages.description && (
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 md:max-w-2/5">
               {fields.advantages.description}
             </p>
           )}
@@ -49,11 +49,11 @@ export function ACDefault({ fields }: Props) {
         </div>
         <div className="flex flex-col gap-4">
           <div className="w-full flex flex-col items-end gap-4">
-            <span className="text-4xl text-right md:max-w-3/5">
+            <span className="text-4xl text-right md:max-w-2/5">
               {fields.challenges.heading}
             </span>
             {fields.challenges.description && (
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-gray-600 md:max-w-2/5">
                 {fields.challenges.description}
               </p>
             )}

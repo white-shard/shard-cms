@@ -1,5 +1,6 @@
 import { Advantages } from "./advantages-block"
 import { AdvantagesChallenges } from "./advantages-challenges-block"
+import { CertList } from "./cert-block"
 import { Contact } from "./contact-block"
 import { ExpertTeam } from "./expert-team-block"
 import { Founder } from "./founder-block"
@@ -40,6 +41,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   Team,
   ExpertTeam,
   Gallery,
+  CertList,
   WhyAreWe,
   History,
   GbtHello,

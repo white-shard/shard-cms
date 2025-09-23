@@ -1,7 +1,7 @@
-import { Media } from "@/payload-types"
+import { Media, Document } from "@/payload-types"
 
-export interface GalleryBlockFields {
+export interface CertListBlockFields {
   heading: string
   description: string
-  images: { img: Media }[]
+  certificates: { img: Media; doc: Document }[]
 }

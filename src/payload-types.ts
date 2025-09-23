@@ -228,7 +228,7 @@ export interface Page {
   title: string;
   slug: string;
   description?: string | null;
-  keywords?: string | null;
+  keywords?: string[] | null;
   layout?:
     | (
         | {
@@ -436,6 +436,20 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'gallery';
+          }
+        | {
+            heading?: string | null;
+            description?: string | null;
+            certificates?:
+              | {
+                  img: number | Media;
+                  doc: number | Document;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cert-list';
           }
         | {
             heading: string;
@@ -972,6 +986,21 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     img?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'cert-list'?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              certificates?:
+                | T
+                | {
+                    img?: T;
+                    doc?: T;
                     id?: T;
                   };
               id?: T;

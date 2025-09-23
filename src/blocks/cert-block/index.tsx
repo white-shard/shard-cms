@@ -1,12 +1,12 @@
 import { RegisteredBlockData } from "../types"
-import { GalleryBlockFields } from "./types"
-import { GalleryBlockDefault } from "./ui/cert-default"
-import { GalleryBlock as Block } from "./payload"
+import { CertListBlockFields } from "./types"
+import { CertListBlockDefault } from "./ui/cert-default"
+import { CertListBlock as Block } from "./payload"
 
-export const Gallery: RegisteredBlockData = {
-  blockType: "gallery",
+export const CertList: RegisteredBlockData = {
+  blockType: "cert-list",
   payload: Block,
-  renderer: (data: GalleryBlockFields) => {
-    return <GalleryBlockDefault fields={data} />
+  renderer: (data: CertListBlockFields) => {
+    return <CertListBlockDefault fields={data} />
   },
 }

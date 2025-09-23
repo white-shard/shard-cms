@@ -1,6 +1,6 @@
 import { Block } from "payload"
 
-export const CertBlock: Block = {
+export const CertListBlock: Block = {
   slug: "cert-list",
   labels: {
     singular: "Cert List Block",
@@ -23,8 +23,8 @@ export const CertBlock: Block = {
       required: false,
     },
     {
-      name: "images",
-      label: "Изображения",
+      name: "certificates",
+      label: "Сертификаты",
       type: "array",
       fields: [
         {

@@ -13,12 +13,12 @@ export function WhatDoYourGetDefault({ fields }: Props) {
       <p className="text-gray-600 text-xl">
         Выгоды, которые Вы почувствуете сразу
       </p>
-      <div className="grid grid-cols-2 gap-32 justify-around">
+      <div className="flex gap-32 justify-around w-full">
         <div className="py-8 flex flex-col justify-center gap-8">
           {fields.items.map(
             (item, index) =>
               index % 2 === 0 && (
-                <div className="flex flex-col gap-4 w-96" key={index}>
+                <div className="flex flex-col gap-4 w-128" key={index}>
                   <div className="flex gap-4 items-center">
                     <div className="size-12 aspect-square rounded-full bg-accent flex justify-center items-center text-white text-2xl">
                       {index + 1}.
@@ -35,7 +35,7 @@ export function WhatDoYourGetDefault({ fields }: Props) {
           {fields.items.map(
             (item, index) =>
               index % 2 !== 0 && (
-                <div className="flex flex-col gap-4 w-96" key={index}>
+                <div className="flex flex-col gap-4 w-128" key={index}>
                   <div className="flex gap-4 items-center">
                     <div className="size-12 aspect-square rounded-full bg-accent flex justify-center items-center text-white text-2xl">
                       {index + 1}.

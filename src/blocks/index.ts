@@ -7,6 +7,7 @@ import { Gallery } from "./gallery-block"
 import { GbtHello } from "./gbt-hello-block"
 import { Hero } from "./hero-block"
 import { History } from "./history-block"
+import { Image } from "./image-block"
 import { IndicationsContraindications } from "./indications-contraindications-block"
 import { Installment } from "./installment"
 import { Methods } from "./methods-block"
@@ -41,6 +42,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   History,
   GbtHello,
   WhatDoYourGet,
+  Image,
 ]
 
 export function getBlockRenderer(blockType: string) {

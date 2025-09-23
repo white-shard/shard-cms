@@ -479,6 +479,12 @@ export interface Page {
             blockName?: string | null;
             blockType: 'what-do-your-get';
           }
+        | {
+            img: number | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'image';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -989,6 +995,13 @@ export interface PagesSelect<T extends boolean = true> {
                     description?: T;
                     id?: T;
                   };
+              id?: T;
+              blockName?: T;
+            };
+        image?:
+          | T
+          | {
+              img?: T;
               id?: T;
               blockName?: T;
             };

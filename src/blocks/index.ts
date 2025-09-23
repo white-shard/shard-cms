@@ -16,6 +16,7 @@ import { Staff } from "./staff-block"
 import { Stages } from "./stages-block"
 import { Team } from "./team-block"
 import { RegisteredBlockData } from "./types"
+import { WhatDoYourGet } from "./what-do-your-get-block"
 import { WhyAreWe } from "./why-are-we-block"
 import { WorksPhotos } from "./works-photos-block"
 
@@ -39,6 +40,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   WhyAreWe,
   History,
   GbtHello,
+  WhatDoYourGet,
 ]
 
 export function getBlockRenderer(blockType: string) {

@@ -1,0 +1,54 @@
+import { WhatDoYoutGetFields } from "../types"
+
+type Props = {
+  fields: WhatDoYoutGetFields
+}
+
+export function WhatDoYourGetDefault({ fields }: Props) {
+  return (
+    <div className="container mx-auto flex flex-col gap-2 items-center">
+      <p className="text-4xl">
+        ЧТО ВЫ ПОЛУЧАЕТЕ ВМЕСТЕ С <span className="text-accent">GBT?</span>
+      </p>
+      <p className="text-gray-600 text-xl">
+        Выгоды, которые Вы почувствуете сразу
+      </p>
+      <div className="grid grid-cols-2">
+        <div className="py-8">
+          {fields.items.map(
+            (item, index) =>
+              index % 2 === 0 && (
+                <div className="flex flex-col gap-4 w-96" key={index}>
+                  <div className="flex gap-4 items-center">
+                    <div className="size-12 aspect-square rounded-full bg-accent flex justify-center items-center text-white text-2xl">
+                      {index + 1}
+                    </div>
+                    <div className="h-[2px] w-full bg-gradient-to-r from-accent to-transparent" />
+                  </div>
+                  <p className="text-3xl">{item.heading}</p>
+                  <p className="text-gray-600 text-xl">{item.description}</p>
+                </div>
+              ),
+          )}
+        </div>
+        <div className="py-8">
+          {fields.items.map(
+            (item, index) =>
+              index % 2 !== 0 && (
+                <div className="flex flex-col gap-4 w-96" key={index}>
+                  <div className="flex gap-4 items-center">
+                    <div className="size-12 aspect-square rounded-full bg-accent flex justify-center items-center text-white text-2xl">
+                      {index + 1}
+                    </div>
+                    <div className="h-[2px] w-full bg-gradient-to-r from-accent to-transparent" />
+                  </div>
+                  <p className="text-3xl">{item.heading}</p>
+                  <p className="text-gray-600 text-xl">{item.description}</p>
+                </div>
+              ),
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}

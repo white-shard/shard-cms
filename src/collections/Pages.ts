@@ -44,8 +44,9 @@ export const Pages: CollectionConfig = {
     {
       name: "keywords",
       label: "Keywords",
-      type: "textarea",
+      type: "text",
       required: false,
+      hasMany: true,
       admin: {
         position: "sidebar",
       },

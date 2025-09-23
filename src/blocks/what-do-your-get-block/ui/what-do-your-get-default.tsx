@@ -13,8 +13,8 @@ export function WhatDoYourGetDefault({ fields }: Props) {
       <p className="text-gray-600 text-xl">
         Выгоды, которые Вы почувствуете сразу
       </p>
-      <div className="grid grid-cols-2">
-        <div className="py-8">
+      <div className="grid grid-cols-2 gap-32 justify-around">
+        <div className="py-8 flex flex-col justify-center gap-8">
           {fields.items.map(
             (item, index) =>
               index % 2 === 0 && (
@@ -31,7 +31,7 @@ export function WhatDoYourGetDefault({ fields }: Props) {
               ),
           )}
         </div>
-        <div className="py-8">
+        <div className="py-8 flex flex-col justify-center gap-8">
           {fields.items.map(
             (item, index) =>
               index % 2 !== 0 && (

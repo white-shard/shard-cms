@@ -485,6 +485,24 @@ export interface Page {
             blockName?: string | null;
             blockType: 'image';
           }
+        | {
+            description: string;
+            included?:
+              | {
+                  icon?: ('clipboard-list' | 'cog' | 'instagram') | null;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            price: string;
+            old_price?: string | null;
+            motivation?: string | null;
+            features?: string[] | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'gbt-subscribe';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -1002,6 +1020,25 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               img?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'gbt-subscribe'?:
+          | T
+          | {
+              description?: T;
+              included?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
+                  };
+              price?: T;
+              old_price?: T;
+              motivation?: T;
+              features?: T;
               id?: T;
               blockName?: T;
             };

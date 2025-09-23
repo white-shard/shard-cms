@@ -5,6 +5,7 @@ import { ExpertTeam } from "./expert-team-block"
 import { Founder } from "./founder-block"
 import { Gallery } from "./gallery-block"
 import { GbtHello } from "./gbt-hello-block"
+import { GbtSubscribe } from "./gbt-subscribe-block"
 import { Hero } from "./hero-block"
 import { History } from "./history-block"
 import { Image } from "./image-block"
@@ -43,6 +44,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   GbtHello,
   WhatDoYourGet,
   Image,
+  GbtSubscribe,
 ]
 
 export function getBlockRenderer(blockType: string) {

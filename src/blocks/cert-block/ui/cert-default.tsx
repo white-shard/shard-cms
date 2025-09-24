@@ -118,7 +118,7 @@ export function CertListBlockDefault({ fields }: Props) {
                     handleCertificateClick(certificate.doc.url || "")
                   }
                 >
-                  <div className="relative aspect-[4/3] rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 bg-white">
+                  <div className="relative aspect-[210/297] rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 bg-white">
                     <Image
                       src={certificate.img.url || "/placeholder.svg"}
                       alt={certificate.img.alt || "Сертификат"}

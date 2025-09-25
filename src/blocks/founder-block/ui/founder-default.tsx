@@ -8,60 +8,68 @@ type Props = {
 
 export function FounderBlockDefault({ fields }: Props) {
   return (
-    <div className="container mx-auto flex flex-col px-4 lg:flex-row justify-around items-center gap-8">
-      <Image
-        className="rounded-xl w-full md:size-108"
-        src={fields.img?.url || "/"}
-        alt={fields.img?.alt || "founder"}
-        width={432}
-        height={432}
-        quality={80}
-        style={{
-          objectFit: "cover",
-          backgroundColor: "gray",
-        }}
-      />
-      <div className="flex flex-col gap-4">
-        <h2 className="text-2xl lg:text-4xl w-full lg:w-128">
-          {fields.heading}
-        </h2>
-        <p className="w-full lg:w-128 text-base text-gray-600 whitespace-pre-line mb-4">
-          {fields.description}
-        </p>
-        {fields.quote && (
-          <div className="relative text-base lg:text-lg">
-            <Quote className="size-6 text-accent absolute top-0 left-0" />
-            <p className="lg:w-128 uppercase whitespace-pre-line pl-10">
-              {fields.quote}
-            </p>
-          </div>
-        )}
-        <div className="grid grid-cols-3 gap-8 lg:gap-2 mt-4 text-sm">
-          <div className="flex flex-col gap-2 items-center">
-            <div className="size-8 lg:size-12 rounded-full bg-secondary flex items-center justify-center">
-              <Medal className="size-3 lg:size-5 text-primary" />
-            </div>
-            <span className="w-2/3 text-gray-600 text-center">
-              Сертифицированный специалист
-            </span>
-          </div>
+    <div className="container mx-auto flex flex-col px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-6 sm:gap-8 lg:gap-12 xl:gap-16">
+        <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl">
+          <Image
+            className="rounded-xl w-full h-auto object-cover"
+            src={fields.img?.url || "/"}
+            alt={fields.img?.alt || "founder"}
+            width={432}
+            height={432}
+            quality={80}
+            style={{
+              objectFit: "cover",
+              backgroundColor: "gray",
+            }}
+          />
+        </div>
 
-          <div className="flex flex-col gap-2 items-center">
-            <div className="size-8 lg:size-12 rounded-full bg-secondary flex items-center justify-center">
-              <Heart className="size-3 lg:size-5 text-primary" />
-            </div>
-            <span className="w-2/3 text-gray-600 text-center">
-              Индивидуальный подход
-            </span>
-          </div>
+        <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8 w-full max-w-lg lg:max-w-xl xl:max-w-2xl">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
+            {fields.heading}
+          </h2>
 
-          <div className="flex flex-col gap-2 items-center">
-            <div className="size-8 lg:size-12 rounded-full bg-secondary flex items-center justify-center">
-              <Shield className="size-3 lg:size-5 text-primary" />
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 whitespace-pre-line leading-relaxed">
+            {fields.description}
+          </p>
+
+          {fields.quote && (
+            <div className="relative">
+              <Quote className="size-5 sm:size-6 lg:size-7 text-accent absolute top-0 left-0" />
+              <p className="text-sm sm:text-base lg:text-lg xl:text-xl uppercase whitespace-pre-line pl-8 sm:pl-10 lg:pl-12 font-medium italic">
+                {fields.quote}
+              </p>
             </div>
-            <span className="w-2/3 text-gray-600 text-center">
-              Гарантия качества
-            </span>
+          )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-4 sm:mt-6">
+            <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
+              <div className="size-10 sm:size-12 lg:size-14 xl:size-16 rounded-full bg-secondary flex items-center justify-center">
+                <Medal className="size-4 sm:size-5 lg:size-6 xl:size-7 text-primary" />
+              </div>
+              <span className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                Сертифицированный специалист
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
+              <div className="size-10 sm:size-12 lg:size-14 xl:size-16 rounded-full bg-secondary flex items-center justify-center">
+                <Heart className="size-4 sm:size-5 lg:size-6 xl:size-7 text-primary" />
+              </div>
+              <span className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                Индивидуальный подход
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
+              <div className="size-10 sm:size-12 lg:size-14 xl:size-16 rounded-full bg-secondary flex items-center justify-center">
+                <Shield className="size-4 sm:size-5 lg:size-6 xl:size-7 text-primary" />
+              </div>
+              <span className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+                Гарантия качества
+              </span>
+            </div>
           </div>
         </div>
       </div>

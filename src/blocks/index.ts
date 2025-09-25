@@ -18,6 +18,7 @@ import { ServicesCost } from "./services-cost-block"
 import { Staff } from "./staff-block"
 import { Stages } from "./stages-block"
 import { Team } from "./team-block"
+import { Text } from "./text-block"
 import { RegisteredBlockData } from "./types"
 import { Video } from "./video-block"
 import { WhatDoYourGet } from "./what-do-your-get-block"
@@ -48,6 +49,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   WhatDoYourGet,
   Image,
   Video,
+  Text,
   GbtSubscribe,
 ]
 

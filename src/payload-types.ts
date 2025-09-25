@@ -507,6 +507,28 @@ export interface Page {
             blockType: 'video';
           }
         | {
+            heading?: string | null;
+            description?: string | null;
+            text: {
+              root: {
+                type: string;
+                children: {
+                  type: string;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text';
+          }
+        | {
             description: string;
             included?:
               | {
@@ -1064,6 +1086,15 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               video?: T;
+              id?: T;
+              blockName?: T;
+            };
+        text?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              text?: T;
               id?: T;
               blockName?: T;
             };

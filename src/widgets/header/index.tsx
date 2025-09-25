@@ -26,14 +26,16 @@ export function Header({ navigation }: Props) {
 
   return (
     <header
-      className={`fixed top-0 w-screen z-20 py-8 transition-colors duration-300 ${
-        isScrolled ? "bg-white" : "bg-transparent"
+      className={`fixed top-0 w-full z-20 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/95 backdrop-blur-sm shadow-sm py-4"
+          : "bg-transparent py-6 md:py-8"
       }`}
     >
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <DesktopHeader navigation={data} />
       </div>
-      <div className="block md:hidden">
+      <div className="block lg:hidden">
         <MobileHeader navigation={data} />
       </div>
     </header>

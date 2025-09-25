@@ -38,13 +38,13 @@ export function GalleryBlockDefault({ fields }: Props) {
   }
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
       {/* Header Section */}
-      <div className="mb-12">
-        <h1 className="text-4xl md:text-4xl font-light text-foreground mb-2 text-balance">
+      <div className="mb-8 sm:mb-10 lg:mb-12 text-center lg:text-left">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-foreground mb-3 sm:mb-4 lg:mb-6 text-balance">
           Пространство, где приятно лечиться
         </h1>
-        <p className="text-lg text-muted-foreground w-128 leading-relaxed">
+        <p className="text-sm sm:text-base lg:text-lg xl:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-relaxed">
           Мы создали пространство, в котором каждая деталь продумана для вашего
           удобства и спокойствие — от мягкого освещения до изысканных деталей
           интерьера.
@@ -52,9 +52,9 @@ export function GalleryBlockDefault({ fields }: Props) {
       </div>
 
       {/* Main Slider */}
-      <div className="relative bg-card rounded-2xl overflow-hidden shadow-lg">
+      <div className="relative bg-card rounded-xl sm:rounded-2xl overflow-hidden shadow-lg">
         {/* Main Image Container */}
-        <div className="relative h-150 overflow-hidden">
+        <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[600px] overflow-hidden">
           <div
             className="flex transition-transform duration-700 ease-in-out h-full"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -72,8 +72,8 @@ export function GalleryBlockDefault({ fields }: Props) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 {image.img.alt && (
-                  <div className="absolute bottom-6 left-6">
-                    <h3 className="text-white text-xl font-medium drop-shadow-lg">
+                  <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-3 sm:left-4 lg:left-6">
+                    <h3 className="text-white text-sm sm:text-base lg:text-lg xl:text-xl font-medium drop-shadow-lg">
                       {image.img.alt}
                     </h3>
                   </div>
@@ -82,45 +82,47 @@ export function GalleryBlockDefault({ fields }: Props) {
             ))}
           </div>
 
-          <div className="absolute bottom-6 right-6 flex space-x-2">
+          {/* Navigation Buttons */}
+          <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 right-3 sm:right-4 lg:right-6 flex space-x-2">
             <Button
               variant="ghost"
               size="icon"
-              className="bg-white/40 hover:bg-white/50 text-foreground hover:text-primary rounded-full backdrop-blur-sm size-12"
+              className="bg-white/40 hover:bg-white/50 text-foreground hover:text-primary rounded-full backdrop-blur-sm size-8 sm:size-10 lg:size-12"
               onClick={goToPrevious}
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
             </Button>
 
             <Button
               variant="ghost"
               size="icon"
-              className="bg-white/40 hover:bg-white/50 text-foreground hover:text-primary rounded-full backdrop-blur-sm size-12"
+              className="bg-white/40 hover:bg-white/50 text-foreground hover:text-primary rounded-full backdrop-blur-sm size-8 sm:size-10 lg:size-12"
               onClick={goToNext}
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
             </Button>
           </div>
-        </div>
 
-        {/* Dot Indicators */}
-        <div className="absolute bottom-6 left-8 flex space-x-3">
-          {fields.images.map((_, index) => (
-            <button
-              key={index}
-              className={cn(
-                "w-3 h-3 rounded-full transition-all duration-300",
-                index === currentIndex
-                  ? "bg-accent shadow-lg"
-                  : "bg-white/50 hover:bg-white/70",
-              )}
-              onClick={() => goToSlide(index)}
-            />
-          ))}
+          {/* Dot Indicators */}
+          <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-3 sm:left-4 lg:left-8 flex space-x-2 sm:space-x-3">
+            {fields.images.map((_, index) => (
+              <button
+                key={index}
+                className={cn(
+                  "w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300",
+                  index === currentIndex
+                    ? "bg-accent shadow-lg"
+                    : "bg-white/50 hover:bg-white/70",
+                )}
+                onClick={() => goToSlide(index)}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-3 gap-4 mx-auto">
+      {/* Thumbnails */}
+      <div className="mt-4 sm:mt-6 lg:mt-8 grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 max-w-4xl mx-auto">
         {getThumbnails().map((image) => {
           const originalIndex = fields.images.findIndex(
             (img) => img.img.id === image.img.id,
@@ -128,7 +130,7 @@ export function GalleryBlockDefault({ fields }: Props) {
           return (
             <button
               key={image.img.id}
-              className="relative aspect-[4/3] rounded-lg overflow-hidden transition-all duration-300 hover:scale-102 hover:shadow-md opacity-70 hover:opacity-100"
+              className="relative aspect-[4/3] rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-md opacity-70 hover:opacity-100"
               onClick={() => goToSlide(originalIndex)}
             >
               <Image

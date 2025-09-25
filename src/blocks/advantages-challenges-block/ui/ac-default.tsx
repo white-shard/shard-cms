@@ -8,19 +8,19 @@ type Props = {
 
 export function ACDefault({ fields }: Props) {
   return (
-    <div className="stroke-accent relative pt-32 py-32">
-      <div className="container mx-auto grid grid-rows-2 px-8 gap-32">
-        <div className="flex flex-col gap-4 ">
-          <span className="text-4xl md:max-w-2/5">
+    <div className="stroke-accent relative pt-16 sm:pt-24 lg:pt-32 py-16 sm:py-24 lg:py-32">
+      <div className="container mx-auto grid grid-rows-1 lg:grid-rows-2 px-4 sm:px-6 lg:px-8 gap-16 sm:gap-24 lg:gap-32">
+        <div className="flex flex-col gap-4 sm:gap-6">
+          <span className="text-3xl sm:text-4xl lg:text-5xl leading-tight">
             {fields.advantages.heading}
           </span>
           {fields.advantages.description && (
-            <p className="text-xl text-gray-600 md:max-w-2/5">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-full lg:max-w-2/5">
               {fields.advantages.description}
             </p>
           )}
-          <div className="flex gap-32 justify-between mt-8">
-            <div className="flex-1 aspect-square relative">
+          <div className="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 xl:gap-32 justify-between mt-6 sm:mt-8">
+            <div className="flex-1 aspect-square relative order-2 lg:order-1 max-w-md mx-auto lg:max-w-none">
               {fields.advantages.img ? (
                 <Image
                   src={fields.advantages.img.url!}
@@ -30,14 +30,16 @@ export function ACDefault({ fields }: Props) {
                 />
               ) : null}
             </div>
-            <div className="flex-1 flex flex-col gap-6 w-4/5">
+            <div className="flex-1 flex flex-col gap-4 sm:gap-6 order-1 lg:order-2">
               {fields.advantages.advantages.map((advantage, index) => (
-                <div key={index} className="flex gap-2">
-                  <Check className="w-8 h-8 text-accent flex-shrink-0" />
-                  <div className="flex flex-col items-start gap-2">
-                    <span className="text-2xl">{advantage.heading}</span>
+                <div key={index} className="flex gap-3 sm:gap-4">
+                  <Check className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-accent flex-shrink-0 mt-1" />
+                  <div className="flex flex-col items-start gap-2 sm:gap-3">
+                    <span className="text-xl sm:text-2xl lg:text-3xl leading-tight">
+                      {advantage.heading}
+                    </span>
                     {advantage.description && (
-                      <p className="text-xl text-gray-600">
+                      <p className="text-sm sm:text-base lg:text-xl text-gray-600 leading-relaxed">
                         {advantage.description}
                       </p>
                     )}
@@ -47,26 +49,28 @@ export function ACDefault({ fields }: Props) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-4">
-          <div className="w-full flex flex-col items-end gap-4">
-            <span className="text-4xl text-right md:max-w-2/5">
+        <div className="flex flex-col gap-4 sm:gap-6">
+          <div className="w-full flex flex-col items-start lg:items-end gap-4 sm:gap-6">
+            <span className="text-3xl sm:text-4xl lg:text-5xl leading-tight text-left lg:text-right">
               {fields.challenges.heading}
             </span>
             {fields.challenges.description && (
-              <p className="text-xl text-gray-600 md:max-w-2/5">
+              <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-full lg:max-w-2/5 text-left lg:text-right">
                 {fields.challenges.description}
               </p>
             )}
           </div>
-          <div className="flex gap-32 justify-between mt-8">
-            <div className="flex-1 flex flex-col gap-6 w-4/5">
+          <div className="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 xl:gap-32 justify-between mt-6 sm:mt-8">
+            <div className="flex-1 flex flex-col gap-4 sm:gap-6 order-1 lg:order-1">
               {fields.challenges.challenges.map((challenge, index) => (
-                <div key={index} className="flex gap-2">
-                  <Check className="w-8 h-8 text-accent flex-shrink-0" />
-                  <div className="flex flex-col items-start gap-2">
-                    <span className="text-2xl">{challenge.heading}</span>
+                <div key={index} className="flex gap-3 sm:gap-4">
+                  <Check className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-accent flex-shrink-0 mt-1" />
+                  <div className="flex flex-col items-start gap-2 sm:gap-3">
+                    <span className="text-xl sm:text-2xl lg:text-3xl leading-tight">
+                      {challenge.heading}
+                    </span>
                     {challenge.description && (
-                      <p className="text-xl text-gray-600">
+                      <p className="text-sm sm:text-base lg:text-xl text-gray-600 leading-relaxed">
                         {challenge.description}
                       </p>
                     )}
@@ -74,7 +78,7 @@ export function ACDefault({ fields }: Props) {
                 </div>
               ))}
             </div>
-            <div className="flex-1 aspect-square relative">
+            <div className="flex-1 aspect-square relative order-2 lg:order-2 max-w-md mx-auto lg:max-w-none">
               {fields.challenges.img ? (
                 <Image
                   src={fields.challenges.img.url!}
@@ -92,7 +96,7 @@ export function ACDefault({ fields }: Props) {
         height="100%"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
-        className="absolute top-0"
+        className="absolute top-0 hidden lg:block"
       >
         <line
           x1="0%"

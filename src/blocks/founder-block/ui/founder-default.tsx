@@ -26,7 +26,7 @@ export function FounderBlockDefault({ fields }: Props) {
         </div>
 
         <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8 w-full max-w-lg lg:max-w-xl xl:max-w-2xl">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
             {fields.heading}
           </h2>
 
@@ -37,7 +37,7 @@ export function FounderBlockDefault({ fields }: Props) {
           {fields.quote && (
             <div className="relative">
               <Quote className="size-5 sm:size-6 lg:size-7 text-accent absolute top-0 left-0" />
-              <p className="text-sm sm:text-base lg:text-lg xl:text-xl uppercase whitespace-pre-line pl-8 sm:pl-10 lg:pl-12 font-medium italic">
+              <p className="text-base sm:text-lg lg:text-xl xl:text-2xl uppercase whitespace-pre-line pl-8 sm:pl-10 lg:pl-12 italic">
                 {fields.quote}
               </p>
             </div>

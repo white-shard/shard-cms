@@ -55,17 +55,17 @@ export function CertListBlockDefault({ fields }: Props) {
   const showNavigation = fields.certificates.length > itemsPerView
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
       {/* Header Section */}
       {(fields.heading || fields.description) && (
-        <div className="mb-8 md:mb-12">
+        <div className="mb-6 sm:mb-8 lg:mb-12">
           {fields.heading && (
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-foreground mb-2 text-balance">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl text-foreground mb-3 sm:mb-4 text-balance leading-tight">
               {fields.heading}
             </h2>
           )}
           {fields.description && (
-            <p className="text-base md:text-lg text-muted-foreground max-w-3xl leading-relaxed">
+            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl leading-relaxed">
               {fields.description}
             </p>
           )}
@@ -80,19 +80,19 @@ export function CertListBlockDefault({ fields }: Props) {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full size-10 md:size-12"
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-4 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full size-8 sm:size-10 lg:size-12"
               onClick={goToPrevious}
             >
-              <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
+              <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
             </Button>
 
             <Button
               variant="ghost"
               size="icon"
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full size-10 md:size-12"
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-4 z-10 bg-white/90 hover:bg-white shadow-lg rounded-full size-8 sm:size-10 lg:size-12"
               onClick={goToNext}
             >
-              <ChevronRight className="h-4 w-4 md:h-5 md:w-5" />
+              <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
             </Button>
           </>
         )}
@@ -154,12 +154,12 @@ export function CertListBlockDefault({ fields }: Props) {
 
         {/* Dot Indicators */}
         {showNavigation && (
-          <div className="flex justify-center mt-6 space-x-2">
+          <div className="flex justify-center mt-4 sm:mt-6 space-x-2">
             {Array.from({ length: maxIndex + 1 }).map((_, index) => (
               <button
                 key={index}
                 className={cn(
-                  "w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300",
+                  "w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300",
                   index === currentIndex
                     ? "bg-primary scale-125"
                     : "bg-gray-300 hover:bg-gray-400",

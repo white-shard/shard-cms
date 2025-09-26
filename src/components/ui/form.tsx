@@ -17,7 +17,10 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
 
-  const validateField = (field: any, value: string) => {
+  const validateField = (
+    field: NonNullable<Form["fields"]>[0],
+    value: string,
+  ) => {
     if (field.required && !value.trim()) {
       return "Поле обязательно для заполнения"
     }
@@ -93,16 +96,22 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
     }
 
     try {
-      if (form.webhook) {
-        const response = await fetch(form.webhook, {
-          method: "POST",
-          body: formData,
-        })
+      // Добавляем ID формы в данные
+      formData.append("form_id", form.form_id.toString())
 
-        if (!response.ok) {
-          throw new Error("Ошибка отправки формы")
-        }
+      // Отправляем данные на наш API роут для обработки
+      const response = await fetch("/api/forms/submit", {
+        method: "POST",
+        body: formData,
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Ошибка отправки формы")
       }
+
+      const result = await response.json()
+      console.log("Form submission result:", result)
 
       if (onSubmit) {
         onSubmit(formData)
@@ -120,7 +129,7 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
     }
   }
 
-  const renderField = (field: any) => {
+  const renderField = (field: NonNullable<Form["fields"]>[0]) => {
     const fieldError = errors[field.name]
     const fieldId = `field-${field.name}`
 
@@ -136,7 +145,7 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
               name={field.name}
               type="text"
               placeholder={`${field.placeholder} ${field.required ? "*" : ""}`}
-              required={field.required}
+              required={field.required || false}
               className={cn(
                 "px-4 sm:px-6 py-4 lg:py-8 sm:py-6 text-lg sm:text-xl lg:text-2xl",
                 fieldError ? "border-red-500" : "",
@@ -157,7 +166,7 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
               id={fieldId}
               name={field.name}
               placeholder={`${field.placeholder} ${field.required ? "*" : ""}`}
-              required={field.required}
+              required={field.required || false}
               className={`flex min-h-[100px] sm:min-h-[120px] w-full rounded-md border border-input bg-background px-4 sm:px-6 py-4 sm:py-6 text-lg sm:text-2xl ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
                 fieldError ? "border-red-500" : ""
               }`}
@@ -177,10 +186,10 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
               id={fieldId}
               name={field.name}
               type="number"
-              placeholder={field.placeholder}
-              required={field.required}
-              min={field.numberOptions?.min}
-              max={field.numberOptions?.max}
+              placeholder={field.placeholder || undefined}
+              required={field.required || false}
+              min={field.numberOptions?.min || undefined}
+              max={field.numberOptions?.max || undefined}
               className={cn(
                 "px-4 sm:px-6 py-4 sm:py-6 text-lg sm:text-2xl lg:text-4xl",
                 fieldError ? "border-red-500" : "",
@@ -237,17 +246,19 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
             <select
               id={fieldId}
               name={field.name}
-              required={field.required}
+              required={field.required || false}
               className={`flex h-12 sm:h-14 w-full rounded-md border border-input bg-background px-4 sm:px-6 py-4 sm:py-6 text-lg sm:text-2xl ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
                 fieldError ? "border-red-500" : ""
               }`}
             >
               <option value="">Выберите...</option>
-              {field.selectOptions?.map((option: any) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
+              {field.selectOptions?.map(
+                (option: { label: string; value: string }) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ),
+              )}
             </select>
             {fieldError && <p className="text-sm text-red-500">{fieldError}</p>}
           </div>

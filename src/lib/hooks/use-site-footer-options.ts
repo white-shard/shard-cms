@@ -1,6 +1,7 @@
 import { Document, Page } from "@/payload-types"
 import { useEffect, useState } from "react"
 import { getFooterOptions } from "../api/get-footer-options"
+import { IActionButton } from "../actions/types"
 
 export function useFooterOptions() {
   const [footerOptions, setOptions] = useState<IFooterOptions | null>(null)
@@ -9,7 +10,7 @@ export function useFooterOptions() {
   useEffect(() => {
     const fetchSettings = async () => {
       const options = await getFooterOptions()
-      setOptions(options as IFooterOptions)
+      setOptions(options as never as IFooterOptions)
       setLoading(true)
     }
     fetchSettings()
@@ -29,6 +30,11 @@ type IFooterOptions = {
     title?: string
   }[]
   warning?: string
+  actionButtons: IActionButton[]
+  footerLinks: {
+    label: string
+    url: string
+  }[]
   documentLinks: {
     document: Document
   }[]

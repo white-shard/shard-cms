@@ -13,6 +13,7 @@ export interface StaffFields {
   fullname: string
   experience: number
   description: string
+  bookingLink?: string
   specialty: SpecialtyFields[]
   staffPage: Page
   alternativeSpecialty: string

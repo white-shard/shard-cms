@@ -10,7 +10,7 @@ import {
 import { FormComponent } from "@/components/ui/form"
 import { Form } from "@/payload-types"
 import { useState } from "react"
-import cover from "public/form-cover.jpg"
+const cover = "/form-cover.jpg"
 import Image from "next/image"
 
 export function useDialogWithForm(form?: Form) {

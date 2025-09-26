@@ -1,6 +1,7 @@
 import { getBlockRenderer } from "@/blocks"
 import { Page } from "@/payload-types"
 import config from "@payload-config"
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { getPayload } from "payload"
 import { Fragment } from "react"
@@ -9,6 +10,38 @@ import "../styles.css"
 type SitePageProps = {
   params: Promise<{ slug?: string[] }>
 }
+
+export async function generateMetadata(
+  props: SitePageProps,
+): Promise<Metadata> {
+  const params = await props.params
+  const slug = params?.slug?.join("/") || "index"
+  const page = await getPageData(slug)
+
+  console.log(slug)
+
+  if (!page) {
+    return {
+      title: "Страница не найдена",
+    }
+  }
+
+  const metadata: Metadata = {
+    title: page.title,
+  }
+
+  if (page.description) {
+    metadata.description = page.description
+  }
+
+  if (page.keywords && page.keywords.length > 0) {
+    metadata.keywords = page.keywords.join(", ")
+  }
+
+  return metadata
+}
+
+export const revalidate = 60 // Кеширование на 60 секунд
 
 export default async function SitePage(props: SitePageProps) {
   const params = await props.params
@@ -25,27 +58,24 @@ export default async function SitePage(props: SitePageProps) {
   })
 }
 
-export async function generateStaticParams() {
-  const payload = await getPayload({ config })
-  const pages = await payload.find({
-    collection: "pages",
-  })
-
-  return pages.docs.map((page) => ({
-    slug: page.slug !== "index" ? page.slug.split("/") : [],
-  }))
-}
+// Удалено generateStaticParams для отключения статической генерации
+// Страницы теперь рендерятся динамически с кешированием на 60 секунд
 
 async function getPageData(slug: string): Promise<Page | undefined> {
-  const payload = await getPayload({ config })
-  const page = await payload.find({
-    collection: "pages",
-    where: {
-      slug: {
-        equals: slug,
+  try {
+    const payload = await getPayload({ config })
+    const page = await payload.find({
+      collection: "pages",
+      where: {
+        slug: {
+          equals: slug,
+        },
       },
-    },
-  })
+    })
 
-  return page.docs[0]
+    return page.docs[0]
+  } catch (error) {
+    console.error("Error fetching page data:", error)
+    return undefined
+  }
 }

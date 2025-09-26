@@ -21,6 +21,26 @@ export const ActionButton: Field[] = [
         })),
       },
       {
+        name: "variant",
+        label: "Вариант",
+        type: "select",
+        defaultValue: "default",
+        options: [
+          {
+            label: "Обычная кнопка",
+            value: "default",
+          },
+          {
+            label: "Только иконка",
+            value: "icon",
+          },
+          {
+            label: "Иконка и текст без фона",
+            value: "icon-text",
+          },
+        ],
+      },
+      {
         name: "color",
         label: "Цвет",
         type: "select",
@@ -37,6 +57,10 @@ export const ActionButton: Field[] = [
           {
             label: "Серый",
             value: "secondary",
+          },
+          {
+            label: "Белый",
+            value: "white",
           },
         ],
       },

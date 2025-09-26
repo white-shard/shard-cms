@@ -4,6 +4,7 @@ import { WhiteShard } from "@/components/icons/ws"
 import { Button } from "@/components/ui/button"
 import { useFooterOptions } from "@/lib/hooks/use-site-footer-options"
 import { useSiteOptions } from "@/lib/hooks/use-site-options"
+import { ActionButton } from "@/lib/actions/action-button"
 import {
   Calendar,
   Clock,
@@ -28,6 +29,29 @@ export function Footer() {
           <span className="text-sm sm:text-base mt-2 sm:mt-4 leading-relaxed">
             {footerOptions?.thesis}
           </span>
+          {footerOptions?.actionButtons &&
+            footerOptions.actionButtons.length > 0 && (
+              <div className="flex flex-col gap-2 mt-4 sm:mt-6">
+                {footerOptions.actionButtons.map((button, index) => (
+                  <div key={index} className="flex items-center">
+                    <ActionButton
+                      data={{
+                        name: button.name,
+                        icon: button.icon || "cog",
+                        color: button.color || "primary",
+                        variant: button.variant || "default",
+                        action: button.action || "link",
+                        url: button.url || undefined,
+                        form:
+                          typeof button.form === "number"
+                            ? undefined
+                            : button.form || undefined,
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
         </div>
         <div className="mt-6 sm:mt-0">
           <span className="text-lg sm:text-xl text-white">Контакты</span>
@@ -112,14 +136,19 @@ export function Footer() {
         <p className="text-sm sm:text-base mt-2 leading-relaxed">
           {options?.addressFull}
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-white py-4 sm:py-6">
-          <Link className="hover:underline text-sm sm:text-base" href="#">
-            Первичные документы
-          </Link>
-          <Link className="hover:underline text-sm sm:text-base" href="#">
-            Правовая информация
-          </Link>
-        </div>
+        {footerOptions?.footerLinks && footerOptions.footerLinks.length > 0 && (
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 text-white py-4 sm:py-6">
+            {footerOptions.footerLinks.map((link, index) => (
+              <Link
+                key={index}
+                className="hover:underline text-sm sm:text-base"
+                href={link.url || "#"}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        )}
         <p className="whitespace-pre-line text-sm sm:text-base leading-relaxed">
           {footerOptions?.warning}
         </p>

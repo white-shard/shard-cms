@@ -10,17 +10,17 @@ import {
   NavigationMenu,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu"
-import { ChevronDown, Instagram, MessageCircle } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 import Link from "next/link"
-import { Navigation } from "../types"
 import { useState } from "react"
-import { cn } from "@/lib/utils"
+import { HeaderOption } from "@/payload-types"
+import { ActionButton } from "@/lib/actions/action-button"
 
 export type Props = {
-  navigation: Navigation
+  options: HeaderOption
 }
 
-export function DesktopHeader({ navigation }: Props) {
+export function DesktopHeader({ options }: Props) {
   const [open, setOpen] = useState(false)
 
   const handleClose = () => setOpen(false)
@@ -32,9 +32,9 @@ export function DesktopHeader({ navigation }: Props) {
       </Link>
       <NavigationMenu>
         <NavigationMenuList className="flex gap-2 xl:gap-4 2xl:gap-8 text-sm xl:text-base 2xl:text-lg">
-          {navigation.items.map((item) =>
-            item.hasCategories && item.categories.length ? (
-              <HoverCard onOpenChange={setOpen} open={open} key={item.id}>
+          {options.navigation?.map((item, index) =>
+            item.hasCategories && item.categories?.length ? (
+              <HoverCard onOpenChange={setOpen} open={open} key={index}>
                 <HoverCardTrigger className="cursor-pointer hover:text-accent flex items-center gap-1 xl:gap-2">
                   <span
                     className={item.color === "accent" ? "text-accent" : ""}
@@ -45,9 +45,9 @@ export function DesktopHeader({ navigation }: Props) {
                 </HoverCardTrigger>
                 <HoverCardContent className="mt-8 w-screen min-h-96 xl:min-h-128 rounded-none">
                   <div className="container mx-auto grid grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-8 2xl:gap-16 justify-start">
-                    {item.categories.map((category) => (
+                    {item.categories.map((category, catIndex) => (
                       <div
-                        key={category.id}
+                        key={catIndex}
                         className="space-y-2 flex flex-col gap-2"
                       >
                         <Link
@@ -57,16 +57,16 @@ export function DesktopHeader({ navigation }: Props) {
                         >
                           {category.label}
                         </Link>
-                        {category.hasItems && category.items.length ? (
+                        {category.hasItems && category.items?.length ? (
                           <div className="space-y-1 text-sm xl:text-lg 2xl:text-xl text-secondary-foreground flex flex-col gap-1">
-                            {category.items.map((item) => (
+                            {category.items.map((subItem, subIndex) => (
                               <Link
-                                key={item.id}
+                                key={subIndex}
                                 onClick={handleClose}
                                 className="hover:underline"
-                                href={item.url || "#"}
+                                href={subItem.url || "#"}
                               >
-                                {item.label}
+                                {subItem.label}
                               </Link>
                             ))}
                           </div>
@@ -78,7 +78,7 @@ export function DesktopHeader({ navigation }: Props) {
               </HoverCard>
             ) : (
               <Link
-                key={item.id}
+                key={index}
                 href={item.url || "#"}
                 style={{
                   color:
@@ -92,14 +92,24 @@ export function DesktopHeader({ navigation }: Props) {
           )}
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="flex gap-2 xl:gap-4 2xl:gap-8">
-        <Instagram className="size-4 xl:size-5 2xl:size-6" />
-        <div className="flex items-center gap-1 xl:gap-2">
-          <MessageCircle className="text-accent size-4 xl:size-5 2xl:size-6" />
-          <span className="text-accent text-xs xl:text-sm 2xl:text-base hidden sm:inline">
-            Чат заботы
-          </span>
-        </div>
+      <div className="flex gap-1 xl:gap-2 2xl:gap-4">
+        {options.actionButtons?.map((button, index) => (
+          <ActionButton
+            key={index}
+            data={{
+              name: button.name,
+              icon: button.icon || "cog",
+              color: button.color || "primary",
+              variant: button.variant || "icon",
+              action: button.action || "link",
+              url: button.url || undefined,
+              form:
+                typeof button.form === "number"
+                  ? undefined
+                  : button.form || undefined,
+            }}
+          />
+        ))}
       </div>
     </div>
   )

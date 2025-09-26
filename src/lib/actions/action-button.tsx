@@ -17,12 +17,52 @@ export function ActionButton({ data }: Props) {
 
   const button = (
     <Button
-      className="w-full sm:w-auto text-base sm:text-lg lg:text-base px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-6 min-w-48 sm:min-w-56 lg:min-w-64"
-      variant={data.color as never}
-      size="lg"
+      className={
+        data.variant === "icon"
+          ? "h-10 w-10 p-0 border-0 bg-transparent hover:bg-transparent hover:opacity-70 transition-opacity"
+          : data.variant === "icon-text"
+            ? "h-10 px-3 py-2 border-0 bg-transparent hover:bg-transparent hover:opacity-70 transition-opacity"
+            : "w-full sm:w-auto text-base sm:text-lg lg:text-base px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-6 min-w-48 sm:min-w-56 lg:min-w-64"
+      }
+      variant={
+        data.variant === "icon" || data.variant === "icon-text"
+          ? "ghost"
+          : (data.color as never)
+      }
+      style={
+        data.variant === "icon" || data.variant === "icon-text"
+          ? {
+              color:
+                data.color === "accent"
+                  ? "var(--color-accent)"
+                  : data.color === "primary"
+                    ? "var(--color-primary)"
+                    : data.color === "secondary"
+                      ? "var(--color-secondary)"
+                      : data.color === "white"
+                        ? "white"
+                        : "inherit",
+            }
+          : undefined
+      }
+      size={data.variant === "icon" ? "icon" : "lg"}
     >
-      {!!data.icon && <Icon className="size-5 sm:size-6 lg:size-7" />}
-      <span className="ml-2">{data.name}</span>
+      {!!data.icon && (
+        <Icon
+          className={
+            data.variant === "icon" || data.variant === "icon-text"
+              ? "size-6"
+              : "size-5 sm:size-6 lg:size-7"
+          }
+        />
+      )}
+      {(data.variant === "default" || data.variant === "icon-text") && (
+        <span
+          className={data.variant === "icon-text" ? "ml-2 text-base" : "ml-2"}
+        >
+          {data.name}
+        </span>
+      )}
     </Button>
   )
 

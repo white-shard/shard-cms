@@ -43,30 +43,63 @@ export function FounderBlockDefault({ fields }: Props) {
             </div>
           )}
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-4 sm:mt-6">
-            <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
-              <div className="size-10 sm:size-12 lg:size-14 xl:size-16 rounded-full bg-secondary flex items-center justify-center">
-                <Medal className="size-4 sm:size-5 lg:size-6 xl:size-7 text-primary" />
+          <div className="flex flex-col sm:grid sm:grid-cols-3 gap-8 mt-4 sm:mt-6">
+            {/* Мобильная версия - треугольник */}
+            <div className="sm:hidden flex flex-col items-center gap-8">
+              <div className="flex flex-col gap-2 items-center text-center">
+                <div className="size-16 rounded-full bg-secondary flex items-center justify-center">
+                  <Shield className="size-8 text-primary" />
+                </div>
+                <span className="text-gray-600 leading-tight text-sm max-w-24">
+                  Гарантия качества
+                </span>
               </div>
-              <span className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+
+              <div className="flex gap-8">
+                <div className="flex flex-col gap-2 items-center text-center">
+                  <div className="size-16 rounded-full bg-secondary flex items-center justify-center">
+                    <Heart className="size-8 text-primary" />
+                  </div>
+                  <span className="text-gray-600 leading-tight text-sm max-w-32">
+                    Индивидуальный подход
+                  </span>
+                </div>
+
+                <div className="flex flex-col gap-2 items-center text-center mb-4">
+                  <div className="size-16 rounded-full bg-secondary flex items-center justify-center">
+                    <Medal className="size-8 text-primary" />
+                  </div>
+                  <span className="text-gray-600 leading-tight text-sm max-w-32">
+                    Сертифицированный специалист
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Десктопная версия - сетка */}
+            <div className="hidden sm:flex flex-col gap-2 sm:gap-3 items-center text-center">
+              <div className="size-16 rounded-full bg-secondary flex items-center justify-center">
+                <Medal className="size-8 text-primary" />
+              </div>
+              <span className="text-gray-600 leading-tight">
                 Сертифицированный специалист
               </span>
             </div>
 
-            <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
-              <div className="size-10 sm:size-12 lg:size-14 xl:size-16 rounded-full bg-secondary flex items-center justify-center">
-                <Heart className="size-4 sm:size-5 lg:size-6 xl:size-7 text-primary" />
+            <div className="hidden sm:flex flex-col gap-2 sm:gap-3 items-center text-center">
+              <div className="size-16 rounded-full bg-secondary flex items-center justify-center">
+                <Heart className="size-8 text-primary" />
               </div>
-              <span className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+              <span className="text-gray-600 leading-tight">
                 Индивидуальный подход
               </span>
             </div>
 
-            <div className="flex flex-col gap-2 sm:gap-3 items-center text-center">
-              <div className="size-10 sm:size-12 lg:size-14 xl:size-16 rounded-full bg-secondary flex items-center justify-center">
-                <Shield className="size-4 sm:size-5 lg:size-6 xl:size-7 text-primary" />
+            <div className="hidden sm:flex flex-col gap-2 sm:gap-3 items-center text-center">
+              <div className="size-16 rounded-full bg-secondary flex items-center justify-center">
+                <Shield className="size-8 text-primary" />
               </div>
-              <span className="text-xs sm:text-sm lg:text-base text-gray-600 leading-tight">
+              <span className="text-gray-600 leading-tight">
                 Гарантия качества
               </span>
             </div>

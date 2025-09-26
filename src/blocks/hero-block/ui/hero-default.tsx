@@ -1,8 +1,7 @@
-import { Button } from "@/components/ui/button"
-import { iconList } from "@/lib/icons"
 import Image from "next/image"
 import { HeroBlockFields } from "../types"
 import { ActionButton } from "@/lib/actions/action-button"
+import { Video } from "./video"
 
 type Props = {
   fields: HeroBlockFields
@@ -25,18 +24,25 @@ export function HeroBlockDefault({ fields }: Props) {
 
         <div className="flex-1 lg:flex-0 flex items-center justify-center py-8 sm:py-12">
           {fields.img?.url ? (
-            <Image
-              alt="background"
-              className="block lg:hidden max-w-full h-auto"
-              src={fields.img.url || ""}
-              width={512}
-              height={512}
-              priority
-            />
+            fields.img.mimeType?.startsWith("video/") ? (
+              <Video
+                className="block lg:hidden max-w-full h-auto"
+                source={fields.img}
+              />
+            ) : (
+              <Image
+                alt="background"
+                className="block lg:hidden max-w-full h-auto"
+                src={fields.img.url || ""}
+                width={512}
+                height={512}
+                priority
+              />
+            )
           ) : null}
         </div>
 
-        <div className="flex w-full lg:w-auto flex-col gap-4 lg:gap-0 pb-8 sm:pb-12 lg:pb-16">
+        <div className="flex flex-1 md:flex-none w-full lg:w-auto flex-col gap-4 lg:gap-0 pb-8 sm:pb-12 lg:pb-16">
           {!!fields.actions.length && (
             <div className="w-full flex flex-wrap flex-col sm:flex-row justify-center gap-4 sm:gap-5 lg:gap-6 my-4 sm:my-6 lg:my-12 order-2 lg:order-0">
               {fields.actions.map((action, index) => (
@@ -53,18 +59,35 @@ export function HeroBlockDefault({ fields }: Props) {
         </div>
       </div>
 
-      <Image
-        alt="background"
-        src={fields.img?.url || "/"}
-        className="absolute bg-white hidden lg:block"
-        quality={100}
-        fill
-        sizes="100vw"
-        style={{
-          objectFit: "contain",
-          backgroundColor: fields.img?.url ? "white" : "gray",
-        }}
-      />
+      {fields.img?.url ? (
+        fields.img.mimeType?.startsWith("video/") ? (
+          <Video
+            className="absolute bg-white hidden lg:block"
+            source={fields.img}
+          />
+        ) : (
+          <Image
+            alt="background"
+            src={fields.img.url || "/"}
+            className="absolute bg-white hidden lg:block"
+            quality={100}
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: "contain",
+              backgroundColor: "white",
+            }}
+          />
+        )
+      ) : (
+        <div
+          className="absolute bg-gray hidden lg:block"
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
+        />
+      )}
 
       <div className="w-full bottom-0 h-1/2 absolute bg-gradient-to-t from-[#454545] to-[#ffffff00] hidden lg:block z-0" />
     </div>

@@ -97,12 +97,12 @@ export interface Config {
     defaultIDType: number;
   };
   globals: {
-    navigation: Navigation;
+    'header-options': HeaderOption;
     'footer-options': FooterOption;
     options: Option;
   };
   globalsSelect: {
-    navigation: NavigationSelect<false> | NavigationSelect<true>;
+    'header-options': HeaderOptionsSelect<false> | HeaderOptionsSelect<true>;
     'footer-options': FooterOptionsSelect<false> | FooterOptionsSelect<true>;
     options: OptionsSelect<false> | OptionsSelect<true>;
   };
@@ -248,7 +248,8 @@ export interface Page {
               | {
                   name: string;
                   icon?: ('clipboard-list' | 'cog' | 'instagram') | null;
-                  color?: ('primary' | 'accent' | 'secondary') | null;
+                  variant?: ('default' | 'icon' | 'icon-text') | null;
+                  color?: ('primary' | 'accent' | 'secondary' | 'white') | null;
                   action?: ('link' | 'form') | null;
                   url?: string | null;
                   form?: (number | null) | Form;
@@ -636,6 +637,7 @@ export interface Staff {
   specialty: (number | Specialty)[];
   alternativeSpecialty?: string | null;
   staffPage?: (number | null) | Page;
+  bookingLink?: string | null;
   features?:
     | {
         item: string;
@@ -858,6 +860,7 @@ export interface PagesSelect<T extends boolean = true> {
                 | {
                     name?: T;
                     icon?: T;
+                    variant?: T;
                     color?: T;
                     action?: T;
                     url?: T;
@@ -1219,6 +1222,7 @@ export interface StaffSelect<T extends boolean = true> {
   specialty?: T;
   alternativeSpecialty?: T;
   staffPage?: T;
+  bookingLink?: T;
   features?:
     | T
     | {
@@ -1313,11 +1317,11 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "navigation".
+ * via the `definition` "header-options".
  */
-export interface Navigation {
+export interface HeaderOption {
   id: number;
-  items?:
+  navigation?:
     | {
         label: string;
         color?: ('default' | 'accent') | null;
@@ -1341,6 +1345,18 @@ export interface Navigation {
         id?: string | null;
       }[]
     | null;
+  actionButtons?:
+    | {
+        name: string;
+        icon?: ('clipboard-list' | 'cog' | 'instagram') | null;
+        variant?: ('default' | 'icon' | 'icon-text') | null;
+        color?: ('primary' | 'accent' | 'secondary' | 'white') | null;
+        action?: ('link' | 'form') | null;
+        url?: string | null;
+        form?: (number | null) | Form;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1351,13 +1367,6 @@ export interface Navigation {
 export interface FooterOption {
   id: number;
   thesis?: string | null;
-  links?:
-    | {
-        icon: 'clipboard-list' | 'cog' | 'instagram';
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
   services?:
     | {
         page: number | Page;
@@ -1369,6 +1378,25 @@ export interface FooterOption {
   documentLinks?:
     | {
         document: number | Document;
+        id?: string | null;
+      }[]
+    | null;
+  actionButtons?:
+    | {
+        name: string;
+        icon?: ('clipboard-list' | 'cog' | 'instagram') | null;
+        variant?: ('default' | 'icon' | 'icon-text') | null;
+        color?: ('primary' | 'accent' | 'secondary' | 'white') | null;
+        action?: ('link' | 'form') | null;
+        url?: string | null;
+        form?: (number | null) | Form;
+        id?: string | null;
+      }[]
+    | null;
+  footerLinks?:
+    | {
+        label: string;
+        url: string;
         id?: string | null;
       }[]
     | null;
@@ -1411,10 +1439,10 @@ export interface Option {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "navigation_select".
+ * via the `definition` "header-options_select".
  */
-export interface NavigationSelect<T extends boolean = true> {
-  items?:
+export interface HeaderOptionsSelect<T extends boolean = true> {
+  navigation?:
     | T
     | {
         label?: T;
@@ -1438,6 +1466,18 @@ export interface NavigationSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  actionButtons?:
+    | T
+    | {
+        name?: T;
+        icon?: T;
+        variant?: T;
+        color?: T;
+        action?: T;
+        url?: T;
+        form?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1448,13 +1488,6 @@ export interface NavigationSelect<T extends boolean = true> {
  */
 export interface FooterOptionsSelect<T extends boolean = true> {
   thesis?: T;
-  links?:
-    | T
-    | {
-        icon?: T;
-        url?: T;
-        id?: T;
-      };
   services?:
     | T
     | {
@@ -1467,6 +1500,25 @@ export interface FooterOptionsSelect<T extends boolean = true> {
     | T
     | {
         document?: T;
+        id?: T;
+      };
+  actionButtons?:
+    | T
+    | {
+        name?: T;
+        icon?: T;
+        variant?: T;
+        color?: T;
+        action?: T;
+        url?: T;
+        form?: T;
+        id?: T;
+      };
+  footerLinks?:
+    | T
+    | {
+        label?: T;
+        url?: T;
         id?: T;
       };
   rights?: T;

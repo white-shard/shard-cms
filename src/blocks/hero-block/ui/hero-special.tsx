@@ -1,7 +1,12 @@
 import Image from "next/image"
 import { HeroBlockFields } from "../types"
-import { Button } from "@/components/ui/button"
-import { iconList } from "@/lib/icons"
+import { ActionButton } from "@/lib/actions/action-button"
+import { VideoPlayer } from "@/components/ui/video-player"
+
+// Функция для определения типа медиа
+const isVideo = (media: { mimeType?: string | null }) => {
+  return media?.mimeType?.startsWith("video/")
+}
 
 type Props = {
   fields: HeroBlockFields
@@ -35,14 +40,21 @@ export function HeroBlockSpecial({ fields }: Props) {
 
         <div className="flex-1 lg:flex-0 flex items-center justify-center py-8 sm:py-12">
           {fields.img?.url ? (
-            <Image
-              alt="background"
-              className="block lg:hidden max-w-full h-auto"
-              src={fields.img.url || ""}
-              width={512}
-              height={512}
-              priority
-            />
+            isVideo(fields.img) ? (
+              <VideoPlayer
+                src={fields.img.url || ""}
+                className="block lg:hidden max-w-full h-auto"
+              />
+            ) : (
+              <Image
+                alt="background"
+                className="block lg:hidden max-w-full h-auto"
+                src={fields.img.url || ""}
+                width={512}
+                height={512}
+                priority
+              />
+            )
           ) : null}
         </div>
 
@@ -69,40 +81,35 @@ export function HeroBlockSpecial({ fields }: Props) {
 
           {!!fields.actions.length && (
             <div className="w-full flex flex-wrap flex-col sm:flex-row justify-center gap-4 sm:gap-5 lg:gap-6 my-4 sm:my-6 lg:my-12 order-2 lg:order-0">
-              {fields.actions.map((action, index) => {
-                const Icon = iconList[action.icon as keyof typeof iconList]
-
-                return (
-                  <Button
-                    className="text-base sm:text-lg lg:text-base px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-6 min-w-48 sm:min-w-56 lg:min-w-64"
-                    variant={action.color as never}
-                    size="lg"
-                    key={index}
-                  >
-                    {!!action.icon && (
-                      <Icon className="size-5 sm:size-6 lg:size-7" />
-                    )}
-                    <span className="ml-2">{action.name}</span>
-                  </Button>
-                )
-              })}
+              {fields.actions.map((action, index) => (
+                <ActionButton key={index} data={action} />
+              ))}
             </div>
           )}
         </div>
       </div>
 
-      <Image
-        alt="background"
-        src={fields.img?.url || "/"}
-        className="absolute bg-white hidden lg:block"
-        quality={100}
-        fill
-        sizes="100vw"
-        style={{
-          objectFit: "cover",
-          backgroundColor: fields.img?.url ? "white" : "gray",
-        }}
-      />
+      {fields.img?.url ? (
+        isVideo(fields.img) ? (
+          <VideoPlayer
+            src={fields.img.url || ""}
+            className="absolute bg-white hidden lg:block w-full h-full"
+          />
+        ) : (
+          <Image
+            alt="background"
+            src={fields.img.url || "/"}
+            className="absolute bg-white hidden lg:block"
+            quality={100}
+            fill
+            sizes="100vw"
+            style={{
+              objectFit: "cover",
+              backgroundColor: fields.img?.url ? "white" : "gray",
+            }}
+          />
+        )
+      ) : null}
 
       <div className="w-full bottom-0 h-full absolute bg-secondary/65 hidden lg:block z-0" />
     </div>

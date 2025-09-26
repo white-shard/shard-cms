@@ -2,7 +2,7 @@
 
 import { DocumentsBlockFields } from "../types"
 import { getDocuments } from "../vm/get-documents"
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { Document } from "@/payload-types"
 import { Button } from "@/components/ui/button"
 import { Download, FileText } from "lucide-react"
@@ -22,7 +22,7 @@ const folderOptions = [
   { value: "right", label: "Правовая информация" },
 ]
 
-export function DocumentsBlockDefault({ fields }: Props) {
+function DocumentsBlockContent({ fields }: Props) {
   const [documents, setDocuments] = useState<Document[]>([])
   const [loading, setLoading] = useState(true)
   const searchParams = useSearchParams()
@@ -115,7 +115,7 @@ export function DocumentsBlockDefault({ fields }: Props) {
                       className="text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
                     >
                       <a
-                        href={doc.url}
+                        href={doc.url || ""}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -137,5 +137,13 @@ export function DocumentsBlockDefault({ fields }: Props) {
         )}
       </div>
     </div>
+  )
+}
+
+export function DocumentsBlockDefault({ fields }: Props) {
+  return (
+    <Suspense fallback={<div>Загрузка...</div>}>
+      <DocumentsBlockContent fields={fields} />
+    </Suspense>
   )
 }

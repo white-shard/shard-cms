@@ -1,10 +1,12 @@
 import { GlobalConfig } from "payload"
+import { ActionButton } from "../fields/action"
 
-export const Navigation: GlobalConfig = {
-  slug: "navigation",
+export const HeaderOptions: GlobalConfig = {
+  slug: "header-options",
+  label: "Настройки шапки",
   fields: [
     {
-      name: "items",
+      name: "navigation",
       label: "Элементы меню",
       type: "array",
       fields: [
@@ -104,6 +106,12 @@ export const Navigation: GlobalConfig = {
           ],
         },
       ],
+    },
+    {
+      name: "actionButtons",
+      label: "Кнопки действий",
+      type: "array",
+      fields: ActionButton,
     },
   ],
 }

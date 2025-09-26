@@ -23,12 +23,14 @@ const roboto = Roboto({
   variable: "--font-roboto",
 })
 
+export const revalidate = 60 // Кеширование на 60 секунд
+
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
   const payload = await getPayload({ config })
 
-  const navigation = await payload.findGlobal({
-    slug: "navigation",
+  const headerOptions = await payload.findGlobal({
+    slug: "header-options",
   })
 
   return (
@@ -36,8 +38,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body
         className={`${itcConduit.variable} ${roboto.variable} antialiased max-w-screen overflow-x-hidden`}
       >
-        <Header navigation={navigation} />
-        <main className="flex flex-col gap-16 pt-24">{children}</main>
+        <Header options={headerOptions} />
+        <main className="flex flex-col gap-0 lg:gap-16 pt-24">{children}</main>
         <Footer />
       </body>
     </html>

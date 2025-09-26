@@ -15,6 +15,12 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // Настройка кеширования для динамических страниц
+  experimental: {
+    staleTimes: {
+      dynamic: 60, // 60 секунд для динамических страниц
+    },
+  },
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })

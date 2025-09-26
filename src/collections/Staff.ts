@@ -58,6 +58,12 @@ export const Staff: CollectionConfig = {
       required: false,
     },
     {
+      name: "bookingLink",
+      label: "Ссылка на запись",
+      type: "text",
+      required: false,
+    },
+    {
       name: "features",
       label: "Преимущества",
       type: "array",

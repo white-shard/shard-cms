@@ -69,16 +69,13 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
       {/* Десктопная версия - четыре колонки с линиями */}
       <div className="hidden lg:block">
         {groupedItems.map((group, groupIndex) => (
-          <div
-            key={groupIndex}
-            className="relative grid grid-cols-4 gap-4 lg:gap-6 xl:gap-8 mb-8 lg:mb-12"
-          >
+          <div key={groupIndex} className="relative grid grid-cols-4">
             <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
               <line
-                x1="1%"
-                y1="128"
-                x2="99%"
-                y2="128"
+                x1="1.1%"
+                y1="156"
+                x2="99.9%"
+                y2="156"
                 stroke="#e91e63"
                 strokeWidth="3"
                 strokeDasharray="8,8"
@@ -89,8 +86,8 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
                 <line
                   x1="0.1%"
                   y1="0"
-                  x2="1%"
-                  y2="128"
+                  x2="0.1%"
+                  y2="156"
                   stroke="#e91e63"
                   strokeWidth="3"
                   strokeDasharray="8,8"
@@ -98,10 +95,10 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
                 />
               ) : (
                 <line
-                  x1="1%"
-                  y1="128"
+                  x1="0.1%"
+                  y1="156"
                   x2="0.1%"
-                  y2="256"
+                  y2="364"
                   stroke="#e91e63"
                   strokeWidth="3"
                   strokeDasharray="8,8"
@@ -113,10 +110,10 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
                   2 ===
                 0 ? (
                 <line
-                  x1="99%"
-                  y1="128"
+                  x1="99.9%"
+                  y1="156"
                   x2="99.9%"
-                  y2="256"
+                  y2="364"
                   stroke="#e91e63"
                   strokeWidth="3"
                   strokeDasharray="8,8"
@@ -126,8 +123,8 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
                 <line
                   x1="99.9%"
                   y1="0"
-                  x2="99%"
-                  y2="128"
+                  x2="99.9%"
+                  y2="156"
                   stroke="#e91e63"
                   strokeWidth="3"
                   strokeDasharray="8,8"

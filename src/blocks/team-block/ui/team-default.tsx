@@ -1,15 +1,14 @@
 "use client"
 
-import { Specialty, Staff } from "@/payload-types"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { ClipboardList } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 import { SpecialtyFields, StaffFields, TeamBlockFields } from "../types"
 import { getSpecialties } from "../vm/get-specialties"
 import { getStaff } from "../vm/get-staff"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { ClipboardList } from "lucide-react"
-import Link from "next/link"
 
 type Props = {
   fields: TeamBlockFields
@@ -131,7 +130,7 @@ export function TeamBlockDefault({ fields }: Props) {
                 </Link>
                 <Link
                   className="text-accent flex gap-2 items-center text-sm sm:text-base lg:text-lg hover:underline"
-                  href={`/${item.staffPage?.slug}`}
+                  href={item.bookingLink || `/${item.staffPage?.slug}`}
                 >
                   <ClipboardList className="size-4 sm:size-5" />
                   Записаться на консультацию

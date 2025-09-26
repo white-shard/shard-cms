@@ -1,17 +1,16 @@
 "use client"
 
-import { Navigation as PayloadNavigation } from "@/payload-types"
-import { type Navigation } from "./types"
+import { useEffect, useState } from "react"
 import { DesktopHeader } from "./ui/desktop"
 import { MobileHeader } from "./ui/mobile"
-import { useEffect, useState } from "react"
+import { HeaderOption } from "@/payload-types"
 
 export type Props = {
-  navigation: PayloadNavigation
+  options: HeaderOption
 }
 
-export function Header({ navigation }: Props) {
-  const data = navigation as Navigation
+export function Header({ options }: Props) {
+  const data = options
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -33,7 +32,7 @@ export function Header({ navigation }: Props) {
       }`}
     >
       <div className="hidden xl:block">
-        <DesktopHeader navigation={data} />
+        <DesktopHeader options={data} />
       </div>
       <div className="block xl:hidden">
         <MobileHeader navigation={data} />

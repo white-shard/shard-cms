@@ -1,5 +1,6 @@
 import { iconList } from "@/lib/icons"
 import { GlobalConfig } from "payload"
+import { ActionButton } from "../fields/action"
 
 export const FooterOptions: GlobalConfig = {
   slug: "footer-options",
@@ -10,34 +11,6 @@ export const FooterOptions: GlobalConfig = {
       label: "Тезис (текст под логотипом)",
       type: "text",
       defaultValue: "Европейское лечение в Екатеринбурге",
-    },
-    {
-      name: "links",
-      label: "Ссылки (социальные сети)",
-      type: "array",
-      fields: [
-        {
-          type: "row",
-          fields: [
-            {
-              name: "icon",
-              label: "Иконка",
-              type: "select",
-              required: true,
-              options: Object.keys(iconList).map((key) => ({
-                label: key,
-                value: key,
-              })),
-            },
-            {
-              name: "url",
-              label: "URL",
-              type: "text",
-              required: true,
-            },
-          ],
-        },
-      ],
     },
     {
       name: "services",
@@ -80,6 +53,36 @@ export const FooterOptions: GlobalConfig = {
           relationTo: "documents",
           type: "relationship",
           required: true,
+        },
+      ],
+    },
+    {
+      name: "actionButtons",
+      label: "Кнопки действий",
+      type: "array",
+      fields: ActionButton,
+    },
+    {
+      name: "footerLinks",
+      label: "Ссылки",
+      type: "array",
+      fields: [
+        {
+          type: "row",
+          fields: [
+            {
+              name: "label",
+              label: "Название",
+              type: "text",
+              required: true,
+            },
+            {
+              name: "url",
+              label: "URL",
+              type: "text",
+              required: true,
+            },
+          ],
         },
       ],
     },

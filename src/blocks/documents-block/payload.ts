@@ -9,5 +9,26 @@ export const DocumentsBlock: Block = {
   admin: {
     disableBlockName: true,
   },
-  fields: [],
+  fields: [
+    {
+      name: "folder",
+      label: "Папка",
+      type: "select",
+      required: true,
+      defaultValue: "first",
+      admin: {
+        hidden: true,
+      },
+      options: [
+        {
+          label: "Первичные документы",
+          value: "first",
+        },
+        {
+          label: "Правовая информация",
+          value: "right",
+        },
+      ],
+    },
+  ],
 }

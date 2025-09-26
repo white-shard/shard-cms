@@ -20,6 +20,7 @@ export function useDialogWithForm(form?: Form) {
   const dialog = (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="w-[95vw] max-w-[600px] max-h-[90vh] overflow-y-auto">
+        <div className="w-full h-128 bg-red-300"></div>
         <DialogHeader>
           <DialogTitle className="font-normal text-xl sm:text-2xl lg:text-3xl text-center">
             {form?.heading}

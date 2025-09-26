@@ -535,6 +535,7 @@ export interface Page {
             blockType: 'text';
           }
         | {
+            folder: 'first' | 'right';
             id?: string | null;
             blockName?: string | null;
             blockType: 'documents';
@@ -1159,6 +1160,7 @@ export interface PagesSelect<T extends boolean = true> {
         documents?:
           | T
           | {
+              folder?: T;
               id?: T;
               blockName?: T;
             };

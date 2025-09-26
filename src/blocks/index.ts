@@ -2,6 +2,7 @@ import { Advantages } from "./advantages-block"
 import { AdvantagesChallenges } from "./advantages-challenges-block"
 import { CertList } from "./cert-block"
 import { Contact } from "./contact-block"
+import { Documents } from "./documents-block"
 import { ExpertTeam } from "./expert-team-block"
 import { Founder } from "./founder-block"
 import { Gallery } from "./gallery-block"
@@ -50,6 +51,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   Image,
   Video,
   Text,
+  Documents,
   GbtSubscribe,
 ]
 

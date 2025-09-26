@@ -535,6 +535,11 @@ export interface Page {
             blockType: 'text';
           }
         | {
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'documents';
+          }
+        | {
             description: string;
             included?:
               | {
@@ -1148,6 +1153,12 @@ export interface PagesSelect<T extends boolean = true> {
               heading?: T;
               description?: T;
               text?: T;
+              id?: T;
+              blockName?: T;
+            };
+        documents?:
+          | T
+          | {
               id?: T;
               blockName?: T;
             };

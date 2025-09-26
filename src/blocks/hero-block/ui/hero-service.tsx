@@ -26,7 +26,7 @@ export function HeroBlockService({ fields }: Props) {
         )}
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4 sm:mt-6">
           {fields.price && (
-            <p className="text-3xl sm:text-4xl lg:text-5xl text-accent font-bold">
+            <p className="text-3xl sm:text-4xl lg:text-5xl text-accent">
               {fields.price} ₽
             </p>
           )}

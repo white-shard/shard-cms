@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { iconList } from "@/lib/icons"
 import Image from "next/image"
 import { HeroBlockFields } from "../types"
+import { ActionButton } from "@/lib/actions/action-button"
 
 type Props = {
   fields: HeroBlockFields
@@ -38,23 +39,9 @@ export function HeroBlockDefault({ fields }: Props) {
         <div className="flex w-full lg:w-auto flex-col gap-4 lg:gap-0 pb-8 sm:pb-12 lg:pb-16">
           {!!fields.actions.length && (
             <div className="w-full flex flex-wrap flex-col sm:flex-row justify-center gap-4 sm:gap-5 lg:gap-6 my-4 sm:my-6 lg:my-12 order-2 lg:order-0">
-              {fields.actions.map((action, index) => {
-                const Icon = iconList[action.icon as keyof typeof iconList]
-
-                return (
-                  <Button
-                    className="w-full sm:w-auto text-base sm:text-lg lg:text-base px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-6 min-w-48 sm:min-w-56 lg:min-w-64"
-                    variant={action.color as never}
-                    size="lg"
-                    key={index}
-                  >
-                    {!!action.icon && (
-                      <Icon className="size-5 sm:size-6 lg:size-7" />
-                    )}
-                    <span className="ml-2">{action.name}</span>
-                  </Button>
-                )
-              })}
+              {fields.actions.map((action, index) => (
+                <ActionButton key={index} data={action} />
+              ))}
             </div>
           )}
 

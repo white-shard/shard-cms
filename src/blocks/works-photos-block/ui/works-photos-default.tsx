@@ -9,7 +9,7 @@ export function WorksPhotosBlockDefault({ fields }: Props) {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
       <div className="text-center lg:text-left mb-8 sm:mb-10 lg:mb-12">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 lg:mb-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-3 sm:mb-4 lg:mb-6">
           {fields.heading}
         </h2>
         {fields.description && (
@@ -24,7 +24,7 @@ export function WorksPhotosBlockDefault({ fields }: Props) {
           <div key={index} className="w-full">
             {/* Мобильная версия - вертикальная компоновка */}
             <div className="block lg:hidden space-y-4 sm:space-y-6">
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center">
+              <h3 className="text-xl sm:text-2xl md:text-3xl text-center">
                 {photo.heading}
               </h3>
               <div className="w-full">
@@ -40,7 +40,7 @@ export function WorksPhotosBlockDefault({ fields }: Props) {
               {index % 2 === 1 ? (
                 <div className="grid grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center">
                   <div className="flex items-center justify-center order-1">
-                    <h3 className="text-2xl lg:text-3xl xl:text-4xl font-semibold text-center">
+                    <h3 className="text-2xl lg:text-3xl xl:text-4xl text-center">
                       {photo.heading}
                     </h3>
                   </div>
@@ -60,7 +60,7 @@ export function WorksPhotosBlockDefault({ fields }: Props) {
                     />
                   </div>
                   <div className="flex items-center justify-center order-2">
-                    <h3 className="text-2xl lg:text-3xl xl:text-4xl font-semibold text-center">
+                    <h3 className="text-2xl lg:text-3xl xl:text-4xl text-center">
                       {photo.heading}
                     </h3>
                   </div>

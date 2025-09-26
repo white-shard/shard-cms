@@ -17,6 +17,7 @@ import { Specialties } from "./collections/Specialties"
 import { SiteOptions } from "./collections/globals/SiteOptions"
 import { FooterOptions } from "./collections/globals/FooterOptions"
 import { Documents } from "./collections/Documents"
+import { Forms } from "./collections/Forms"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -34,7 +35,16 @@ export default buildConfig({
       },
     },
   },
-  collections: [Users, Media, Documents, Pages, Services, Staff, Specialties],
+  collections: [
+    Users,
+    Media,
+    Documents,
+    Pages,
+    Services,
+    Staff,
+    Specialties,
+    Forms,
+  ],
   globals: [Navigation, FooterOptions, SiteOptions],
   // email: nodemailerAdapter(smtpNodemailerConfig),
   editor: lexicalEditor(),

@@ -19,6 +19,23 @@ export const Documents: CollectionConfig = {
       type: "text",
       required: true,
     },
+    {
+      name: "folder",
+      label: "Папка",
+      type: "select",
+      required: true,
+      defaultValue: "first",
+      options: [
+        {
+          label: "Первичные документы",
+          value: "first",
+        },
+        {
+          label: "Правовая информация",
+          value: "right",
+        },
+      ],
+    },
   ],
   upload: {
     mimeTypes: ["application/pdf"],

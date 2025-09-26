@@ -6,17 +6,17 @@ type Props = {
 export function VideoBlockDefault({ fields }: Props) {
   if (!fields?.video?.url) {
     return (
-      <div className="container mx-auto relative h-full flex justify-center items-center">
+      <div className="container mx-auto relative h-full flex justify-center items-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         <div className="text-center text-gray-500">
-          <p>Видео не загружено</p>
+          <p className="text-base sm:text-lg lg:text-xl">Видео не загружено</p>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="container mx-auto relative h-full flex justify-center py-8">
-      <div className="w-full max-w-6xl">
+    <div className="container mx-auto relative h-full flex justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+      <div className="w-full max-w-4xl lg:max-w-6xl">
         <video
           src={fields.video.url}
           className="w-full h-auto rounded-lg shadow-lg"
@@ -38,7 +38,7 @@ export function VideoBlockDefault({ fields }: Props) {
           Ваш браузер не поддерживает видео.
         </video>
         {fields.video.alt && (
-          <p className="text-sm text-gray-600 mt-2 text-center">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 mt-3 sm:mt-4 text-center leading-relaxed">
             {fields.video.alt}
           </p>
         )}

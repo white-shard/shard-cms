@@ -56,7 +56,7 @@ export function HeroBlockSpecial({ fields }: Props) {
 
           <div className="flex flex-col sm:flex-row mx-auto gap-2 sm:gap-4 justify-center items-center">
             {fields.price && (
-              <p className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-accent font-bold">
+              <p className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-accent">
                 {fields.price} ₽
               </p>
             )}

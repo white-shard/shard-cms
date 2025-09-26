@@ -1,3 +1,4 @@
+import { IActionButton } from "@/lib/actions/types"
 import { Media } from "@/payload-types"
 
 export interface HeroBlockFields {
@@ -10,9 +11,5 @@ export interface HeroBlockFields {
   price?: string
   old_price?: string
   description?: string
-  actions: {
-    name: string
-    icon: string
-    color: string
-  }[]
+  actions: IActionButton[]
 }

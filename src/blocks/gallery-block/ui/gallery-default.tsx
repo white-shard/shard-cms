@@ -73,7 +73,7 @@ export function GalleryBlockDefault({ fields }: Props) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 {image.img.alt && (
                   <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-3 sm:left-4 lg:left-6">
-                    <h3 className="text-white text-sm sm:text-base lg:text-lg xl:text-xl font-medium drop-shadow-lg">
+                    <h3 className="text-white text-sm sm:text-base lg:text-lg xl:text-xl drop-shadow-lg">
                       {image.img.alt}
                     </h3>
                   </div>

@@ -74,6 +74,7 @@ export interface Config {
     services: Service;
     staff: Staff;
     specialties: Specialty;
+    forms: Form;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -87,6 +88,7 @@ export interface Config {
     services: ServicesSelect<false> | ServicesSelect<true>;
     staff: StaffSelect<false> | StaffSelect<true>;
     specialties: SpecialtiesSelect<false> | SpecialtiesSelect<true>;
+    forms: FormsSelect<false> | FormsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -207,6 +209,7 @@ export interface Media {
 export interface Document {
   id: number;
   title: string;
+  folder: 'first' | 'right';
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -246,6 +249,9 @@ export interface Page {
                   name: string;
                   icon?: ('clipboard-list' | 'cog' | 'instagram') | null;
                   color?: ('primary' | 'accent' | 'secondary') | null;
+                  action?: ('link' | 'form') | null;
+                  url?: string | null;
+                  form?: (number | null) | Form;
                   id?: string | null;
                 }[]
               | null;
@@ -553,6 +559,45 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms".
+ */
+export interface Form {
+  id: number;
+  form_id: string;
+  webhook?: string | null;
+  heading: string;
+  description?: string | null;
+  fields?:
+    | {
+        name: string;
+        type: 'text' | 'textarea' | 'number' | 'checkbox' | 'select';
+        label?: string | null;
+        placeholder?: string | null;
+        required?: boolean | null;
+        textOptions?: {
+          validation?: ('off' | 'phone' | 'email' | 'url') | null;
+          minLength?: number | null;
+          maxLength?: number | null;
+        };
+        numberOptions?: {
+          min?: number | null;
+          max?: number | null;
+        };
+        selectOptions?:
+          | {
+              label: string;
+              value: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services".
  */
 export interface Service {
@@ -638,6 +683,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'specialties';
         value: number | Specialty;
+      } | null)
+    | ({
+        relationTo: 'forms';
+        value: number | Form;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -761,6 +810,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface DocumentsSelect<T extends boolean = true> {
   title?: T;
+  folder?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -803,6 +853,9 @@ export interface PagesSelect<T extends boolean = true> {
                     name?: T;
                     icon?: T;
                     color?: T;
+                    action?: T;
+                    url?: T;
+                    form?: T;
                     id?: T;
                   };
               id?: T;
@@ -1168,6 +1221,48 @@ export interface StaffSelect<T extends boolean = true> {
  */
 export interface SpecialtiesSelect<T extends boolean = true> {
   name?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms_select".
+ */
+export interface FormsSelect<T extends boolean = true> {
+  form_id?: T;
+  webhook?: T;
+  heading?: T;
+  description?: T;
+  fields?:
+    | T
+    | {
+        name?: T;
+        type?: T;
+        label?: T;
+        placeholder?: T;
+        required?: T;
+        textOptions?:
+          | T
+          | {
+              validation?: T;
+              minLength?: T;
+              maxLength?: T;
+            };
+        numberOptions?:
+          | T
+          | {
+              min?: T;
+              max?: T;
+            };
+        selectOptions?:
+          | T
+          | {
+              label?: T;
+              value?: T;
+              id?: T;
+            };
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

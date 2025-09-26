@@ -1,4 +1,4 @@
-import { iconList } from "@/lib/icons"
+import { ActionButton } from "@/collections/fields/action"
 import { Block } from "payload"
 
 export const HeroBlock: Block = {
@@ -103,48 +103,7 @@ export const HeroBlock: Block = {
       name: "actions",
       label: "Действия",
       type: "array",
-      fields: [
-        {
-          name: "name",
-          label: "Название",
-          type: "text",
-          required: true,
-        },
-        {
-          type: "row",
-          fields: [
-            {
-              name: "icon",
-              label: "Иконка",
-              type: "select",
-              options: Object.keys(iconList).map((key) => ({
-                label: key,
-                value: key,
-              })),
-            },
-            {
-              name: "color",
-              label: "Цвет",
-              type: "select",
-              defaultValue: "primary",
-              options: [
-                {
-                  label: "Черный",
-                  value: "primary",
-                },
-                {
-                  label: "Розовый",
-                  value: "accent",
-                },
-                {
-                  label: "Серый",
-                  value: "secondary",
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      fields: ActionButton,
     },
   ],
 }

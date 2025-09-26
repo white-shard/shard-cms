@@ -16,7 +16,7 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
 
   return (
     <div className="container mx-auto text-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 sm:mb-8 lg:mb-12">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-6 sm:mb-8 lg:mb-12">
         {fields.heading}
       </h2>
 
@@ -32,9 +32,7 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
               <div className="size-12 bg-accent rounded-full flex items-center justify-center mb-3">
                 <Icon className="size-6 text-white" />
               </div>
-              <h3 className="text-base font-semibold text-accent mb-2">
-                {item.heading}
-              </h3>
+              <h3 className="text-base text-accent mb-2">{item.heading}</h3>
               <p className="text-sm text-gray-600 text-center leading-relaxed">
                 {item.description}
               </p>
@@ -56,7 +54,7 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
                 <div className="size-14 sm:size-16 bg-accent rounded-full flex items-center justify-center mb-4">
                   <Icon className="size-6 sm:size-7 text-white" />
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold text-accent mb-3 text-center">
+                <h3 className="text-lg sm:text-xl text-accent mb-3 text-center">
                   {item.heading}
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600 text-center leading-relaxed">
@@ -149,7 +147,7 @@ export function WhyAreWeBlockDefault({ fields }: Props) {
                   <div className="absolute top-1/2 -translate-y-1/2 size-16 lg:size-18 xl:size-20 bg-accent rounded-full flex items-center justify-center group-hover:hidden">
                     <Icon className="size-6 lg:size-7 xl:size-8 text-white" />
                   </div>
-                  <span className="text-base lg:text-lg xl:text-xl group-hover:text-accent mt-32 group-hover:mt-0 group-hover:text-left font-semibold">
+                  <span className="text-base lg:text-lg xl:text-xl group-hover:text-accent mt-32 group-hover:mt-0 group-hover:text-left">
                     {item.heading}
                   </span>
                   <p className="text-sm lg:text-base xl:text-lg group-hover:block hidden text-gray-400 text-left leading-relaxed">

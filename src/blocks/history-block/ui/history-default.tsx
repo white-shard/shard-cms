@@ -27,14 +27,14 @@ export function HistoryBlockDefault({ fields }: Props) {
           </div>
 
           <div className="flex flex-col gap-4 sm:gap-6 lg:gap-8 w-full">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight">
               {fields.heading}
             </h2>
 
             {fields.quote && (
               <div className="relative">
                 <Quote className="size-5 sm:size-6 lg:size-7 text-accent absolute top-0 left-0" />
-                <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl uppercase whitespace-pre-line pl-8 sm:pl-10 lg:pl-12 font-medium italic leading-relaxed">
+                <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl uppercase whitespace-pre-line pl-8 sm:pl-10 lg:pl-12 italic leading-relaxed">
                   {fields.quote}
                 </p>
               </div>
@@ -56,7 +56,7 @@ export function HistoryBlockDefault({ fields }: Props) {
           {fields.description.length > 512 && (
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="mt-4 sm:mt-6 uppercase text-accent hover:underline text-sm sm:text-base lg:text-lg xl:text-xl cursor-pointer transition-all duration-300 hover:scale-105 font-medium"
+              className="mt-4 sm:mt-6 uppercase text-accent hover:underline text-sm sm:text-base lg:text-lg xl:text-xl cursor-pointer transition-all duration-300 hover:scale-105"
             >
               {isExpanded ? "Свернуть" : "Читать далее"}
             </button>

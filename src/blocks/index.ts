@@ -14,6 +14,7 @@ import { Image } from "./image-block"
 import { IndicationsContraindications } from "./indications-contraindications-block"
 import { Installment } from "./installment"
 import { Methods } from "./methods-block"
+import { Reviews } from "./reviews-block"
 import { Services } from "./services-block"
 import { ServicesCost } from "./services-cost-block"
 import { Staff } from "./staff-block"
@@ -52,6 +53,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   Video,
   Text,
   Documents,
+  Reviews,
   GbtSubscribe,
 ]
 

@@ -1,3 +1,5 @@
+"use client"
+
 import { Clock, MapPin } from "lucide-react"
 import { ContactBlockFields } from "../types"
 
@@ -56,7 +58,36 @@ export function ContactBlockDefault({ fields }: Props) {
         </div>
 
         {/* Карта/изображение */}
-        <div className="w-full aspect-square bg-gray-400 rounded-lg sm:rounded-xl lg:order-1 min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]" />
+        <div className="w-full aspect-square rounded-lg sm:rounded-xl lg:order-1 min-h-[300px] sm:min-h-[400px] lg:min-h-[500px] overflow-hidden relative">
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3Acdf595fab5cba7b57d81c19e2d1ac3b91f6e8e19d194fc86580c7373f202744d&amp;source=constructor&amp;lang=ru_RU&amp;scroll=true"
+            width="628"
+            height="628"
+            frameBorder="0"
+            className="grayscale hover:grayscale-0 transition-all duration-300"
+            style={{
+              filter: "grayscale(100%)",
+              position: "relative",
+              zIndex: 1,
+            }}
+          />
+          <style jsx>{`
+            iframe:hover {
+              filter: grayscale(0%) !important;
+            }
+            iframe::before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: rgba(0, 0, 255, 0.1);
+              pointer-events: none;
+              z-index: 2;
+            }
+          `}</style>
+        </div>
       </div>
     </div>
   )

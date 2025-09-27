@@ -30,7 +30,7 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
           return (
             <div
               key={expert.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              className="bg-white rounded-lg overflow-hidden"
             >
               <div className="flex flex-col sm:flex-row">
                 <div className="w-full sm:w-48 h-48 sm:h-64 flex-shrink-0">
@@ -84,38 +84,46 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
             return (
               <div
                 key={expert.id}
-                className="relative w-32 xl:w-36 h-96 xl:h-[400px] hover:w-80 xl:hover:w-96 transition-all duration-500 rounded-lg overflow-hidden group cursor-pointer"
+                className="relative w-32 xl:w-36 h-96 xl:h-[400px] hover:w-80 xl:hover:w-96 transition-all duration-500 rounded-lg overflow-hidden group cursor-pointer flex flex-col"
               >
-                {isVideo(expert.img) ? (
-                  <VideoPlayer
-                    src={expert.img.url || ""}
-                    className="w-full h-full transition-all duration-500 group-hover:h-60 xl:group-hover:h-72 group-hover:rounded-t-lg"
-                  />
-                ) : (
-                  <div
-                    style={{ backgroundImage: `url(${expert.img.url})` }}
-                    className="w-full h-full bg-no-repeat bg-cover transition-all duration-500 bg-center group-hover:h-60 xl:group-hover:h-72 group-hover:rounded-t-lg"
-                  />
-                )}
+                {/* Картинка - занимает 2/3 высоты в активном состоянии */}
+                <div className="w-full h-full group-hover:h-2/3 transition-all duration-500">
+                  {isVideo(expert.img) ? (
+                    <VideoPlayer
+                      src={expert.img.url || ""}
+                      className="w-full h-full rounded-t-lg object-cover"
+                    />
+                  ) : (
+                    <div
+                      style={{ backgroundImage: `url(${expert.img.url})` }}
+                      className="w-full h-full bg-no-repeat bg-cover bg-center rounded-t-lg"
+                    />
+                  )}
+                </div>
 
-                <div className="flex flex-col absolute bottom-0 left-0 right-0 p-3 xl:p-4 text-sm xl:text-base">
-                  <span className="text-white group-hover:hidden transition-none">
-                    {fullname[0]} {fullname[1]}
+                {/* Градиент для читаемости текста */}
+                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/80 to-transparent group-hover:hidden"></div>
+
+                {/* Текст поверх картинки в неактивном состоянии */}
+                <div className="flex flex-col absolute bottom-0 left-0 right-0 p-3 xl:p-4 text-sm xl:text-base group-hover:hidden z-10">
+                  <span className="text-white">
+                    {fullname[0]} <br /> {fullname[1]}
                   </span>
-                  <span className="text-gray-300 text-xs xl:text-sm group-hover:hidden transition-none">
+                  <span className="text-gray-300 text-xs xl:text-sm">
                     {expert.experience} лет опыта
                   </span>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 bg-white p-3 xl:p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-b-lg">
-                  <div className="flex flex-col space-y-2">
-                    <span className="text-primary text-xl xl:text-2xl">
+                {/* Текст внизу в активном состоянии */}
+                <div className="absolute bottom-0 left-0 right-0 bg-white p-2 xl:p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-b-lg h-1/3">
+                  <div className="flex flex-col space-y-1 h-full justify-center">
+                    <span className="text-primary text-sm xl:text-base">
                       {expert.fullname}
                     </span>
-                    <span className="text-gray-600 text-sm xl:text-base">
+                    <span className="text-gray-600 text-xs xl:text-sm">
                       стоматолог {alternativeSpecialty}
                     </span>
-                    <div className="flex gap-2 items-center justify-between">
+                    <div className="flex gap-1 items-center justify-between">
                       <span className="text-gray-500 text-xs xl:text-sm">
                         {expert.experience} лет опыта
                       </span>
@@ -124,10 +132,9 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
                           href={
                             expert.bookingLink || `/${expert.staffPage?.slug}`
                           }
-                          className="flex gap-2 text-accent text-xs xl:text-sm hover:underline"
+                          className="flex gap-1 text-accent text-xs xl:text-sm hover:underline"
                         >
-                          <ClipboardList className="size-3 xl:size-4" />{" "}
-                          Записаться
+                          <ClipboardList className="size-3" /> Записаться
                         </a>
                       )}
                     </div>

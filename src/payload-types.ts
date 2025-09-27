@@ -542,6 +542,49 @@ export interface Page {
             blockType: 'documents';
           }
         | {
+            heading: string;
+            description: string;
+            showOnlyPositive?: boolean | null;
+            /**
+             * Вставьте код iframe с отзывами из Яндекс.Карт
+             */
+            yandexIframeCode?: string | null;
+            /**
+             * Вставьте код iframe с отзывами из 2ГИС
+             */
+            twoGisIframeCode?: string | null;
+            videoReviews?:
+              | {
+                  title: string;
+                  /**
+                   * Ссылка на видео (YouTube, Vimeo и т.д.)
+                   */
+                  videoUrl: string;
+                  /**
+                   * Изображение превью для видео
+                   */
+                  thumbnail?: (number | null) | Media;
+                  author?: string | null;
+                  /**
+                   * Фото пациента для отображения в отзыве
+                   */
+                  avatar?: (number | null) | Media;
+                  /**
+                   * Например: Имплантация, Отбеливание зубов
+                   */
+                  procedure?: string | null;
+                  /**
+                   * Оценка от 1 до 5 звезд
+                   */
+                  rating?: number | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'reviews';
+          }
+        | {
             description: string;
             included?:
               | {
@@ -1164,6 +1207,29 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               folder?: T;
+              id?: T;
+              blockName?: T;
+            };
+        reviews?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              showOnlyPositive?: T;
+              yandexIframeCode?: T;
+              twoGisIframeCode?: T;
+              videoReviews?:
+                | T
+                | {
+                    title?: T;
+                    videoUrl?: T;
+                    thumbnail?: T;
+                    author?: T;
+                    avatar?: T;
+                    procedure?: T;
+                    rating?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

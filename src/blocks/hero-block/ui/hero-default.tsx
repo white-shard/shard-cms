@@ -52,24 +52,33 @@ export function HeroBlockDefault({ fields }: Props) {
           )}
 
           {fields.description && (
-            <p className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-center text-secondary-foreground max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl order-1 lg:order-0 leading-relaxed">
+            <p className="text-lg sm:text-xl mx-auto lg:text-2xl xl:text-3xl text-center text-secondary-foreground max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl order-1 lg:order-0 leading-relaxed">
               {fields.description}
             </p>
           )}
         </div>
       </div>
 
+      {/* Debug info */}
+      {process.env.NODE_ENV === "development" && (
+        <div className="absolute top-4 left-4 bg-red-500 text-white p-2 text-xs z-50">
+          Debug: {fields.img?.url ? `URL: ${fields.img.url}` : "No URL"} | MIME:{" "}
+          {fields.img?.mimeType || "No MIME"} | Is Video:{" "}
+          {fields.img?.mimeType?.startsWith("video/") ? "Yes" : "No"}
+        </div>
+      )}
+
       {fields.img?.url ? (
         fields.img.mimeType?.startsWith("video/") ? (
           <Video
-            className="absolute bg-white hidden lg:block"
+            className="absolute inset-0 w-full h-full hidden lg:block z-0"
             source={fields.img}
           />
         ) : (
           <Image
             alt="background"
             src={fields.img.url || "/"}
-            className="absolute bg-white hidden lg:block"
+            className="absolute bg-white hidden lg:block z-0"
             quality={100}
             fill
             sizes="100vw"
@@ -81,7 +90,7 @@ export function HeroBlockDefault({ fields }: Props) {
         )
       ) : (
         <div
-          className="absolute bg-gray hidden lg:block"
+          className="absolute bg-gray hidden lg:block z-0"
           style={{
             width: "100%",
             height: "100%",

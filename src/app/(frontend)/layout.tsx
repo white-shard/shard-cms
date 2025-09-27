@@ -6,6 +6,8 @@ import { getPayload } from "payload"
 import React from "react"
 import "./styles.css"
 import { Footer } from "@/widgets/footer"
+import { ClientCookieConsent } from "@/components/client-cookie-consent"
+import { ClientYandexMetrika } from "@/components/client-yandex-metrika"
 
 export const metadata = {
   description: "A blank template using Payload in a Next.js app.",
@@ -33,6 +35,10 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
     slug: "header-options",
   })
 
+  const seoOptions = await payload.findGlobal({
+    slug: "seo-options",
+  })
+
   return (
     <html lang="ru">
       <body
@@ -41,6 +47,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <Header options={headerOptions} />
         <main className="flex flex-col gap-0 lg:gap-16 pt-24">{children}</main>
         <Footer />
+        <ClientCookieConsent />
+        <ClientYandexMetrika seoOptions={seoOptions} />
       </body>
     </html>
   )

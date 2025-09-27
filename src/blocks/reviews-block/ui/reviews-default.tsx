@@ -39,7 +39,7 @@ export function ReviewsBlockDefault({ fields }: Props) {
       {/* Заголовок и описание */}
       <div className="text-left mb-12">
         <h2 className="text-3xl sm:text-4xl md:text-5xl">{fields.heading}</h2>
-        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl">
+        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl ">
           {fields.description}
         </p>
       </div>

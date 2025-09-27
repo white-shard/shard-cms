@@ -18,6 +18,7 @@ import { Users } from "./collections/Users"
 import { FooterOptions } from "./collections/globals/FooterOptions"
 import { HeaderOptions } from "./collections/globals/HeaderOptions"
 import { SiteOptions } from "./collections/globals/SiteOptions"
+import { SEOOptions } from "./collections/globals/SEOptions"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -45,7 +46,7 @@ export default buildConfig({
     Specialties,
     Forms,
   ],
-  globals: [HeaderOptions, FooterOptions, SiteOptions],
+  globals: [HeaderOptions, FooterOptions, SiteOptions, SEOOptions],
   // email: nodemailerAdapter(smtpNodemailerConfig),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

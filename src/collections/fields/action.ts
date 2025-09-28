@@ -62,6 +62,10 @@ export const ActionButton: Field[] = [
             label: "Белый",
             value: "white",
           },
+          {
+            label: "Красный",
+            value: "red",
+          },
         ],
       },
     ],

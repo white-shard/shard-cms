@@ -32,16 +32,22 @@ export function ActionButton({ data }: Props) {
       style={
         data.variant === "icon" || data.variant === "icon-text"
           ? {
-              color:
-                data.color === "accent"
-                  ? "var(--color-accent)"
-                  : data.color === "primary"
-                    ? "var(--color-primary)"
-                    : data.color === "secondary"
-                      ? "var(--color-secondary)"
-                      : data.color === "white"
-                        ? "white"
-                        : "inherit",
+              color: (() => {
+                switch (data.color) {
+                  case "accent":
+                    return "var(--color-accent)"
+                  case "primary":
+                    return "var(--color-primary)"
+                  case "secondary":
+                    return "var(--color-secondary)"
+                  case "white":
+                    return "white"
+                  case "red":
+                    return "#D81921"
+                  default:
+                    return "inherit"
+                }
+              })(),
             }
           : undefined
       }
@@ -52,7 +58,7 @@ export function ActionButton({ data }: Props) {
           className={
             data.variant === "icon" || data.variant === "icon-text"
               ? "size-6"
-              : "size-5 sm:size-6 lg:size-7"
+              : "size-6 sm:size-5 lg:size-5"
           }
         />
       )}

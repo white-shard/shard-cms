@@ -4,14 +4,14 @@ import Image from "next/image"
 
 export default function Logo() {
   return (
-    <div>
+    <div className="relative">
       <Image
-        className="h-20 object-contain dark:hidden"
+        className="h-20 object-contain block dark:hidden"
         src={logoLight}
         alt="Logo"
       />
       <Image
-        className="h-20 object-contain hidden dark:block"
+        className="h-20 object-contain hidden dark:block absolute top-0 left-0"
         src={logoDark}
         alt="Logo"
       />

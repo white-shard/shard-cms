@@ -85,7 +85,7 @@ export function HeroBlockService({ fields }: Props) {
       </div>
 
       {/* Десктопная версия - все вместе */}
-      <div className="hidden lg:flex flex-1 flex-col w-full lg:w-auto order-2">
+      <div className="hidden lg:flex flex-1 flex-col w-full lg:w-auto">
         {fields.beforeHeading && (
           <h2 className="text-2xl sm:text-3xl lg:text-4xl text-gray-400 -mb-2 sm:-mb-4">
             {fields.beforeHeading}

@@ -6,12 +6,12 @@ export default function Logo() {
   return (
     <div className="relative">
       <Image
-        className="h-20 object-contain block dark:hidden"
+        className="h-20 object-contain block dark:hidden [&[data-theme=dark]]:hidden"
         src={logoLight}
         alt="Logo"
       />
       <Image
-        className="h-20 object-contain hidden dark:block absolute top-0 left-0"
+        className="h-20 object-contain hidden dark:block [&[data-theme=dark]]:block absolute top-0 left-0"
         src={logoDark}
         alt="Logo"
       />

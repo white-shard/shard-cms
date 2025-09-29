@@ -81,21 +81,16 @@ export const Forms: CollectionConfig = {
           ],
         },
         {
-          type: "row",
-          fields: [
-            {
-              name: "label",
-              label: "Название поля (можно на русском)",
-              type: "text",
-              required: false,
-            },
-            {
-              name: "placeholder",
-              label: "Подсказка",
-              type: "text",
-              required: false,
-            },
-          ],
+          name: "label",
+          label: "Название поля (можно на русском)",
+          type: "richText",
+          required: false,
+        },
+        {
+          name: "placeholder",
+          label: "Подсказка",
+          type: "text",
+          required: false,
         },
         {
           name: "required",

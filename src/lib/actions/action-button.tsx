@@ -1,10 +1,10 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { useDialogWithForm } from "../hooks/use-dialog"
 import { iconList } from "../icons"
 import { IActionButton } from "./types"
-import { useDialogWithForm } from "../hooks/use-dialog"
-import Link from "next/link"
 
 type Props = {
   data: IActionButton
@@ -22,7 +22,7 @@ export function ActionButton({ data }: Props) {
           ? "h-10 w-10 p-0 border-0 bg-transparent hover:bg-transparent hover:opacity-70 transition-opacity"
           : data.variant === "icon-text"
             ? "h-10 px-3 py-2 border-0 bg-transparent hover:bg-transparent hover:opacity-70 transition-opacity"
-            : "w-full sm:w-auto text-base sm:text-lg lg:text-base px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-6 min-w-48 sm:min-w-56 lg:min-w-64"
+            : "w-full md:w-auto text-base sm:text-lg lg:text-base px-12 py-6 min-w-64"
       }
       variant={
         data.variant === "icon" || data.variant === "icon-text"

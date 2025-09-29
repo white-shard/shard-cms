@@ -35,7 +35,7 @@ export function ReviewsBlockDefault({ fields }: Props) {
   }
 
   return (
-    <div className="container mx-auto py-8 sm:py-12 lg:py-16 px-4">
+    <div id="reviews" className="container mx-auto py-8 sm:py-12 lg:py-16 px-4">
       {/* Заголовок и описание */}
       <div className="text-left mb-12">
         <h2 className="text-3xl sm:text-4xl md:text-5xl">{fields.heading}</h2>

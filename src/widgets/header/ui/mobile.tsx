@@ -1,3 +1,7 @@
+"use client"
+
+import { useState } from "react"
+
 import {
   Accordion,
   AccordionContent,
@@ -13,16 +17,20 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { ActionButton } from "@/lib/actions/action-button"
+import { HeaderOption } from "@/payload-types"
 import { Menu } from "lucide-react"
 import Link from "next/link"
-import { HeaderOption } from "@/payload-types"
-import { ActionButton } from "@/lib/actions/action-button"
 
 export type Props = {
   navigation: HeaderOption
 }
 
 export function MobileHeader({ navigation }: Props) {
+  const [open, setOpen] = useState(false)
+
+  const handleClose = () => setOpen(false)
+
   return (
     <div className="flex justify-between items-center px-3 sm:px-4 md:px-6">
       <Link href="/" className="flex-shrink-0">
@@ -46,7 +54,7 @@ export function MobileHeader({ navigation }: Props) {
             }}
           />
         ))}
-        <Sheet>
+        <Sheet onOpenChange={setOpen} open={open}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="flex-shrink-0">
               <Menu className="size-5 sm:size-6 md:size-8" />
@@ -60,7 +68,7 @@ export function MobileHeader({ navigation }: Props) {
               </Link>
             </SheetHeader>
 
-            <nav className="flex items-start text-base sm:text-lg md:text-xl font-medium flex-col">
+            <nav className="flex items-start text-base sm:text-lg md:text-xl font-medium flex-col overflow-y-auto">
               {navigation.navigation?.map((item, index) =>
                 item.hasCategories && item.categories?.length ? (
                   <Accordion
@@ -82,6 +90,7 @@ export function MobileHeader({ navigation }: Props) {
                             <Link
                               className="cursor-pointer hover:text-accent text-base sm:text-lg md:text-xl text-primary hover:bg-gray-100 py-2 sm:py-3 md:py-4 px-2 sm:px-3 md:px-4"
                               href={category.url || "#"}
+                              onClick={handleClose}
                             >
                               {category.label}
                             </Link>
@@ -92,6 +101,7 @@ export function MobileHeader({ navigation }: Props) {
                                     key={subIndex}
                                     className="hover:underline hover:bg-gray-100 py-2 sm:py-3 md:py-4 px-2 sm:px-3 md:px-4"
                                     href={subItem.url || "#"}
+                                    onClick={handleClose}
                                   >
                                     {subItem.label}
                                   </Link>
@@ -108,7 +118,9 @@ export function MobileHeader({ navigation }: Props) {
                     key={index}
                     className="w-full px-2 sm:px-3 md:px-4 py-2 sm:py-3 md:py-4 hover:bg-gray-100 cursor-pointer"
                   >
-                    <Link href={item.url || "#"}>{item.label}</Link>
+                    <Link onClick={handleClose} href={item.url || "#"}>
+                      {item.label}
+                    </Link>
                   </div>
                 ),
               )}

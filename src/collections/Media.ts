@@ -31,5 +31,14 @@ export const Media: CollectionConfig = {
         height: 720,
       },
     ],
+    adminThumbnail: ({ doc }: { doc: Record<string, unknown> }) => {
+      if (
+        typeof doc.mimeType === "string" &&
+        doc.mimeType.startsWith("video/")
+      ) {
+        return (doc.thumbnail as string) || (doc.url as string)
+      }
+      return doc.url as string
+    },
   },
 }

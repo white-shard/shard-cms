@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label"
 import { cn } from "@/lib/utils"
 import { Form } from "@/payload-types"
 import { useState } from "react"
+import { RichTextView } from "./rich-text-view"
 
 interface FormComponentProps {
   form: Form
@@ -138,7 +139,7 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
         return (
           <div key={field.name} className="space-y-2 relative">
             <Label htmlFor={fieldId} className="text-base sm:text-lg">
-              {field.label}
+              <RichTextView data={field.label} />
             </Label>
             <Input
               id={fieldId}

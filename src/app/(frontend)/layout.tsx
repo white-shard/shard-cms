@@ -8,6 +8,7 @@ import "./styles.css"
 import { Footer } from "@/widgets/footer"
 import { ClientCookieConsent } from "@/components/client-cookie-consent"
 import { ClientYandexMetrika } from "@/components/client-yandex-metrika"
+import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata = {
   description: "A blank template using Payload in a Next.js app.",
@@ -44,11 +45,15 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body
         className={`${itcConduit.variable} ${roboto.variable} antialiased max-w-screen overflow-x-hidden`}
       >
-        <Header options={headerOptions} />
-        <main className="flex flex-col gap-0 lg:gap-16 pt-24">{children}</main>
-        <Footer />
-        <ClientCookieConsent />
-        <ClientYandexMetrika seoOptions={seoOptions} />
+        <ThemeProvider>
+          <Header options={headerOptions} />
+          <main className="flex flex-col gap-0 lg:gap-16 pt-24">
+            {children}
+          </main>
+          <Footer />
+          <ClientCookieConsent />
+          <ClientYandexMetrika seoOptions={seoOptions} />
+        </ThemeProvider>
       </body>
     </html>
   )

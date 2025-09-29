@@ -160,7 +160,7 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
         return (
           <div key={field.name} className="space-y-2">
             <Label htmlFor={fieldId} className="text-base sm:text-lg">
-              {field.label || field.name}
+              {!!field.label ? <RichTextView data={field.label} /> : field.name}
               {field.required && <span className="text-red-500 ml-1">*</span>}
             </Label>
             <textarea
@@ -180,7 +180,7 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
         return (
           <div key={field.name} className="space-y-2">
             <Label htmlFor={fieldId} className="text-base sm:text-lg">
-              {field.label || field.name}
+              {!!field.label ? <RichTextView data={field.label} /> : field.name}
               {field.required && <span className="text-gray-400 ml-1">*</span>}
             </Label>
             <Input
@@ -231,7 +231,7 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
               htmlFor={fieldId}
               className="text-base sm:text-lg leading-none peer-disabled:cursor-not-allowed text-gray-600 peer-disabled:opacity-70 cursor-pointer"
             >
-              {field.label || field.name}
+              {!!field.label ? <RichTextView data={field.label} /> : field.name}
               {field.required && <span className="text-red-500 ml-1">*</span>}
             </Label>
           </div>
@@ -241,7 +241,7 @@ export function FormComponent({ form, onSubmit, onClose }: FormComponentProps) {
         return (
           <div key={field.name} className="space-y-2">
             <Label htmlFor={fieldId} className="text-base sm:text-lg">
-              {field.label || field.name}
+              {!!field.label ? <RichTextView data={field.label} /> : field.name}
               {field.required && <span className="text-red-500 ml-1">*</span>}
             </Label>
             <select

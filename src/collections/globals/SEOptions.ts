@@ -2,6 +2,7 @@ import { GlobalConfig } from "payload"
 
 export const SEOOptions: GlobalConfig = {
   slug: "seo-options",
+  label: "Настройки SEO",
   fields: [
     {
       type: "group",

@@ -74,7 +74,7 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
 
       {/* Десктопная версия - горизонтальная компоновка с hover эффектами */}
       <div className="hidden lg:block">
-        <div className="flex flex-wrap gap-4 xl:gap-6 max-w-full justify-center overflow-x-auto pb-4">
+        <div className="flex gap-4 xl:gap-6 max-w-full justify-center overflow-x-auto pb-4">
           {fields.experts.map((expert) => {
             const fullname = expert.fullname.split(" ")
             const alternativeSpecialty =
@@ -123,7 +123,7 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
                     <span className="text-gray-600 text-xs xl:text-sm">
                       стоматолог {alternativeSpecialty}
                     </span>
-                    <div className="flex gap-1 items-center justify-between">
+                    <div className="flex gap-1 items-center justify-between flex-wrap">
                       <span className="text-gray-500 text-xs xl:text-sm">
                         {expert.experience} лет опыта
                       </span>
@@ -132,7 +132,7 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
                           href={
                             expert.bookingLink || `/${expert.staffPage?.slug}`
                           }
-                          className="flex gap-1 text-accent text-xs xl:text-sm hover:underline"
+                          className="flex gap-1 min-w-16 items-center justify-end text-accent text-xs xl:text-sm hover:underline"
                         >
                           <ClipboardList className="size-3" /> Записаться
                         </a>

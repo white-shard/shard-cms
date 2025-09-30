@@ -4,8 +4,8 @@ import { CollectionConfig } from "payload"
 export const Pages: CollectionConfig = {
   slug: "pages",
   labels: {
-    singular: "Page",
-    plural: "Pages",
+    singular: "Страница",
+    plural: "Страницы",
   },
   admin: {
     useAsTitle: "title",

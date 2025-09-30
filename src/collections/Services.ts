@@ -3,8 +3,8 @@ import { CollectionConfig } from "payload"
 export const Services: CollectionConfig = {
   slug: "services",
   labels: {
-    singular: "Service",
-    plural: "Services",
+    singular: "Услуга",
+    plural: "Услуги",
   },
   admin: {
     useAsTitle: "title",

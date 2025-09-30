@@ -37,6 +37,11 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="ru">
+      <head>
+        {seoOptions?.headScript && (
+          <div dangerouslySetInnerHTML={{ __html: seoOptions.headScript }} />
+        )}
+      </head>
       <body
         className={`${itcConduit.variable} ${roboto.variable} antialiased max-w-screen overflow-x-hidden`}
       >

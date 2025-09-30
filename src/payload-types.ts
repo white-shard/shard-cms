@@ -1541,34 +1541,10 @@ export interface Option {
  */
 export interface SeoOption {
   id: number;
-  yandexMetrika?: {
-    enabled?: boolean | null;
-    /**
-     * Введите ID счетчика Яндекс.Метрики
-     */
-    counterId?: string | null;
-    /**
-     * Записывает видео сессий пользователей
-     */
-    webvisor?: boolean | null;
-    /**
-     * Показывает места кликов на странице
-     */
-    clickmap?: boolean | null;
-    /**
-     * Отслеживает переходы по внешним ссылкам
-     */
-    trackLinks?: boolean | null;
-    /**
-     * Улучшает точность измерения отказов
-     */
-    accurateTrackBounce?: boolean | null;
-  };
-  metaTags?: {
-    defaultTitle?: string | null;
-    defaultDescription?: string | null;
-    defaultKeywords?: string | null;
-  };
+  /**
+   * HTML код скрипта, который будет добавлен в <head> страницы
+   */
+  headScript?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1719,23 +1695,7 @@ export interface OptionsSelect<T extends boolean = true> {
  * via the `definition` "seo-options_select".
  */
 export interface SeoOptionsSelect<T extends boolean = true> {
-  yandexMetrika?:
-    | T
-    | {
-        enabled?: T;
-        counterId?: T;
-        webvisor?: T;
-        clickmap?: T;
-        trackLinks?: T;
-        accurateTrackBounce?: T;
-      };
-  metaTags?:
-    | T
-    | {
-        defaultTitle?: T;
-        defaultDescription?: T;
-        defaultKeywords?: T;
-      };
+  headScript?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

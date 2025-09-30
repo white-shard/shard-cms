@@ -2,9 +2,9 @@
 
 import { WhiteShard } from "@/components/icons/ws"
 import { Button } from "@/components/ui/button"
+import { ActionButton } from "@/lib/actions/action-button"
 import { useFooterOptions } from "@/lib/hooks/use-site-footer-options"
 import { useSiteOptions } from "@/lib/hooks/use-site-options"
-import { ActionButton } from "@/lib/actions/action-button"
 import {
   Calendar,
   Clock,
@@ -31,7 +31,7 @@ export function Footer() {
           </span>
           {footerOptions?.actionButtons &&
             footerOptions.actionButtons.length > 0 && (
-              <div className="flex flex-col gap-2 mt-4 sm:mt-6">
+              <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
                 {footerOptions.actionButtons.map((button, index) => (
                   <div key={index} className="flex items-center">
                     <ActionButton

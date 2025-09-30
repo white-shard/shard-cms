@@ -621,6 +621,7 @@ export interface Form {
   form_id: string;
   img: number | Media;
   heading: string;
+  adminTitle?: string | null;
   description?: string | null;
   fields: {
     fullname: number;
@@ -1308,6 +1309,7 @@ export interface FormsSelect<T extends boolean = true> {
   form_id?: T;
   img?: T;
   heading?: T;
+  adminTitle?: T;
   description?: T;
   fields?:
     | T

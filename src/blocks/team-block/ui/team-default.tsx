@@ -89,7 +89,7 @@ export function TeamBlockDefault({ fields }: Props) {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 xl:gap-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16">
         {filteredStaff.map((item) => (
           <div
             key={item.id}
@@ -123,7 +123,7 @@ export function TeamBlockDefault({ fields }: Props) {
                 <Link className="flex-1" href={`/${item.staffPage?.slug}`}>
                   <Button
                     size="lg"
-                    className="w-full text-sm sm:text-base lg:text-lg px-4 sm:px-6 py-2 sm:py-3"
+                    className="w-full max-w-64 text-sm sm:text-base lg:text-lg px-4 sm:px-6 py-2 sm:py-3"
                   >
                     Подробнее
                   </Button>

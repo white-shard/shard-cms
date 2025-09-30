@@ -11,7 +11,7 @@ export const Forms: CollectionConfig = {
     read: () => true,
   },
   admin: {
-    useAsTitle: "heading",
+    useAsTitle: "adminTitle",
   },
   fields: [
     {
@@ -33,6 +33,12 @@ export const Forms: CollectionConfig = {
       label: "Заголовок",
       type: "text",
       required: true,
+    },
+    {
+      name: "adminTitle",
+      label: "Заголовок в админке",
+      type: "text",
+      required: false,
     },
     {
       name: "description",

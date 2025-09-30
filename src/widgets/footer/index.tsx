@@ -37,7 +37,7 @@ export function Footer() {
                     <ActionButton
                       data={{
                         name: button.name,
-                        icon: button.icon || "1", // Default to cog icon (index 1)
+                        icon: button.icon || "1",
                         color: button.color || "primary",
                         variant: button.variant || "default",
                         action: button.action || "link",

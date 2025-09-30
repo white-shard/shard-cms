@@ -1,7 +1,7 @@
 "use client"
 
 import { ChevronLeft, ChevronRight, Star } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import { ReviewsBlockFields } from "../types"
 
 type Props = {
@@ -10,40 +10,6 @@ type Props = {
 
 export function ReviewsBlockDefault({ fields }: Props) {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
-  const [forceLoad, setForceLoad] = useState(false)
-  const reviewsRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    // Загружаем отзывы сразу при монтировании компонента
-    const timer = setTimeout(() => {
-      setIsVisible(true)
-    }, 100)
-
-    // Дополнительно отслеживаем видимость
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1 },
-    )
-
-    if (reviewsRef.current) {
-      observer.observe(reviewsRef.current)
-    }
-
-    return () => {
-      clearTimeout(timer)
-      observer.disconnect()
-    }
-  }, [])
-
-  const handleReviewsClick = () => {
-    setForceLoad(true)
-  }
 
   const nextVideo = () => {
     setCurrentVideoIndex((prev) =>
@@ -188,23 +154,9 @@ export function ReviewsBlockDefault({ fields }: Props) {
         </div>
       )}
       {/* Отзывы из внешних сервисов */}
-      <div ref={reviewsRef} className="space-y-8">
-        {/* Показываем кнопку загрузки если отзывы еще не загружены */}
-        {!isVisible &&
-          !forceLoad &&
-          (fields.yandexIframeCode || fields.twoGisIframeCode) && (
-            <div className="text-center py-8">
-              <button
-                onClick={handleReviewsClick}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors"
-              >
-                Загрузить отзывы
-              </button>
-            </div>
-          )}
-
+      <div className="space-y-8">
         {/* Яндекс отзывы */}
-        {fields.yandexIframeCode && (isVisible || forceLoad) && (
+        {fields.yandexIframeCode && (
           <div className="relative">
             <div
               dangerouslySetInnerHTML={{ __html: fields.yandexIframeCode }}
@@ -214,7 +166,7 @@ export function ReviewsBlockDefault({ fields }: Props) {
         )}
 
         {/* 2ГИС отзывы */}
-        {fields.twoGisIframeCode && (isVisible || forceLoad) && (
+        {fields.twoGisIframeCode && (
           <div className="relative">
             <div
               dangerouslySetInnerHTML={{ __html: fields.twoGisIframeCode }}

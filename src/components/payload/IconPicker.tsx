@@ -6,11 +6,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { iconList } from "@/lib/icons"
-import { cn } from "@/lib/utils"
 import { useField, useForm } from "@payloadcms/ui"
 import type { TextFieldClientComponent } from "payload"
 import * as React from "react"
-import { Button } from "../ui/button"
+import "./IconPicker.css"
 
 const IconPickerField: TextFieldClientComponent = ({
   field,
@@ -44,30 +43,28 @@ const IconPickerField: TextFieldClientComponent = ({
   }
 
   return (
-    <div className="flex flex-col justify-end">
+    <div className="icon-picker-container">
       {disabled}
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <Button
+          <button
             id={path}
-            variant="outline"
-            size="lg"
             aria-expanded={open}
             aria-label="Select icon"
-            className="border-gray-300 bg-white shadow-xs"
+            className="icon-picker-button"
             disabled={disabled}
           >
-            <div className="flex items-center gap-2">
+            <div className="icon-picker-button-content">
               {SelectedIcon ? (
-                <SelectedIcon className="h-4 w-4" />
+                <SelectedIcon className="icon-picker-icon" />
               ) : value === "" ? (
-                <span className="text-muted-foreground">Нет иконки</span>
+                <span className="icon-picker-no-icon-text">Нет иконки</span>
               ) : (
-                <span className="text-muted-foreground">Иконка</span>
+                <span className="icon-picker-no-icon-text">Иконка</span>
               )}
             </div>
             <svg
-              className="h-4 w-4 opacity-50"
+              className="icon-picker-arrow"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -79,42 +76,35 @@ const IconPickerField: TextFieldClientComponent = ({
                 d="M19 9l-7 7-7-7"
               />
             </svg>
-          </Button>
+          </button>
         </PopoverTrigger>
         <PopoverContent
-          className="w-fit max-w-84 p-4 bg-white"
+          className="icon-picker-popover"
           align="start"
           sideOffset={4}
         >
-          <div className="space-y-3">
-            <Button
-              variant="outline"
-              size="sm"
+          <div className="icon-picker-popover-content">
+            <button
               onClick={handleNoIcon}
               disabled={disabled}
-              className={cn(
-                "w-full justify-start border-gray-300",
-                value === "" && "bg-accent text-accent-foreground",
-              )}
+              className={`icon-picker-no-icon-button ${value === "" ? "selected" : ""}`}
             >
-              <span className="mr-2">×</span>
+              <span className="icon-picker-no-icon-symbol">×</span>
               Нет иконки
-            </Button>
-            <div className="grid grid-cols-6 gap-4 overflow-y-auto max-h-[300px]">
+            </button>
+            <div className="icon-picker-grid">
               {iconNames.map((iconName: string, index: number) => {
                 const Icon = iconList[iconName as keyof typeof iconList]
                 return (
-                  <Button
+                  <button
                     key={index}
-                    variant="outline"
-                    size="icon"
                     onClick={() => handleSelect(index)}
                     disabled={disabled}
-                    className="border-gray-300"
+                    className="icon-picker-grid-item"
                     aria-label={`Icon ${index + 1}`}
                   >
-                    {Icon && <Icon className="h-5 w-5" />}
-                  </Button>
+                    {Icon && <Icon className="icon-picker-grid-icon" />}
+                  </button>
                 )
               })}
             </div>
@@ -122,7 +112,7 @@ const IconPickerField: TextFieldClientComponent = ({
         </PopoverContent>
       </Popover>
 
-      {showError && <p className="text-sm text-red-500">{errorMessage}</p>}
+      {showError && <p className="icon-picker-error">{errorMessage}</p>}
     </div>
   )
 }

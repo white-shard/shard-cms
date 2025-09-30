@@ -14,11 +14,13 @@ export const ActionButton: Field[] = [
       {
         name: "icon",
         label: "Иконка",
-        type: "select",
-        options: Object.keys(iconList).map((key) => ({
-          label: key,
-          value: key,
-        })),
+        type: "text",
+        admin: {
+          components: {
+            Field: "@/components/payload/IconPicker",
+          },
+          icons: Object.keys(iconList),
+        },
       },
       {
         name: "variant",

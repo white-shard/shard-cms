@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useDialogWithForm } from "../hooks/use-dialog"
 import { iconList } from "../icons"
+import { cn } from "../utils"
 import { IActionButton } from "./types"
 
 type Props = {
@@ -11,19 +12,35 @@ type Props = {
 }
 
 export function ActionButton({ data }: Props) {
-  const Icon = iconList[data.icon as keyof typeof iconList]
+  // Handle both icon name (string) and icon index (number as string)
+  const getIcon = () => {
+    if (!data.icon) return null
+
+    // If it's a number (index), get icon name from the list
+    const iconIndex = Number.parseInt(data.icon, 10)
+    if (!isNaN(iconIndex)) {
+      const iconNames = Object.keys(iconList)
+      const iconName = iconNames[iconIndex]
+      return iconName ? iconList[iconName as keyof typeof iconList] : null
+    }
+
+    // If it's a string (icon name), use it directly
+    return iconList[data.icon as keyof typeof iconList]
+  }
+
+  const Icon = getIcon()
 
   const formDialog = useDialogWithForm(data.form)
 
   const button = (
     <Button
-      className={
+      className={cn(
         data.variant === "icon"
-          ? "h-10 w-10 p-0 border-0 hover:opacity-70 transition-opacity"
+          ? "h-10 w-10 p-0 border-0 hover:bg-transparent"
           : data.variant === "icon-text"
             ? "h-10 px-3 py-2 border-0 hover:opacity-70 transition-opacity"
-            : "w-full md:w-auto text-base sm:text-lg lg:text-base px-12 py-6 min-w-64"
-      }
+            : "w-full md:w-auto text-base sm:text-lg lg:text-base px-12 py-6 min-w-64",
+      )}
       variant={
         data.variant === "icon" || data.variant === "icon-text"
           ? "ghost"
@@ -53,12 +70,12 @@ export function ActionButton({ data }: Props) {
       }
       size={data.variant === "icon" ? "icon" : "lg"}
     >
-      {!!data.icon && (
+      {!!data.icon && !!Icon && (
         <Icon
           className={
-            data.variant === "icon" || data.variant === "icon-text"
-              ? "size-6"
-              : "size-6 sm:size-5 lg:size-5"
+            data.variant === "icon"
+              ? "size-5"
+              : "size-5 hover:opacity-75 transition-opacity cursor-pointer"
           }
         />
       )}

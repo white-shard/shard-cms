@@ -1,10 +1,51 @@
+import { Chat } from "@/components/icons/chat"
 import { Cog } from "@/components/icons/cog"
 import { HH } from "@/components/icons/hh"
-import { ClipboardList, Instagram } from "lucide-react"
+import { Star } from "@/components/icons/star"
+import {
+  Armchair,
+  Award,
+  BarChart3,
+  BarChart4,
+  Check,
+  ClipboardCheck,
+  ClipboardList,
+  HandPlatter,
+  Handshake,
+  HeartHandshake,
+  Instagram,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Microscope,
+  Phone,
+  Quote,
+  Smile,
+  X,
+} from "lucide-react"
 
 export const iconList = {
   "clipboard-list": ClipboardList,
   cog: Cog,
   instagram: Instagram,
   headhunter: HH,
+  chat: Chat,
+  star: Star,
+  "chart-no-axes-column": BarChart3,
+  "chart-column-big": BarChart4,
+  "phone-call": Phone,
+  smile: Smile,
+  mail: Mail,
+  "message-circle": MessageCircle,
+  "map-pin": MapPin,
+  armchair: Armchair,
+  microscope: Microscope,
+  handshake: Handshake,
+  award: Award,
+  "heart-handshake": HeartHandshake,
+  "clipboard-check": ClipboardCheck,
+  quote: Quote,
+  x: X,
+  check: Check,
+  "hand-platter": HandPlatter,
 }

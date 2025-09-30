@@ -1,7 +1,6 @@
-import Image from "next/image"
-import { HeroBlockFields } from "../types"
+import { MediaRenderer } from "@/components/media-renderer"
 import { ActionButton } from "@/lib/actions/action-button"
-import { VideoPlayer } from "@/components/ui/video-player"
+import { HeroBlockFields } from "../types"
 
 // Функция для определения типа медиа
 const isVideo = (media: { mimeType?: string | null }) => {
@@ -14,7 +13,7 @@ type Props = {
 
 export function HeroBlockService({ fields }: Props) {
   return (
-    <div className="flex flex-col lg:flex-row items-center py-16 sm:py-24 lg:py-32 mx-auto w-full container px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col lg:flex-row items-center py-8 mx-auto w-full container px-4 sm:px-6 lg:px-8">
       {/* Заголовки - только на мобилке */}
       <div className="flex-1 flex flex-col w-full lg:w-auto order-1 lg:hidden">
         {fields.beforeHeading && (
@@ -47,24 +46,9 @@ export function HeroBlockService({ fields }: Props) {
       {/* Картинка/видео */}
       <div className="flex-1 flex items-center justify-center mt-8 lg:mt-0 w-full lg:w-auto order-2 lg:order-1">
         {fields.img?.url ? (
-          isVideo(fields.img) ? (
-            <VideoPlayer
-              src={fields.img.url || ""}
-              className="max-w-full h-auto"
-            />
-          ) : (
-            <Image
-              alt="service image"
-              src={fields.img.url!}
-              quality={100}
-              width={640}
-              height={512}
-              className="max-w-full h-auto"
-              style={{
-                objectFit: "contain",
-              }}
-            />
-          )
+          <div className="flex-1 max-w-128 h-128 relative">
+            <MediaRenderer media={fields.img} />{" "}
+          </div>
         ) : null}
       </div>
 

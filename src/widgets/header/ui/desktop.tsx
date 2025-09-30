@@ -10,11 +10,11 @@ import {
   NavigationMenu,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu"
+import { ActionButton } from "@/lib/actions/action-button"
+import { HeaderOption } from "@/payload-types"
 import { ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-import { HeaderOption } from "@/payload-types"
-import { ActionButton } from "@/lib/actions/action-button"
 
 export type Props = {
   options: HeaderOption
@@ -98,7 +98,7 @@ export function DesktopHeader({ options }: Props) {
             key={index}
             data={{
               name: button.name,
-              icon: button.icon || "cog",
+              icon: button.icon || "1", // Default to cog icon (index 1)
               color: button.color || "primary",
               variant: button.variant || "icon",
               action: button.action || "link",

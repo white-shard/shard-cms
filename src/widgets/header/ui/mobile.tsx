@@ -42,7 +42,7 @@ export function MobileHeader({ navigation }: Props) {
             key={index}
             data={{
               name: button.name,
-              icon: button.icon || "cog",
+              icon: button.icon || "1", // Default to cog icon (index 1)
               color: button.color || "primary",
               variant: button.variant || "icon",
               action: button.action || "link",

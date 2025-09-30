@@ -251,7 +251,7 @@ export interface Page {
             actions?:
               | {
                   name: string;
-                  icon?: ('clipboard-list' | 'cog' | 'instagram' | 'headhunter') | null;
+                  icon?: string | null;
                   variant?: ('default' | 'icon' | 'icon-text') | null;
                   color?: ('primary' | 'accent' | 'secondary' | 'white' | 'red') | null;
                   action?: ('link' | 'form') | null;
@@ -467,7 +467,33 @@ export interface Page {
             heading: string;
             items?:
               | {
-                  icon?: ('clipboard-list' | 'cog' | 'instagram' | 'headhunter') | null;
+                  icon?:
+                    | (
+                        | 'clipboard-list'
+                        | 'cog'
+                        | 'instagram'
+                        | 'headhunter'
+                        | 'chat'
+                        | 'star'
+                        | 'chart-no-axes-column'
+                        | 'chart-column-big'
+                        | 'phone-call'
+                        | 'smile'
+                        | 'mail'
+                        | 'message-circle'
+                        | 'map-pin'
+                        | 'armchair'
+                        | 'microscope'
+                        | 'handshake'
+                        | 'award'
+                        | 'heart-handshake'
+                        | 'clipboard-check'
+                        | 'quote'
+                        | 'x'
+                        | 'check'
+                        | 'hand-platter'
+                      )
+                    | null;
                   heading: string;
                   description: string;
                   id?: string | null;
@@ -593,7 +619,33 @@ export interface Page {
             description: string;
             included?:
               | {
-                  icon?: ('clipboard-list' | 'cog' | 'instagram' | 'headhunter') | null;
+                  icon?:
+                    | (
+                        | 'clipboard-list'
+                        | 'cog'
+                        | 'instagram'
+                        | 'headhunter'
+                        | 'chat'
+                        | 'star'
+                        | 'chart-no-axes-column'
+                        | 'chart-column-big'
+                        | 'phone-call'
+                        | 'smile'
+                        | 'mail'
+                        | 'message-circle'
+                        | 'map-pin'
+                        | 'armchair'
+                        | 'microscope'
+                        | 'handshake'
+                        | 'award'
+                        | 'heart-handshake'
+                        | 'clipboard-check'
+                        | 'quote'
+                        | 'x'
+                        | 'check'
+                        | 'hand-platter'
+                      )
+                    | null;
                   title: string;
                   description: string;
                   id?: string | null;
@@ -1394,7 +1446,7 @@ export interface HeaderOption {
   actionButtons?:
     | {
         name: string;
-        icon?: ('clipboard-list' | 'cog' | 'instagram' | 'headhunter') | null;
+        icon?: string | null;
         variant?: ('default' | 'icon' | 'icon-text') | null;
         color?: ('primary' | 'accent' | 'secondary' | 'white' | 'red') | null;
         action?: ('link' | 'form') | null;
@@ -1430,7 +1482,7 @@ export interface FooterOption {
   actionButtons?:
     | {
         name: string;
-        icon?: ('clipboard-list' | 'cog' | 'instagram' | 'headhunter') | null;
+        icon?: string | null;
         variant?: ('default' | 'icon' | 'icon-text') | null;
         color?: ('primary' | 'accent' | 'secondary' | 'white' | 'red') | null;
         action?: ('link' | 'form') | null;

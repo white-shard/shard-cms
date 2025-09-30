@@ -1,6 +1,7 @@
 "use client"
 
 import { sendLead } from "@/app/(frontend)/admin/amo-setup/model/send-lead"
+import { RuFlag } from "@/components/icons/ru-flag"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
@@ -58,7 +59,7 @@ export function ServiceRecordForm({ options, onSuccess }: Props) {
             <FormItem>
               <FormControl>
                 <Input
-                  className="h-12 text-lg font-roboto"
+                  className="h-12 px-4 text-lg font-roboto"
                   placeholder="Имя"
                   {...field}
                 />
@@ -73,14 +74,17 @@ export function ServiceRecordForm({ options, onSuccess }: Props) {
           disabled={isPending}
           render={({ field }) => (
             <FormItem>
-              <FormControl>
-                <Input
-                  className="h-12 text-lg font-roboto"
-                  type="tel"
-                  placeholder="+7 (999) 999-99-99"
-                  {...field}
-                />
-              </FormControl>
+              <div className="relative">
+                <FormControl>
+                  <Input
+                    className="h-12 pl-14 text-lg font-roboto"
+                    type="tel"
+                    placeholder="+7 (999) 999-99-99"
+                    {...field}
+                  />
+                </FormControl>
+                <RuFlag className="absolute left-4 top-1/2 -translate-y-1/2" />
+              </div>
               <FormMessage />
             </FormItem>
           )}

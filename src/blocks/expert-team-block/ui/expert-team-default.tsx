@@ -1,6 +1,6 @@
+import { VideoPlayer } from "@/components/ui/video-player"
 import { ClipboardList } from "lucide-react"
 import { ExpertTeamBlockFields } from "../types"
-import { VideoPlayer } from "@/components/ui/video-player"
 
 type Props = {
   fields: ExpertTeamBlockFields
@@ -74,7 +74,7 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
 
       {/* Десктопная версия - горизонтальная компоновка с hover эффектами */}
       <div className="hidden lg:block">
-        <div className="flex gap-4 xl:gap-6 max-w-full justify-center overflow-x-auto pb-4">
+        <div className="flex flex-wrap gap-4 xl:gap-6 max-w-full justify-center overflow-x-auto pb-4">
           {fields.experts.map((expert) => {
             const fullname = expert.fullname.split(" ")
             const alternativeSpecialty =

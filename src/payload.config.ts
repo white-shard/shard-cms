@@ -15,10 +15,11 @@ import { Services } from "./collections/Services"
 import { Specialties } from "./collections/Specialties"
 import { Staff } from "./collections/Staff"
 import { Users } from "./collections/Users"
+import { AmoCRM } from "./collections/globals/AmoCRM"
 import { FooterOptions } from "./collections/globals/FooterOptions"
 import { HeaderOptions } from "./collections/globals/HeaderOptions"
-import { SiteOptions } from "./collections/globals/SiteOptions"
 import { SEOOptions } from "./collections/globals/SEOptions"
+import { SiteOptions } from "./collections/globals/SiteOptions"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -46,7 +47,7 @@ export default buildConfig({
     Specialties,
     Forms,
   ],
-  globals: [HeaderOptions, FooterOptions, SiteOptions, SEOOptions],
+  globals: [HeaderOptions, FooterOptions, SiteOptions, SEOOptions, AmoCRM],
   // email: nodemailerAdapter(smtpNodemailerConfig),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
@@ -72,6 +73,13 @@ export default buildConfig({
           accessKeyId: process.env.S3_ACCESS_KEY || "",
           secretAccessKey: process.env.S3_SECRET_KEY || "",
         },
+        requestHandler: {
+          requestTimeout: 30000,
+          connectionTimeout: 10000,
+        },
+        maxAttempts: 3,
+        retryMode: "adaptive",
+        forcePathStyle: true,
       },
     }),
   ],

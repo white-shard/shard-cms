@@ -18,8 +18,6 @@ export async function generateMetadata(
   const slug = params?.slug?.join("/") || "index"
   const page = await getPageData(slug)
 
-  console.log(slug)
-
   if (!page) {
     return {
       title: "Страница не найдена",

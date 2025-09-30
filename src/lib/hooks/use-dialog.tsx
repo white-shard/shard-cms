@@ -1,17 +1,17 @@
 "use client"
 
+import { ServiceRecordForm } from "@/components/fields/form/service-record.form"
+import { MediaRenderer } from "@/components/media-renderer"
 import {
   Dialog,
   DialogContent,
-  DialogTitle,
-  DialogHeader,
   DialogDescription,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog"
-import { FormComponent } from "@/components/ui/form"
-import { Form } from "@/payload-types"
+import { Form, Media } from "@/payload-types"
 import { useState } from "react"
 const cover = "/form-cover.jpg"
-import Image from "next/image"
 
 export function useDialogWithForm(form?: Form) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -21,23 +21,32 @@ export function useDialogWithForm(form?: Form) {
 
   const dialog = (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="w-[95vw] max-w-[600px] max-h-[90vh] overflow-y-auto px-0 pt-0">
+      <DialogContent className="w-[95vw] max-w-[500px] max-h-[90vh] overflow-y-auto px-0 pt-0 border-0">
         <div className="w-full h-72 relative">
-          <Image src={cover} fill alt="" />
+          <MediaRenderer media={form?.img as Media} />
         </div>
-        <div className="px-8 py-4">
-          <DialogHeader>
-            <DialogTitle className="font-normal text-xl sm:text-2xl lg:text-3xl text-center">
+        <div>
+          <DialogHeader className="gap-0">
+            <DialogTitle className="font-normal text-xl lg:text-2xl text-center">
               {form?.heading}
             </DialogTitle>
             {form?.description && (
-              <DialogDescription className="text-sm sm:text-base lg:text-lg text-center">
+              <DialogDescription className="text-sm lg:text-base text-center">
                 {form.description}
               </DialogDescription>
             )}
           </DialogHeader>
 
-          {form && <FormComponent form={form} onClose={closeDialog} />}
+          <div className="px-8 my-8">
+            {form && (
+              <ServiceRecordForm
+                options={form}
+                onSuccess={() => {
+                  closeDialog()
+                }}
+              />
+            )}
+          </div>
         </div>
       </DialogContent>
     </Dialog>

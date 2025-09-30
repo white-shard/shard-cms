@@ -9,7 +9,7 @@ interface MediaRendererProps {
 }
 
 export function MediaRenderer({ media, className }: MediaRendererProps) {
-  if (!media.url) {
+  if (!media?.url) {
     return null
   }
 

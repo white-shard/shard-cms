@@ -101,12 +101,14 @@ export interface Config {
     'footer-options': FooterOption;
     options: Option;
     'seo-options': SeoOption;
+    'amo-crm': AmoCrm;
   };
   globalsSelect: {
     'header-options': HeaderOptionsSelect<false> | HeaderOptionsSelect<true>;
     'footer-options': FooterOptionsSelect<false> | FooterOptionsSelect<true>;
     options: OptionsSelect<false> | OptionsSelect<true>;
     'seo-options': SeoOptionsSelect<false> | SeoOptionsSelect<true>;
+    'amo-crm': AmoCrmSelect<false> | AmoCrmSelect<true>;
   };
   locale: null;
   user: User & {
@@ -616,49 +618,22 @@ export interface Page {
 export interface Form {
   id: number;
   form_id: string;
-  webhook?: string | null;
+  img: number | Media;
   heading: string;
   description?: string | null;
-  fields?:
-    | {
-        name: string;
-        type: 'text' | 'textarea' | 'number' | 'checkbox' | 'select';
-        label?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        placeholder?: string | null;
-        required?: boolean | null;
-        textOptions?: {
-          validation?: ('off' | 'phone' | 'email' | 'url') | null;
-          minLength?: number | null;
-          maxLength?: number | null;
-        };
-        numberOptions?: {
-          min?: number | null;
-          max?: number | null;
-        };
-        selectOptions?:
-          | {
-              label: string;
-              value: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
+  fields: {
+    fullname: number;
+    phone: number;
+    hidden_fields?:
+      | {
+          name: string;
+          amo_id: number;
+          value: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  submitText: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -1329,39 +1304,24 @@ export interface SpecialtiesSelect<T extends boolean = true> {
  */
 export interface FormsSelect<T extends boolean = true> {
   form_id?: T;
-  webhook?: T;
+  img?: T;
   heading?: T;
   description?: T;
   fields?:
     | T
     | {
-        name?: T;
-        type?: T;
-        label?: T;
-        placeholder?: T;
-        required?: T;
-        textOptions?:
+        fullname?: T;
+        phone?: T;
+        hidden_fields?:
           | T
           | {
-              validation?: T;
-              minLength?: T;
-              maxLength?: T;
-            };
-        numberOptions?:
-          | T
-          | {
-              min?: T;
-              max?: T;
-            };
-        selectOptions?:
-          | T
-          | {
-              label?: T;
+              name?: T;
+              amo_id?: T;
               value?: T;
               id?: T;
             };
-        id?: T;
       };
+  submitText?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1558,6 +1518,26 @@ export interface SeoOption {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "amo-crm".
+ */
+export interface AmoCrm {
+  id: number;
+  /**
+   * https://XXXXXXXXX.amocrm.ru/
+   */
+  subdomain: string;
+  integrationId: string;
+  integrationSecret: string;
+  status?: string | null;
+  access_token?: string | null;
+  refresh_token?: string | null;
+  server_time?: number | null;
+  expires_in?: number | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header-options_select".
  */
 export interface HeaderOptionsSelect<T extends boolean = true> {
@@ -1700,6 +1680,23 @@ export interface SeoOptionsSelect<T extends boolean = true> {
         defaultDescription?: T;
         defaultKeywords?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "amo-crm_select".
+ */
+export interface AmoCrmSelect<T extends boolean = true> {
+  subdomain?: T;
+  integrationId?: T;
+  integrationSecret?: T;
+  status?: T;
+  access_token?: T;
+  refresh_token?: T;
+  server_time?: T;
+  expires_in?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

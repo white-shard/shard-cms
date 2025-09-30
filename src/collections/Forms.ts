@@ -22,9 +22,11 @@ export const Forms: CollectionConfig = {
       required: true,
     },
     {
-      name: "webhook",
-      label: "Вебхук / Webhook",
-      type: "text",
+      name: "img",
+      label: "Изображение",
+      type: "upload",
+      relationTo: "media",
+      required: true,
     },
     {
       name: "heading",
@@ -39,162 +41,65 @@ export const Forms: CollectionConfig = {
     },
     {
       name: "fields",
-      type: "array",
+      label: "Поля",
+      type: "group",
       fields: [
         {
-          type: "row",
-          fields: [
-            {
-              name: "name",
-              label: "Имя поля на латинице",
-              type: "text",
-              required: true,
-            },
-            {
-              name: "type",
-              label: "Тип поля",
-              type: "select",
-              required: true,
-              options: [
-                {
-                  label: "Текст (одна строка)",
-                  value: "text",
-                },
-                {
-                  label: "Текст (многострочный)",
-                  value: "textarea",
-                },
-                {
-                  label: "Число",
-                  value: "number",
-                },
-                {
-                  label: "Чекбокс (одна строка)",
-                  value: "checkbox",
-                },
-                {
-                  label: "Выбор",
-                  value: "select",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          name: "label",
-          label: "Название поля (можно на русском)",
-          type: "richText",
-          required: false,
-        },
-        {
-          name: "placeholder",
-          label: "Подсказка",
-          type: "text",
-          required: false,
-        },
-        {
-          name: "required",
-          label: "Обязательное поле",
-          type: "checkbox",
-        },
-        {
-          name: "textOptions",
-          label: "Валидация",
-          type: "group",
-          required: false,
+          name: "fullname",
+          type: "number",
+          label: "Имя",
           admin: {
-            condition: (data, siblingData) => {
-              return (
-                siblingData?.type === "text" || siblingData?.type === "textarea"
-              )
-            },
+            placeholder: "ID поля в amoCRM",
           },
-          fields: [
-            {
-              name: "validation",
-              label: "Валидация",
-              type: "select",
-              defaultValue: "off",
-              options: [
-                {
-                  label: "Нет",
-                  value: "off",
-                },
-                {
-                  label: "Телефон",
-                  value: "phone",
-                },
-                {
-                  label: "Электронная почта",
-                  value: "email",
-                },
-                {
-                  label: "URL",
-                  value: "url",
-                },
-              ],
-            },
-            {
-              name: "minLength",
-              label: "Минимум символов",
-              type: "number",
-              defaultValue: 0,
-            },
-            {
-              name: "maxLength",
-              label: "Максимум символов",
-              type: "number",
-              defaultValue: 0,
-            },
-          ],
+          required: true,
         },
         {
-          name: "numberOptions",
-          label: "Настройки числа",
-          type: "group",
+          name: "phone",
+          type: "number",
+          label: "Телефон",
           admin: {
-            condition: (data, siblingData) => {
-              return siblingData?.type === "number"
-            },
+            placeholder: "ID поля в amoCRM",
           },
-          fields: [
-            {
-              name: "min",
-              label: "Минимальное значение",
-              type: "number",
-            },
-            {
-              name: "max",
-              label: "Максимальное значение",
-              type: "number",
-            },
-          ],
+          required: true,
         },
         {
-          name: "selectOptions",
-          label: "Опции для выбора",
+          name: "hidden_fields",
+          label: "Скрытые поля",
           type: "array",
-          admin: {
-            condition: (data, siblingData) => {
-              return siblingData?.type === "select"
-            },
-          },
           fields: [
             {
-              name: "label",
-              label: "Название опции",
-              type: "text",
-              required: true,
+              type: "row",
+              fields: [
+                {
+                  name: "name",
+                  label: "Название поля",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "amo_id",
+                  label: "ID поля в amoCRM",
+                  type: "number",
+                  required: true,
+                },
+              ],
             },
             {
               name: "value",
-              label: "Значение опции",
+              label: "Значение поля",
               type: "text",
               required: true,
             },
           ],
         },
       ],
+    },
+    {
+      name: "submitText",
+      label: "Текст кнопки отправки",
+      type: "text",
+      defaultValue: "Отправить",
+      required: true,
     },
   ],
 }

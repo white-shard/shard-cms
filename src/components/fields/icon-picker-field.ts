@@ -8,6 +8,5 @@ export const iconField: Field = {
     components: {
       Field: "@/components/payload/IconPicker",
     },
-    icons: ["clipboard-list", "cog", "instagram", "headhunter"],
-  },
+  } as any,
 }

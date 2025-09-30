@@ -126,7 +126,7 @@ export function ServiceRecordForm({ options, onSuccess }: Props) {
           )}
         />
         <Button
-          className="w-full h-12 uppercase text-sm font-roboto"
+          className="w-full h-12 mt-4 uppercase text-sm font-roboto"
           type="submit"
           disabled={isPending}
         >

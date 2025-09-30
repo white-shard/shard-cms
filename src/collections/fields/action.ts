@@ -1,4 +1,3 @@
-import { iconList } from "@/lib/icons"
 import { Field } from "payload"
 
 export const ActionButton: Field[] = [
@@ -19,8 +18,7 @@ export const ActionButton: Field[] = [
           components: {
             Field: "@/components/payload/IconPicker",
           },
-          icons: Object.keys(iconList),
-        },
+        } as any,
       },
       {
         name: "variant",

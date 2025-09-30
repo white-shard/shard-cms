@@ -25,8 +25,8 @@ const IconPickerField: TextFieldClientComponent = ({
   // Get form state to check if saving
   const { disabled } = useForm()
 
-  // Get icon names from field admin config
-  const iconNames = (field?.admin as { icons?: string[] })?.icons || []
+  // Get icon names from iconList
+  const iconNames = Object.keys(iconList)
   const selectedIndex = value && value !== "" ? Number.parseInt(value, 10) : -1
   const selectedIconName = selectedIndex >= 0 ? iconNames[selectedIndex] : null
   const SelectedIcon = selectedIconName

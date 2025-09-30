@@ -16,5 +16,11 @@ export const InstallmentBlock: Block = {
       relationTo: "media",
       required: false,
     },
+    {
+      name: "form",
+      type: "relationship",
+      relationTo: "forms",
+      required: false,
+    },
   ],
 }

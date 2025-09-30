@@ -1,4 +1,6 @@
+"use client"
 import { Button } from "@/components/ui/button"
+import { useDialogWithForm } from "@/lib/hooks/use-dialog"
 import { Check, ClipboardList } from "lucide-react"
 import Image from "next/image"
 import { InstallmentBlockFields } from "../types"
@@ -8,6 +10,19 @@ type Props = {
 }
 
 export function InstallmentBlockDefault({ fields }: Props) {
+  const formDialog = useDialogWithForm(fields.form)
+
+  const button = (
+    <Button
+      className="flex-1 md:flex-none md:w-48 md:py-6 lg:w-64 lg:py-8"
+      size="default"
+      variant="primary"
+    >
+      <ClipboardList className="size-5" />
+      Подробнее
+    </Button>
+  )
+
   return (
     <div className="container mx-auto px-4 flex flex-col">
       <span className="text-3xl md:text-8xl text-primary">РАССРОЧКА 0%</span>
@@ -43,14 +58,16 @@ export function InstallmentBlockDefault({ fields }: Props) {
             <div className="bg-accent rounded-r-full p-4 lg:py-6 text-white md:text-3xl max-w-96">
               на 6 месяцев до 750 000 ₽
             </div>
-            <Button
-              className="flex-1 md:flex-none md:w-48 md:py-6 lg:w-64 lg:py-8"
-              size="default"
-              variant="primary"
-            >
-              <ClipboardList className="size-5" />
-              Подробнее
-            </Button>
+            {fields.form ? (
+              <>
+                <div onClick={formDialog.openDialog} className="cursor-pointer">
+                  {button}
+                </div>
+                {formDialog.dialog}
+              </>
+            ) : (
+              button
+            )}
           </div>
         </div>
         <div className="w-1/2 relative lg:w-96 aspect-square rounded-lg">

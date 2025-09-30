@@ -306,6 +306,7 @@ export interface Page {
           }
         | {
             img?: (number | null) | Media;
+            form?: (number | null) | Form;
             id?: string | null;
             blockName?: string | null;
             blockType: 'installment';
@@ -954,6 +955,7 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               img?: T;
+              form?: T;
               id?: T;
               blockName?: T;
             };

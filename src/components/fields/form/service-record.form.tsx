@@ -88,7 +88,7 @@ export function ServiceRecordForm({ options, onSuccess }: Props) {
     ].filter((field) => field.amo_id > 0) // Фильтруем только поля с настроенными ID
 
     setIsPending(true)
-    sendLead(additionalFields, data)
+    sendLead(options, data)
       .then(() => {
         onSuccess()
       })

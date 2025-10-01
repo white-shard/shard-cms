@@ -13,6 +13,12 @@ export const FooterOptions: GlobalConfig = {
       defaultValue: "Европейское лечение в Екатеринбурге",
     },
     {
+      name: "actionButtons",
+      label: "Кнопки действий",
+      type: "array",
+      fields: ActionButton,
+    },
+    {
       name: "services",
       label: "Отображать услуги",
       type: "array",
@@ -38,6 +44,12 @@ export const FooterOptions: GlobalConfig = {
       ],
     },
     {
+      name: "quickActions",
+      label: "Быстрые действия",
+      type: "array",
+      fields: ActionButton,
+    },
+    {
       name: "warning",
       label: "Предупреждение",
       type: "textarea",
@@ -55,12 +67,6 @@ export const FooterOptions: GlobalConfig = {
           required: true,
         },
       ],
-    },
-    {
-      name: "actionButtons",
-      label: "Кнопки действий",
-      type: "array",
-      fields: ActionButton,
     },
     {
       name: "footerLinks",

@@ -31,6 +31,7 @@ type IFooterOptions = {
   }[]
   warning?: string
   actionButtons: IActionButton[]
+  quickActions: IActionButton[]
   footerLinks: {
     label: string
     url: string

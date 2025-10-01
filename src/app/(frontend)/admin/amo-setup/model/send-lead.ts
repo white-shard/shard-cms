@@ -6,10 +6,7 @@ import { Form } from "@/payload-types"
 import config from "@/payload.config"
 import { getPayload } from "payload"
 
-export async function sendLead(
-  additionalFields: Form["hidden_fields"],
-  data: RecordSchema,
-) {
+export async function sendLead(formOptions: Form, data: RecordSchema) {
   const payload = await getPayload({ config })
   const options = await payload.findGlobal({
     slug: "amo-crm",
@@ -24,7 +21,7 @@ export async function sendLead(
   }
 
   const contact = await amoService.addContact(auth, {
-    name: data.fullname,
+    name: formOptions.adminTitle || data.fullname,
     fields: [
       {
         field_id: options.contactPhoneField || 0,
@@ -38,7 +35,7 @@ export async function sendLead(
     {
       name: data.fullname,
       fields:
-        additionalFields?.map((field) => ({
+        formOptions?.hidden_fields?.map((field) => ({
           field_id: field.amo_id,
           values: [{ value: field.value }],
         })) || [],

@@ -39,7 +39,7 @@ export function ActionButton({ data }: Props) {
           ? "h-10 w-10 p-0 border-0 hover:bg-transparent"
           : data.variant === "icon-text"
             ? "h-10 px-3 py-2 border-0 hover:bg-transparent transition-opacity"
-            : "w-full md:w-auto text-base sm:text-lg lg:text-base px-8 md:px-12 py-6 max-w-full",
+            : "w-full md:w-auto text-base sm:text-lg lg:text-base px-6 py-6 md:min-w-48 min-w-auto max-w-full",
       )}
       variant={
         data.variant === "icon" || data.variant === "icon-text"

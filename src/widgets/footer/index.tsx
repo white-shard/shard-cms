@@ -4,6 +4,7 @@ import { WhiteShard } from "@/components/icons/ws"
 import { ActionButton } from "@/lib/actions/action-button"
 import { useFooterOptions } from "@/lib/hooks/use-site-footer-options"
 import { useSiteOptions } from "@/lib/hooks/use-site-options"
+import { cn } from "@/lib/utils"
 import { Clock, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
 
@@ -25,7 +26,13 @@ export function Footer() {
             footerOptions.actionButtons.length > 0 && (
               <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
                 {footerOptions.actionButtons.map((button, index) => (
-                  <div key={index} className="flex items-center">
+                  <div
+                    key={index}
+                    className={cn(
+                      "flex items-center",
+                      button.variant === "default" && "w-full",
+                    )}
+                  >
                     <ActionButton
                       data={{
                         name: button.name,
@@ -104,7 +111,13 @@ export function Footer() {
             footerOptions.quickActions.length > 0 && (
               <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
                 {footerOptions.quickActions.map((button, index) => (
-                  <div key={index} className="flex items-center">
+                  <div
+                    key={index}
+                    className={cn(
+                      "flex items-center",
+                      button.variant === "default" && "w-full",
+                    )}
+                  >
                     <ActionButton
                       data={{
                         name: button.name,

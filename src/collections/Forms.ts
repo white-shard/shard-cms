@@ -46,57 +46,32 @@ export const Forms: CollectionConfig = {
       type: "textarea",
     },
     {
-      name: "fields",
-      label: "Поля",
-      type: "group",
+      name: "hidden_fields",
+      label: "Скрытые поля",
+      type: "array",
       fields: [
         {
-          name: "fullname",
-          type: "number",
-          label: "Имя",
-          admin: {
-            placeholder: "ID поля в amoCRM",
-          },
-          required: true,
-        },
-        {
-          name: "phone",
-          type: "number",
-          label: "Телефон",
-          admin: {
-            placeholder: "ID поля в amoCRM",
-          },
-          required: true,
-        },
-        {
-          name: "hidden_fields",
-          label: "Скрытые поля",
-          type: "array",
+          type: "row",
           fields: [
             {
-              type: "row",
-              fields: [
-                {
-                  name: "name",
-                  label: "Название поля",
-                  type: "text",
-                  required: true,
-                },
-                {
-                  name: "amo_id",
-                  label: "ID поля в amoCRM",
-                  type: "number",
-                  required: true,
-                },
-              ],
-            },
-            {
-              name: "value",
-              label: "Значение поля",
+              name: "name",
+              label: "Название поля",
               type: "text",
               required: true,
             },
+            {
+              name: "amo_id",
+              label: "ID поля в amoCRM",
+              type: "number",
+              required: true,
+            },
           ],
+        },
+        {
+          name: "value",
+          label: "Значение поля",
+          type: "text",
+          required: true,
         },
       ],
     },

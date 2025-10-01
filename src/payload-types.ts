@@ -675,18 +675,14 @@ export interface Form {
   heading: string;
   adminTitle?: string | null;
   description?: string | null;
-  fields: {
-    fullname: number;
-    phone: number;
-    hidden_fields?:
-      | {
-          name: string;
-          amo_id: number;
-          value: string;
-          id?: string | null;
-        }[]
-      | null;
-  };
+  hidden_fields?:
+    | {
+        name: string;
+        amo_id: number;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
   submitText: string;
   updatedAt: string;
   createdAt: string;
@@ -1363,19 +1359,13 @@ export interface FormsSelect<T extends boolean = true> {
   heading?: T;
   adminTitle?: T;
   description?: T;
-  fields?:
+  hidden_fields?:
     | T
     | {
-        fullname?: T;
-        phone?: T;
-        hidden_fields?:
-          | T
-          | {
-              name?: T;
-              amo_id?: T;
-              value?: T;
-              id?: T;
-            };
+        name?: T;
+        amo_id?: T;
+        value?: T;
+        id?: T;
       };
   submitText?: T;
   updatedAt?: T;
@@ -1561,6 +1551,14 @@ export interface AmoCrm {
   integrationId: string;
   integrationSecret: string;
   status?: string | null;
+  contactPhoneField?: number | null;
+  utm_source?: number | null;
+  utm_medium?: number | null;
+  utm_content?: number | null;
+  utm_term?: number | null;
+  utm_campaign?: number | null;
+  _ga?: number | null;
+  _ym_uid?: number | null;
   access_token?: string | null;
   refresh_token?: string | null;
   server_time?: number | null;
@@ -1709,6 +1707,14 @@ export interface AmoCrmSelect<T extends boolean = true> {
   integrationId?: T;
   integrationSecret?: T;
   status?: T;
+  contactPhoneField?: T;
+  utm_source?: T;
+  utm_medium?: T;
+  utm_content?: T;
+  utm_term?: T;
+  utm_campaign?: T;
+  _ga?: T;
+  _ym_uid?: T;
   access_token?: T;
   refresh_token?: T;
   server_time?: T;

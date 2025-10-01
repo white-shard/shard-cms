@@ -1,62 +1,48 @@
 "use server"
 
 import { RecordSchema } from "@/components/fields/form/schemas/record.schema"
+import { getAmoCRMAuthData, getAmoCRMService } from "@/lib/amocrm"
 import { Form } from "@/payload-types"
 import config from "@/payload.config"
 import { getPayload } from "payload"
-import { getActualAccessToken } from "./refresh-tokens"
 
-export async function sendLead(form: Form, data: RecordSchema) {
+export async function sendLead(
+  additionalFields: Form["hidden_fields"],
+  data: RecordSchema,
+) {
   const payload = await getPayload({ config })
-  const crm = await payload.findGlobal({
+  const options = await payload.findGlobal({
     slug: "amo-crm",
   })
-  const accessToken = await getActualAccessToken()
 
-  console.log("Токен доступа:", accessToken)
+  const amoService = await getAmoCRMService()
+  const auth = await getAmoCRMAuthData()
 
-  console.log("Формирую заявку...")
+  if (!amoService || !auth) {
+    console.error("AmoCRM не настроен или токены отсутствуют")
+    return
+  }
 
-  const lead = {
-    name: form.heading,
-    custom_fields_values: [
+  const contact = await amoService.addContact(auth, {
+    name: data.fullname,
+    fields: [
       {
-        field_id: form.fields.fullname,
-        values: [{ value: data.fullname }],
-      },
-      {
-        field_id: form.fields.phone,
+        field_id: options.contactPhoneField || 0,
         values: [{ value: data.phone }],
       },
-      ...(form.fields?.hidden_fields?.map((field) => ({
-        field_id: field.amo_id,
-        values: [{ value: field.value }],
-      })) || []),
     ],
-  }
+  })
 
-  console.log("Отправляю заявку...")
-
-  const response = await fetch(
-    `https://${crm.subdomain}.amocrm.ru/api/v4/leads`,
+  await amoService.addLead(
+    auth,
     {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-      },
-      body: JSON.stringify([lead]),
+      name: data.fullname,
+      fields:
+        additionalFields?.map((field) => ({
+          field_id: field.amo_id,
+          values: [{ value: field.value }],
+        })) || [],
     },
+    contact || -1,
   )
-
-  if (response.ok) {
-    const data = await response.json()
-    console.log(data)
-    console.log("Заявка отправлена!")
-  } else {
-    console.log(response.status)
-    console.log("Заявка не отправлена!")
-  }
-
-  return response.ok
 }

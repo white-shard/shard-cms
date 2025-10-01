@@ -44,6 +44,78 @@ export const AmoCRM: GlobalConfig = {
       },
     },
     {
+      name: "contactPhoneField",
+      label: "ID поля телефона контакта",
+      type: "number",
+      admin: {
+        placeholder: "ID поля в amoCRM",
+        condition: (data) => data.status === "✅ CRM подключена",
+      },
+    },
+    {
+      name: "utm_source",
+      label: "ID поля utm_source",
+      type: "number",
+      admin: {
+        placeholder: "ID поля в amoCRM",
+        condition: (data) => data.status === "✅ CRM подключена",
+      },
+    },
+    {
+      name: "utm_medium",
+      label: "ID поля utm_medium",
+      type: "number",
+      admin: {
+        placeholder: "ID поля в amoCRM",
+        condition: (data) => data.status === "✅ CRM подключена",
+      },
+    },
+    {
+      name: "utm_content",
+      label: "ID поля utm_content",
+      type: "number",
+      admin: {
+        placeholder: "ID поля в amoCRM",
+        condition: (data) => data.status === "✅ CRM подключена",
+      },
+    },
+    {
+      name: "utm_term",
+      label: "ID поля utm_term",
+      type: "number",
+      admin: {
+        placeholder: "ID поля в amoCRM",
+        condition: (data) => data.status === "✅ CRM подключена",
+      },
+    },
+    {
+      name: "utm_campaign",
+      label: "ID поля utm_campaign",
+      type: "number",
+      admin: {
+        placeholder: "ID поля в amoCRM",
+        condition: (data) => data.status === "✅ CRM подключена",
+      },
+    },
+    {
+      name: "_ga",
+      label: "ID поля Google Analytics",
+      type: "number",
+      admin: {
+        placeholder: "ID поля в amoCRM",
+        condition: (data) => data.status === "✅ CRM подключена",
+      },
+    },
+    {
+      name: "_ym_uid",
+      label: "ID поля Yandex Metrica",
+      type: "number",
+      admin: {
+        placeholder: "ID поля в amoCRM",
+        condition: (data) => data.status === "✅ CRM подключена",
+      },
+    },
+    {
       name: "access_token",
       label: "Токен доступа",
       type: "text",
@@ -53,7 +125,7 @@ export const AmoCRM: GlobalConfig = {
       name: "refresh_token",
       label: "Токен обновления",
       type: "text",
-      hidden: false,
+      hidden: true,
     },
     {
       name: "server_time",

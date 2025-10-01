@@ -2,7 +2,7 @@
 
 import { redirect, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
-import { getAmoTokens } from "./model/get-tokens"
+import { setupAmoCRM } from "./model/setup"
 
 export function ClientAmoSetup() {
   const [status, setStatus] = useState<string>("Запрашиваем токены...")
@@ -12,7 +12,7 @@ export function ClientAmoSetup() {
 
   useEffect(() => {
     if (code) {
-      getAmoTokens(code)
+      setupAmoCRM(code)
         .then(() => {
           setStatus("Токены получены")
           redirect("/admin/globals/amo-crm")

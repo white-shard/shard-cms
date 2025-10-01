@@ -13,6 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { useAmoOptions } from "@/lib/hooks/use-amo-options"
 import { Form as FormOptions } from "@/payload-types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
@@ -27,6 +28,7 @@ type Props = {
 
 export function ServiceRecordForm({ options, onSuccess }: Props) {
   const [isPending, setIsPending] = useState(false)
+  const { options: amoOptions } = useAmoOptions()
 
   const form = useForm<RecordSchema>({
     resolver: zodResolver(recordSchema),
@@ -38,8 +40,55 @@ export function ServiceRecordForm({ options, onSuccess }: Props) {
   })
 
   const onSubmit: SubmitHandler<RecordSchema> = (data) => {
+    // Получаем UTM метки из URL
+    const urlParams = new URLSearchParams(window.location.search)
+    const utmSource = urlParams.get("utm_source") || ""
+    const utmMedium = urlParams.get("utm_medium") || ""
+    const utmContent = urlParams.get("utm_content") || ""
+    const utmTerm = urlParams.get("utm_term") || ""
+    const utmCampaign = urlParams.get("utm_campaign") || ""
+
+    // Получаем Google Analytics ID из cookies
+    const getCookie = (name: string) => {
+      const value = `; ${document.cookie}`
+      const parts = value.split(`; ${name}=`)
+      if (parts.length === 2) return parts.pop()?.split(";").shift()
+      return ""
+    }
+
+    const gaId = getCookie("_ga") || ""
+    const ymId = getCookie("_ym_uid") || ""
+
+    // Добавляем скрытые поля к существующим
+    const additionalFields = [
+      ...(options.hidden_fields || []),
+      {
+        name: "utm_source",
+        amo_id: amoOptions?.utm_source || 0,
+        value: utmSource,
+      },
+      {
+        name: "utm_medium",
+        amo_id: amoOptions?.utm_medium || 0,
+        value: utmMedium,
+      },
+      {
+        name: "utm_content",
+        amo_id: amoOptions?.utm_content || 0,
+        value: utmContent,
+      },
+      { name: "utm_term", amo_id: amoOptions?.utm_term || 0, value: utmTerm },
+      {
+        name: "utm_campaign",
+        amo_id: amoOptions?.utm_campaign || 0,
+        value: utmCampaign,
+      },
+      { name: "_ga", amo_id: amoOptions?._ga || 0, value: gaId },
+      { name: "_ym_uid", amo_id: amoOptions?._ym_uid || 0, value: ymId },
+    ].filter((field) => field.amo_id > 0) // Фильтруем только поля с настроенными ID
+
     setIsPending(true)
-    sendLead(options, data)
+    sendLead(additionalFields, data)
       .then(() => {
         onSuccess()
       })

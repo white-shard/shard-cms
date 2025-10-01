@@ -53,7 +53,7 @@ export const AmoCRM: GlobalConfig = {
       name: "refresh_token",
       label: "Токен обновления",
       type: "text",
-      hidden: false,
+      hidden: true,
     },
     {
       name: "server_time",

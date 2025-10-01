@@ -91,7 +91,11 @@ export function ActionButton({ data }: Props) {
 
   switch (data.action) {
     case "link":
-      return <Link href={data.url || "#"}>{button}</Link>
+      return (
+        <Link className="w-full" href={data.url || "#"}>
+          {button}
+        </Link>
+      )
     case "form":
       if (!data.form) return button
 

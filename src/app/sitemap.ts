@@ -1,6 +1,6 @@
+import config from "@/payload.config"
 import { MetadataRoute } from "next"
 import { getPayload } from "payload"
-import config from "@/payload.config"
 
 export const revalidate = 60 // Кеширование на 60 секунд
 
@@ -14,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   })
 
   // Базовый URL сайта
-  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || "https://example.com"
+  const baseUrl = process.env.NEXT_PUBLIC_ORIGIN || "https://example.com"
 
   // Статические маршруты
   const staticRoutes: MetadataRoute.Sitemap = [

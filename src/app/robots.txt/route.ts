@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 
 export function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || "https://example.com"
+  const baseUrl = process.env.NEXT_PUBLIC_ORIGIN || "https://example.com"
 
   const robotsTxt = `User-agent: *
 Allow: /

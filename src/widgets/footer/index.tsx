@@ -1,18 +1,11 @@
 "use client"
 
 import { WhiteShard } from "@/components/icons/ws"
-import { Button } from "@/components/ui/button"
 import { ActionButton } from "@/lib/actions/action-button"
 import { useFooterOptions } from "@/lib/hooks/use-site-footer-options"
 import { useSiteOptions } from "@/lib/hooks/use-site-options"
-import {
-  Calendar,
-  Clock,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-} from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Clock, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
 
 export function Footer() {
@@ -33,7 +26,13 @@ export function Footer() {
             footerOptions.actionButtons.length > 0 && (
               <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
                 {footerOptions.actionButtons.map((button, index) => (
-                  <div key={index} className="flex items-center">
+                  <div
+                    key={index}
+                    className={cn(
+                      "flex items-center",
+                      button.variant === "default" && "w-full",
+                    )}
+                  >
                     <ActionButton
                       data={{
                         name: button.name,
@@ -105,27 +104,38 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-3 sm:gap-4 mt-6 sm:mt-0 sm:col-span-2 lg:col-span-1">
           <span className="text-lg sm:text-xl text-white">Быстрая запись</span>
-          <p className="text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed">
+          <p className="text-sm sm:text-base leading-relaxed">
             Запишитесь на консультацию прямо сейчас
           </p>
-          <div className="flex flex-col gap-3 sm:gap-4">
-            <Button
-              className="w-full text-sm sm:text-base px-4 sm:px-6 py-3 sm:py-4"
-              size="lg"
-              variant="accent"
-            >
-              <Calendar className="size-4 sm:size-5" />
-              <span className="ml-2">Записаться онлайн</span>
-            </Button>
-            <Button
-              className="w-full border-green-800 border-1 text-green-800 hover:border-green-700 hover:text-green-700 text-sm sm:text-base px-4 sm:px-6 py-3 sm:py-4"
-              size="lg"
-              variant="primary"
-            >
-              <MessageCircle className="size-4 sm:size-5" />
-              <span className="ml-2">Написать в WhatsApp</span>
-            </Button>
-          </div>
+          {footerOptions?.quickActions &&
+            footerOptions.quickActions.length > 0 && (
+              <div className="flex flex-wrap gap-2 mt-4 sm:mt-6">
+                {footerOptions.quickActions.map((button, index) => (
+                  <div
+                    key={index}
+                    className={cn(
+                      "flex items-center",
+                      button.variant === "default" && "w-full",
+                    )}
+                  >
+                    <ActionButton
+                      data={{
+                        name: button.name,
+                        icon: button.icon || "1",
+                        color: button.color || "primary",
+                        variant: button.variant || "default",
+                        action: button.action || "link",
+                        url: button.url || undefined,
+                        form:
+                          typeof button.form === "number"
+                            ? undefined
+                            : button.form || undefined,
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
         </div>
       </div>
       <hr className="opacity-25 my-8" />

@@ -1455,20 +1455,6 @@ export interface HeaderOption {
 export interface FooterOption {
   id: number;
   thesis?: string | null;
-  services?:
-    | {
-        page: number | Page;
-        title?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-  warning?: string | null;
-  documentLinks?:
-    | {
-        document: number | Document;
-        id?: string | null;
-      }[]
-    | null;
   actionButtons?:
     | {
         name: string;
@@ -1478,6 +1464,32 @@ export interface FooterOption {
         action?: ('link' | 'form') | null;
         url?: string | null;
         form?: (number | null) | Form;
+        id?: string | null;
+      }[]
+    | null;
+  services?:
+    | {
+        page: number | Page;
+        title?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  quickActions?:
+    | {
+        name: string;
+        icon?: string | null;
+        variant?: ('default' | 'icon' | 'icon-text') | null;
+        color?: ('primary' | 'accent' | 'secondary' | 'white' | 'red') | null;
+        action?: ('link' | 'form') | null;
+        url?: string | null;
+        form?: (number | null) | Form;
+        id?: string | null;
+      }[]
+    | null;
+  warning?: string | null;
+  documentLinks?:
+    | {
+        document: number | Document;
         id?: string | null;
       }[]
     | null;
@@ -1617,20 +1629,6 @@ export interface HeaderOptionsSelect<T extends boolean = true> {
  */
 export interface FooterOptionsSelect<T extends boolean = true> {
   thesis?: T;
-  services?:
-    | T
-    | {
-        page?: T;
-        title?: T;
-        id?: T;
-      };
-  warning?: T;
-  documentLinks?:
-    | T
-    | {
-        document?: T;
-        id?: T;
-      };
   actionButtons?:
     | T
     | {
@@ -1641,6 +1639,32 @@ export interface FooterOptionsSelect<T extends boolean = true> {
         action?: T;
         url?: T;
         form?: T;
+        id?: T;
+      };
+  services?:
+    | T
+    | {
+        page?: T;
+        title?: T;
+        id?: T;
+      };
+  quickActions?:
+    | T
+    | {
+        name?: T;
+        icon?: T;
+        variant?: T;
+        color?: T;
+        action?: T;
+        url?: T;
+        form?: T;
+        id?: T;
+      };
+  warning?: T;
+  documentLinks?:
+    | T
+    | {
+        document?: T;
         id?: T;
       };
   footerLinks?:

@@ -21,7 +21,7 @@ export async function sendLead(formOptions: Form, data: RecordSchema) {
   }
 
   const contact = await amoService.addContact(auth, {
-    name: formOptions.adminTitle || data.fullname,
+    name: data.fullname,
     fields: [
       {
         field_id: options.contactPhoneField || 0,
@@ -33,7 +33,7 @@ export async function sendLead(formOptions: Form, data: RecordSchema) {
   await amoService.addLead(
     auth,
     {
-      name: data.fullname,
+      name: formOptions.adminTitle || data.fullname,
       fields:
         formOptions?.hidden_fields?.map((field) => ({
           field_id: field.amo_id,

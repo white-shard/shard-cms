@@ -28,10 +28,25 @@ export const AdvantagesBlock: Block = {
       type: "array",
       fields: [
         {
-          name: "title",
-          label: "Название",
-          type: "text",
-          required: true,
+          type: "row",
+          fields: [
+            {
+              name: "icon",
+              label: "Иконка",
+              type: "text",
+              admin: {
+                components: {
+                  Field: "@/components/payload/IconPicker",
+                },
+              } as any,
+            },
+            {
+              name: "title",
+              label: "Название",
+              type: "text",
+              required: true,
+            },
+          ],
         },
         {
           name: "description",

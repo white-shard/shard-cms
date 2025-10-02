@@ -278,6 +278,7 @@ export interface Page {
             description: string;
             advantages?:
               | {
+                  icon?: string | null;
                   title: string;
                   description: string;
                   id?: string | null;
@@ -964,6 +965,7 @@ export interface PagesSelect<T extends boolean = true> {
               advantages?:
                 | T
                 | {
+                    icon?: T;
                     title?: T;
                     description?: T;
                     id?: T;

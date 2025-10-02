@@ -116,7 +116,7 @@ export function TeamBlockDefault({ fields }: Props) {
                       .join(", ")}
                 </span>
                 <span className="text-gray-600 text-sm sm:text-base lg:text-lg">
-                  Стаж {item.experience} лет
+                  Стаж {item.experience}
                 </span>
               </div>
               <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-4 mt-2 sm:mt-4">

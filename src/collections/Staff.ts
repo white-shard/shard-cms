@@ -29,7 +29,7 @@ export const Staff: CollectionConfig = {
         {
           name: "experience",
           label: "Лет опыта",
-          type: "number",
+          type: "text",
           required: true,
         },
       ],

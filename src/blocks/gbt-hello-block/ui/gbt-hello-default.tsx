@@ -1,8 +1,8 @@
-import { ClipboardCheck, ClipboardList, Quote } from "lucide-react"
-import Image from "next/image"
-import { GbtHelloBlockFields } from "../types"
 import { Button } from "@/components/ui/button"
+import { ClipboardList, Quote } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
+import { GbtHelloBlockFields } from "../types"
 
 type Props = {
   fields: GbtHelloBlockFields
@@ -31,7 +31,7 @@ export function GbtHelloBlockDefault({ fields }: Props) {
             {fields.staff.fullname}
           </h2>
           <p className="text-lg sm:text-xl lg:text-2xl text-accent">
-            Стаж {fields.staff.experience} лет
+            Стаж {fields.staff.experience}
           </p>
           <p className="text-base sm:text-lg lg:text-xl">
             Стоматолог {speciality}

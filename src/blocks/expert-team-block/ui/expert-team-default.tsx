@@ -54,7 +54,7 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
                     стоматолог {alternativeSpecialty}
                   </p>
                   <p className="text-sm sm:text-base text-gray-500">
-                    Опыт работы: {expert.experience} лет
+                    Опыт работы: {expert.experience}
                   </p>
                   {expert.bookingLink && (
                     <a
@@ -110,7 +110,7 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
                     {fullname[0]} <br /> {fullname[1]}
                   </span>
                   <span className="text-gray-300 text-xs xl:text-sm">
-                    {expert.experience} лет опыта
+                    {expert.experience}
                   </span>
                 </div>
 
@@ -125,7 +125,7 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
                     </span>
                     <div className="flex gap-1 items-center justify-between flex-wrap">
                       <span className="text-gray-500 text-xs xl:text-sm">
-                        {expert.experience} лет опыта
+                        {expert.experience}
                       </span>
                       {expert.bookingLink && (
                         <a

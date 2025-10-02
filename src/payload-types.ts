@@ -709,7 +709,7 @@ export interface Staff {
   id: number;
   img: number | Media;
   fullname: string;
-  experience: number;
+  experience: string;
   description?: string | null;
   specialty: (number | Specialty)[];
   alternativeSpecialty?: string | null;

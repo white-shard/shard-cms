@@ -1,9 +1,9 @@
 "use client"
 
+import { HeaderOption } from "@/payload-types"
 import { useEffect, useState } from "react"
 import { DesktopHeader } from "./ui/desktop"
 import { MobileHeader } from "./ui/mobile"
-import { HeaderOption } from "@/payload-types"
 
 export type Props = {
   options: HeaderOption
@@ -18,6 +18,9 @@ export function Header({ options }: Props) {
       const scrollY = window.scrollY
       setIsScrolled(scrollY > 0)
     }
+
+    // Проверяем позицию скролла при инициализации
+    handleScroll()
 
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)

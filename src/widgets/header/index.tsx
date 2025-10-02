@@ -12,6 +12,7 @@ export type Props = {
 export function Header({ options }: Props) {
   const data = options
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isHoverCardOpen, setIsHoverCardOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,16 +27,18 @@ export function Header({ options }: Props) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const shouldShowBackground = isScrolled || isHoverCardOpen
+
   return (
     <header
-      className={`fixed top-0 w-full z-20 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-sm shadow-sm py-2 sm:py-3 md:py-4"
-          : "bg-transparent py-3 sm:py-4 md:py-6 lg:py-8"
+      className={`fixed top-0 w-full z-20 transition-all duration-300 py-3 sm:py-4 md:py-6 lg:py-8 ${
+        shouldShowBackground
+          ? "bg-white/95 backdrop-blur-sm shadow-sm"
+          : "bg-transparent"
       }`}
     >
       <div className="hidden xl:block">
-        <DesktopHeader options={data} />
+        <DesktopHeader options={data} onHoverCardChange={setIsHoverCardOpen} />
       </div>
       <div className="block xl:hidden">
         <MobileHeader navigation={data} />

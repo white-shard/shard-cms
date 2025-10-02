@@ -18,12 +18,59 @@ import { useState } from "react"
 
 export type Props = {
   options: HeaderOption
+  onHoverCardChange?: (isOpen: boolean) => void
 }
 
-export function DesktopHeader({ options }: Props) {
-  const [open, setOpen] = useState(false)
+export function DesktopHeader({ options, onHoverCardChange }: Props) {
+  const [open, setOpen] = useState<number | false>(false)
+  const [manualClick, setManualClick] = useState(false)
 
-  const handleClose = () => setOpen(false)
+  const handleClose = () => {
+    setOpen(false)
+    setManualClick(false)
+    onHoverCardChange?.(false)
+  }
+
+  const handleToggle = (index: number) => {
+    const newOpen = open === index ? false : index
+    setOpen(newOpen)
+    setManualClick(newOpen !== false)
+
+    // Если открываем новую категорию, сбрасываем ручной клик предыдущей
+    if (newOpen !== false && open !== index) {
+      setManualClick(true)
+    }
+
+    onHoverCardChange?.(newOpen !== false)
+  }
+
+  const handleMouseLeave = () => {
+    // При уходе мыши закрываем только если не был ручной клик
+    if (!manualClick) {
+      setOpen(false)
+      onHoverCardChange?.(false)
+    }
+  }
+
+  const handleHoverCardChange = (isOpen: boolean, index: number) => {
+    // Игнорируем попытки закрытия через hover если был ручной клик по этому элементу
+    if (manualClick && open === index && !isOpen) {
+      return
+    }
+
+    if (isOpen) {
+      setOpen(index)
+      // Если открываем новую категорию через hover, сбрасываем ручной клик
+      if (open !== index) {
+        setManualClick(false)
+      }
+      onHoverCardChange?.(true)
+    } else {
+      setOpen(false)
+      setManualClick(false)
+      onHoverCardChange?.(false)
+    }
+  }
 
   return (
     <div className="flex gap-2 xl:gap-4 2xl:gap-8 items-center justify-between container mx-auto px-4 xl:px-6">
@@ -34,14 +81,23 @@ export function DesktopHeader({ options }: Props) {
         <NavigationMenuList className="flex gap-2 xl:gap-4 2xl:gap-8 text-sm xl:text-base 2xl:text-lg">
           {options.navigation?.map((item, index) =>
             item.hasCategories && item.categories?.length ? (
-              <HoverCard onOpenChange={setOpen} open={open} key={index}>
-                <HoverCardTrigger className="cursor-pointer hover:text-accent flex items-center gap-1 xl:gap-2">
+              <HoverCard
+                onOpenChange={(isOpen) => handleHoverCardChange(isOpen, index)}
+                open={open === index}
+                key={index}
+              >
+                <HoverCardTrigger
+                  className="cursor-pointer hover:text-accent flex items-center gap-1 xl:gap-2"
+                  onClick={() => handleToggle(index)}
+                >
                   <span
                     className={item.color === "accent" ? "text-accent" : ""}
                   >
                     {item.label}
                   </span>
-                  <ChevronDown className="size-3 xl:size-4" />
+                  <ChevronDown
+                    className={`size-3 xl:size-4 transition-transform ${open === index ? "rotate-180" : ""}`}
+                  />
                 </HoverCardTrigger>
                 <HoverCardContent className="mt-8 w-screen min-h-96 xl:min-h-128 rounded-none">
                   <div className="container mx-auto grid grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-8 2xl:gap-16 justify-start">

@@ -1,7 +1,7 @@
+import { MediaRenderer } from "@/components/media-renderer"
+import { ActionButton } from "@/lib/actions/action-button"
 import Image from "next/image"
 import { HeroBlockFields } from "../types"
-import { ActionButton } from "@/lib/actions/action-button"
-import { VideoPlayer } from "@/components/ui/video-player"
 
 // Функция для определения типа медиа
 const isVideo = (media: { mimeType?: string | null }) => {
@@ -38,24 +38,10 @@ export function HeroBlockSpecial({ fields }: Props) {
           </h1>
         </div>
 
-        <div className="flex-1 lg:flex-0 flex items-center justify-center py-8 sm:py-12">
-          {fields.img?.url ? (
-            isVideo(fields.img) ? (
-              <VideoPlayer
-                src={fields.img.url || ""}
-                className="block lg:hidden max-w-full h-auto"
-              />
-            ) : (
-              <Image
-                alt="background"
-                className="block lg:hidden max-w-full h-auto"
-                src={fields.img.url || ""}
-                width={512}
-                height={512}
-                priority
-              />
-            )
-          ) : null}
+        <div className="flex-1 w-full lg:flex-0 flex items-center justify-center py-8 sm:py-12">
+          <div className="relative flex-1 w-full aspect-video block lg:hidden">
+            {fields.img?.url ? <MediaRenderer media={fields.img} /> : null}
+          </div>
         </div>
 
         <div className="flex w-full lg:w-auto flex-col gap-4 lg:gap-0 pb-8 sm:pb-12 lg:pb-16">
@@ -90,25 +76,9 @@ export function HeroBlockSpecial({ fields }: Props) {
       </div>
 
       {fields.img?.url ? (
-        isVideo(fields.img) ? (
-          <VideoPlayer
-            src={fields.img.url || ""}
-            className="absolute bg-white hidden lg:block w-full h-full"
-          />
-        ) : (
-          <Image
-            alt="background"
-            src={fields.img.url || "/"}
-            className="absolute bg-white hidden lg:block"
-            quality={100}
-            fill
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-              backgroundColor: fields.img?.url ? "white" : "gray",
-            }}
-          />
-        )
+        <div className="absolute w-screen h-screen lg:block hidden">
+          <MediaRenderer media={fields.img} />
+        </div>
       ) : null}
 
       <div className="w-full bottom-0 h-full absolute bg-secondary/65 hidden lg:block z-0" />

@@ -29,24 +29,6 @@ export const ReviewsBlock: Block = {
       defaultValue: true,
     },
     {
-      name: "yandexIframeCode",
-      label: "Яндекс",
-      type: "textarea",
-      admin: {
-        description: "Вставьте код iframe с отзывами из Яндекс.Карт",
-        rows: 4,
-      },
-    },
-    {
-      name: "twoGisIframeCode",
-      label: "2ГИС",
-      type: "textarea",
-      admin: {
-        description: "Вставьте код iframe с отзывами из 2ГИС",
-        rows: 4,
-      },
-    },
-    {
       name: "videoReviews",
       label: "Видео отзывы",
       type: "array",

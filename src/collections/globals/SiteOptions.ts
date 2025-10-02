@@ -2,6 +2,7 @@ import { GlobalConfig } from "payload"
 
 export const SiteOptions: GlobalConfig = {
   slug: "options",
+  label: "Настройки сайта",
   fields: [
     {
       type: "row",

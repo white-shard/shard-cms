@@ -1,6 +1,8 @@
 "use client"
 
+import { ReviewsWidget } from "@/components/reviews-widget"
 import { ChevronLeft, ChevronRight, Star } from "lucide-react"
+import Image from "next/image"
 import { useState } from "react"
 import { ReviewsBlockFields } from "../types"
 
@@ -75,13 +77,15 @@ export function ReviewsBlockDefault({ fields }: Props) {
                   {/* Аватар пациента */}
                   <div className="w-16 h-16 bg-gray-600 rounded-full flex-shrink-0 flex items-center justify-center overflow-hidden">
                     {fields.videoReviews[currentVideoIndex]?.avatar ? (
-                      <img
+                      <Image
                         src={fields.videoReviews[currentVideoIndex].avatar}
                         alt={
                           fields.videoReviews[currentVideoIndex].author ||
                           "Пациент"
                         }
                         className="w-full h-full object-cover"
+                        width={64}
+                        height={64}
                       />
                     ) : fields.videoReviews[currentVideoIndex]?.author ? (
                       <span className="text-xl font-bold">
@@ -155,25 +159,13 @@ export function ReviewsBlockDefault({ fields }: Props) {
       )}
       {/* Отзывы из внешних сервисов */}
       <div className="space-y-8">
-        {/* Яндекс отзывы */}
-        {fields.yandexIframeCode && (
-          <div className="relative">
-            <div
-              dangerouslySetInnerHTML={{ __html: fields.yandexIframeCode }}
-              className="overflow-hidden"
-            />
-          </div>
-        )}
-
-        {/* 2ГИС отзывы */}
-        {fields.twoGisIframeCode && (
-          <div className="relative">
-            <div
-              dangerouslySetInnerHTML={{ __html: fields.twoGisIframeCode }}
-              className="overflow-hidden"
-            />
-          </div>
-        )}
+        <ReviewsWidget
+          uuid="ec266945-eb68-4ac4-a893-e1136c775355"
+          name="g3932357"
+          additionalFrame="none"
+          lang="ru"
+          widgetId="1"
+        />
       </div>
     </div>
   )

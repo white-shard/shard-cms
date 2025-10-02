@@ -576,14 +576,6 @@ export interface Page {
             heading: string;
             description: string;
             showOnlyPositive?: boolean | null;
-            /**
-             * Вставьте код iframe с отзывами из Яндекс.Карт
-             */
-            yandexIframeCode?: string | null;
-            /**
-             * Вставьте код iframe с отзывами из 2ГИС
-             */
-            twoGisIframeCode?: string | null;
             videoReviews?:
               | {
                   title: string;
@@ -1258,8 +1250,6 @@ export interface PagesSelect<T extends boolean = true> {
               heading?: T;
               description?: T;
               showOnlyPositive?: T;
-              yandexIframeCode?: T;
-              twoGisIframeCode?: T;
               videoReviews?:
                 | T
                 | {

@@ -8,8 +8,8 @@ type Props = {
 
 export function HeroBlockDefault({ fields }: Props) {
   return (
-    <div className="w-screen h-screen -mt-24">
-      <div className="w-full h-full absolute flex flex-col items-center justify-between lg:justify-center z-10 lg:gap-y-4">
+    <div className="w-screen min-h-screen h-fit -mt-24">
+      <div className="w-full h-full relative lg:absolute flex flex-col items-center justify-between lg:justify-center z-10 lg:gap-y-4">
         <div className="mb-4 my-16 sm:my-32 lg:my-0">
           {fields.beforeHeading && (
             <h2 className="text-xl lg:text-2xl text-gray-400 -mb-2 sm:-mb-4 text-center">
@@ -19,6 +19,11 @@ export function HeroBlockDefault({ fields }: Props) {
           <h1 className="text-primary lg:text-white text-4xl sm:text-6xl lg:text-8xl drop-shadow-lg md:drop-shadow-none text-center leading-tight">
             {fields.heading}
           </h1>
+        </div>
+        <div className="flex-1 w-full lg:flex-0 flex items-center justify-center py-8 sm:py-12 lg:hidden">
+          <div className="relative flex-1 md:flex-none w-full md:w-[640px] md:max-h-96 aspect-video">
+            {fields.img?.url ? <MediaRenderer media={fields.img} /> : null}
+          </div>
         </div>
         <div className="flex flex-col mb-4 sm:mb-8 lg:mb-0 px-4">
           <div className="flex flex-col md:flex-row flex-wrap justify-center gap-2 sm:gap-4 lg:max-w-screen-md md:mx-auto order-2 lg:order-0 w-full md:w-auto">
@@ -31,7 +36,7 @@ export function HeroBlockDefault({ fields }: Props) {
           </p>
         </div>
       </div>
-      <div className="w-full h-full absolute">
+      <div className="w-full h-full absolute hidden lg:block">
         <div className="relative w-full h-full overflow-hidden">
           <MediaRenderer media={fields.img} className="w-full" />
         </div>

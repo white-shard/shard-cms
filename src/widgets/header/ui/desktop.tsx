@@ -44,14 +44,6 @@ export function DesktopHeader({ options, onHoverCardChange }: Props) {
     onHoverCardChange?.(newOpen !== false)
   }
 
-  const handleMouseLeave = () => {
-    // При уходе мыши закрываем только если не был ручной клик
-    if (!manualClick) {
-      setOpen(false)
-      onHoverCardChange?.(false)
-    }
-  }
-
   const handleHoverCardChange = (isOpen: boolean, index: number) => {
     // Игнорируем попытки закрытия через hover если был ручной клик по этому элементу
     if (manualClick && open === index && !isOpen) {
@@ -106,13 +98,19 @@ export function DesktopHeader({ options, onHoverCardChange }: Props) {
                         key={catIndex}
                         className="space-y-2 flex flex-col gap-2"
                       >
-                        <Link
-                          className="cursor-pointer hover:text-accent text-lg xl:text-2xl 2xl:text-3xl text-primary"
-                          onClick={handleClose}
-                          href={category.url || "#"}
-                        >
-                          {category.label}
-                        </Link>
+                        {category.url ? (
+                          <Link
+                            className="cursor-pointer hover:text-accent text-lg xl:text-2xl 2xl:text-3xl text-primary"
+                            onClick={handleClose}
+                            href={category.url}
+                          >
+                            {category.label}
+                          </Link>
+                        ) : (
+                          <span className="text-lg xl:text-2xl 2xl:text-3xl text-primary">
+                            {category.label}
+                          </span>
+                        )}
                         {category.hasItems && category.items?.length ? (
                           <div className="space-y-1 text-sm xl:text-lg 2xl:text-xl text-secondary-foreground flex flex-col gap-1">
                             {category.items.map((subItem, subIndex) => (

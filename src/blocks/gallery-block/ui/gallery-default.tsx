@@ -3,9 +3,9 @@
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import Image from "next/image"
 import { useState } from "react"
 import { GalleryBlockFields } from "../types"
-import Image from "next/image"
 
 type Props = {
   fields: GalleryBlockFields
@@ -34,7 +34,7 @@ export function GalleryBlockDefault({ fields }: Props) {
     const otherImages = fields.images.filter(
       (_, index) => index !== currentIndex,
     )
-    return otherImages.slice(0, 3)
+    return otherImages.slice(0, 5)
   }
 
   return (
@@ -54,7 +54,7 @@ export function GalleryBlockDefault({ fields }: Props) {
       {/* Main Slider */}
       <div className="relative bg-card rounded-xl sm:rounded-2xl overflow-hidden shadow-lg">
         {/* Main Image Container */}
-        <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[600px] overflow-hidden">
+        <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] xl:h-[600px] overflow-hidden bg-gray-100">
           <div
             className="flex transition-transform duration-700 ease-in-out h-full"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -62,17 +62,28 @@ export function GalleryBlockDefault({ fields }: Props) {
             {fields.images.map((image) => (
               <div
                 key={image.img.id}
-                className="w-full h-full flex-shrink-0 relative"
+                className="w-full h-full flex-shrink-0 relative flex items-center justify-center"
               >
+                {/* Размытый фоновый слой */}
                 <Image
                   src={image.img.url || "/"}
                   alt={image.img.alt || ""}
                   fill
-                  className="w-full h-full object-cover"
+                  className="object-cover blur-[10px] scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+
+                {/* Основное изображение */}
+                <Image
+                  src={image.img.url || "/"}
+                  alt={image.img.alt || ""}
+                  width={800}
+                  height={600}
+                  className="object-contain max-w-full max-h-full relative z-10"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-20" />
                 {image.img.alt && (
-                  <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-3 sm:left-4 lg:left-6">
+                  <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-3 sm:left-4 lg:left-6 z-30">
                     <h3 className="text-white text-sm sm:text-base lg:text-lg xl:text-xl drop-shadow-lg">
                       {image.img.alt}
                     </h3>
@@ -122,7 +133,7 @@ export function GalleryBlockDefault({ fields }: Props) {
       </div>
 
       {/* Thumbnails */}
-      <div className="mt-4 sm:mt-6 lg:mt-8 grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 max-w-4xl mx-auto">
+      <div className="hidden sm:grid mt-6 lg:mt-8 grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
         {getThumbnails().map((image) => {
           const originalIndex = fields.images.findIndex(
             (img) => img.img.id === image.img.id,
@@ -130,16 +141,16 @@ export function GalleryBlockDefault({ fields }: Props) {
           return (
             <button
               key={image.img.id}
-              className="relative aspect-[4/3] rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-md opacity-70 hover:opacity-100"
+              className="relative aspect-[4/3] rounded-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-md opacity-70 hover:opacity-100 bg-gray-100"
               onClick={() => goToSlide(originalIndex)}
             >
               <Image
                 src={image.img.url || "/placeholder.svg"}
                 fill
                 alt={image.img.alt || ""}
-                className="w-full h-full object-cover"
+                className="object-cover"
               />
-              <div className="absolute inset-0 bg-black/20 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-black/10 transition-opacity duration-300" />
             </button>
           )
         })}

@@ -8,8 +8,8 @@ export function IndicationsContraindicationsDefault({ fields }: Props) {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
       <div className="flex flex-col lg:flex-row justify-center items-start relative gap-12 sm:gap-16 lg:gap-20 xl:gap-32">
-        <div className="text-gray-400 w-full lg:w-1/2">
-          <span className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl block mb-6 sm:mb-8 leading-tight">
+        <div className="text-gray-400 w-full lg:flex-1">
+          <span className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl block mb-6 sm:mb-8 leading-tight">
             ПОКАЗАНИЯ
           </span>
           <ul className="text-lg sm:text-xl lg:text-2xl xl:text-3xl space-y-3 sm:space-y-4 leading-relaxed">
@@ -24,8 +24,8 @@ export function IndicationsContraindicationsDefault({ fields }: Props) {
           </ul>
         </div>
 
-        <div className="text-primary w-full lg:w-1/2 lg:mt-20">
-          <span className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl block mb-6 sm:mb-8 leading-tight">
+        <div className="text-primary w-full lg:flex-1 lg:mt-20">
+          <span className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl block mb-6 sm:mb-8 leading-tight">
             ПРОТИВОПОКАЗАНИЯ
           </span>
           <ul className="text-lg sm:text-xl lg:text-2xl xl:text-3xl space-y-3 sm:space-y-4 leading-relaxed">

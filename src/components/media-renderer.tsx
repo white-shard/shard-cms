@@ -24,7 +24,12 @@ export function MediaRenderer({ media, className }: MediaRendererProps) {
         muted
         loop
         preload="metadata"
-        style={{ position: "absolute", width: "100%", height: "100%" }}
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
       >
         <source src={media.url} type={media.mimeType || undefined} />
         Ваш браузер не поддерживает видео.
@@ -38,6 +43,7 @@ export function MediaRenderer({ media, className }: MediaRendererProps) {
         src={media.url}
         alt={media.alt || media.filename || ""}
         className={className}
+        style={{ objectFit: "cover" }}
         fill
       />
     )

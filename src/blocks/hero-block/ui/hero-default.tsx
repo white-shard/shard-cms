@@ -37,7 +37,7 @@ export function HeroBlockDefault({ fields }: Props) {
         </div>
       </div>
       <div className="w-full h-full absolute hidden lg:block">
-        <div className="relative w-full h-full overflow-hidden">
+        <div className="relative w-full h-full overflow-hidden ">
           <MediaRenderer media={fields.img} className="w-full" />
         </div>
       </div>

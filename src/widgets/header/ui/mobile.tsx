@@ -114,14 +114,14 @@ export function MobileHeader({ navigation }: Props) {
                     </AccordionItem>
                   </Accordion>
                 ) : (
-                  <div
+                  <Link
                     key={index}
                     className="w-full px-2 sm:px-3 md:px-4 py-2 sm:py-3 md:py-4 hover:bg-gray-100 cursor-pointer"
+                    onClick={handleClose}
+                    href={item.url || "#"}
                   >
-                    <Link onClick={handleClose} href={item.url || "#"}>
-                      {item.label}
-                    </Link>
-                  </div>
+                    {item.label}
+                  </Link>
                 ),
               )}
             </nav>

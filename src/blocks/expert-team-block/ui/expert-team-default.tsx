@@ -42,7 +42,7 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
                   ) : (
                     <div
                       style={{ backgroundImage: `url(${expert.img.url})` }}
-                      className="w-full h-full bg-no-repeat bg-cover bg-center"
+                      className="w-full h-full bg-no-repeat bg-contain md:bg-cover bg-center"
                     />
                   )}
                 </div>

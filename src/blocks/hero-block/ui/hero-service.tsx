@@ -2,18 +2,13 @@ import { MediaRenderer } from "@/components/media-renderer"
 import { ActionButton } from "@/lib/actions/action-button"
 import { HeroBlockFields } from "../types"
 
-// Функция для определения типа медиа
-const isVideo = (media: { mimeType?: string | null }) => {
-  return media?.mimeType?.startsWith("video/")
-}
-
 type Props = {
   fields: HeroBlockFields
 }
 
 export function HeroBlockService({ fields }: Props) {
   return (
-    <div className="flex flex-col lg:flex-row items-center py-8 mx-auto w-full container px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col lg:flex-row items-center py-4 md:py-8 mx-auto w-full container px-4 sm:px-6 lg:px-8">
       {/* Заголовки - только на мобилке */}
       <div className="flex-1 flex flex-col w-full lg:w-auto order-1 lg:hidden">
         {fields.beforeHeading && (
@@ -46,7 +41,7 @@ export function HeroBlockService({ fields }: Props) {
       {/* Картинка/видео */}
       <div className="flex-1 flex items-center justify-center mt-8 lg:mt-0 w-full lg:w-auto order-2 lg:order-1">
         {fields.img?.url ? (
-          <div className="flex-1 max-w-128 h-128 relative">
+          <div className="flex-1 max-w-128 w-full aspect-square relative">
             <MediaRenderer media={fields.img} />{" "}
           </div>
         ) : null}

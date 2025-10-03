@@ -16,7 +16,9 @@ export default async function Layout(props: { children: React.ReactNode }) {
   return (
     <>
       <Header options={headerOptions} />
-      <main className="flex flex-col gap-0 lg:gap-16 pt-24">{children}</main>
+      <main className="flex flex-col gap-0 lg:gap-16 pt-16 md:pt-24">
+        {children}
+      </main>
       <Footer />
       <ClientCookieConsent />
     </>

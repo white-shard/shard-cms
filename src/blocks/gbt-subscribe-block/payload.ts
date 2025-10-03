@@ -74,5 +74,12 @@ export const GbtSubscribeBlock: Block = {
       type: "text",
       hasMany: true,
     },
+    {
+      name: "subscribe_form",
+      label: "Форма подписки",
+      type: "relationship",
+      relationTo: "forms",
+      required: false,
+    },
   ],
 }

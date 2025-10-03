@@ -1,3 +1,5 @@
+import { Form } from "@/payload-types"
+
 export interface GbtSubscribeBlockFields {
   description: string
   included: {
@@ -9,4 +11,5 @@ export interface GbtSubscribeBlockFields {
   old_price: string
   motivation: string
   features: string[]
+  subscribe_form: Form
 }

@@ -1,13 +1,28 @@
+"use client"
+
 import { iconList } from "@/lib/icons"
 import { GbtSubscribeBlockFields } from "../types"
 import { Button } from "@/components/ui/button"
 import { Check, ClipboardList } from "lucide-react"
+import { useDialogWithForm } from "@/lib/hooks/use-dialog"
 
 type Props = {
   fields: GbtSubscribeBlockFields
 }
 
 export function GbtSubscribeDefault({ fields }: Props) {
+  const formDialog = useDialogWithForm(fields.subscribe_form)
+
+  const subscribeButton = (
+    <Button
+      className="flex gap-2 text-white w-full sm:w-64 my-4 sm:my-6 text-sm sm:text-base lg:text-lg px-4 sm:px-6 py-2 sm:py-3"
+      variant="accent"
+      size="lg"
+    >
+      <ClipboardList className="size-4 sm:size-5" /> Купить подписку
+    </Button>
+  )
+
   return (
     <div
       id="subscribe"
@@ -67,13 +82,18 @@ export function GbtSubscribeDefault({ fields }: Props) {
           <p className="text-gray-400 text-base sm:text-lg lg:text-2xl max-w-full lg:max-w-screen-sm leading-relaxed">
             {fields.motivation}
           </p>
-          <Button
-            className="flex gap-2 text-white w-full sm:w-64 my-4 sm:my-6 text-sm sm:text-base lg:text-lg px-4 sm:px-6 py-2 sm:py-3"
-            variant="accent"
-            size="lg"
-          >
-            <ClipboardList className="size-4 sm:size-5" /> Купить подписку
-          </Button>
+
+          {fields.subscribe_form ? (
+            <>
+              <div onClick={formDialog.openDialog} className="cursor-pointer">
+                {subscribeButton}
+              </div>
+              {formDialog.dialog}
+            </>
+          ) : (
+            subscribeButton
+          )}
+
           <ul className="flex flex-col gap-2 sm:gap-3 text-base sm:text-lg lg:text-xl text-gray-600 mt-4 sm:mt-6">
             {fields.features.map((feature) => (
               <li key={feature} className="flex items-center gap-2 sm:gap-3">

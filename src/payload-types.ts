@@ -648,6 +648,7 @@ export interface Page {
             old_price?: string | null;
             motivation?: string | null;
             features?: string[] | null;
+            subscribe_form?: (number | null) | Form;
             id?: string | null;
             blockName?: string | null;
             blockType: 'gbt-subscribe';
@@ -1283,6 +1284,7 @@ export interface PagesSelect<T extends boolean = true> {
               old_price?: T;
               motivation?: T;
               features?: T;
+              subscribe_form?: T;
               id?: T;
               blockName?: T;
             };

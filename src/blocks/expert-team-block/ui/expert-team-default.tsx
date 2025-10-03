@@ -33,7 +33,7 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
               className="bg-white rounded-lg overflow-hidden"
             >
               <div className="flex flex-col sm:flex-row">
-                <div className="w-full sm:w-48 h-48 sm:h-64 flex-shrink-0">
+                <div className="w-full sm:w-48 aspect-square sm:h-64 flex-shrink-0">
                   {isVideo(expert.img) ? (
                     <VideoPlayer
                       src={expert.img.url || ""}

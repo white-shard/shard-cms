@@ -6,6 +6,7 @@ export interface StaffBlockFields {
     fullname: string
     expirience: number
     description: string
+    bookingLink: string
     features: { item: string }[]
   }
 }

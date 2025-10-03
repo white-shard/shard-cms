@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Check, ClipboardList } from "lucide-react"
+import Link from "next/link"
 import { StaffBlockFields } from "../types"
 
 type Props = {
@@ -32,13 +33,15 @@ export function StaffBlockDefault({ fields }: Props) {
           {fields.staff.description}
         </p>
         <div className="mt-6 sm:mt-8">
-          <Button
-            size="lg"
-            className="w-full sm:w-auto text-base sm:text-lg lg:text-xl md:text-base px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-6"
-          >
-            <ClipboardList className="size-4 sm:size-5 lg:size-6" />
-            <span className="ml-2">Записаться на консультацию</span>
-          </Button>
+          <Link href={fields.staff.bookingLink}>
+            <Button
+              size="lg"
+              className="w-full sm:w-auto text-base sm:text-lg lg:text-xl md:text-base px-6 sm:px-8 lg:px-12 py-3 sm:py-4 lg:py-6"
+            >
+              <ClipboardList className="size-4 sm:size-5 lg:size-6" />
+              <span className="ml-2">Записаться на консультацию</span>
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="flex-1 order-1 lg:order-2">

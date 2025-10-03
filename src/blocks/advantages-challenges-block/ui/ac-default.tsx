@@ -1,6 +1,6 @@
 import { Check } from "lucide-react"
-import { AdvantagesChallangesBlockFields } from "../types"
 import Image from "next/image"
+import { AdvantagesChallangesBlockFields } from "../types"
 
 type Props = {
   fields: AdvantagesChallangesBlockFields
@@ -20,7 +20,7 @@ export function ACDefault({ fields }: Props) {
             </p>
           )}
           <div className="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 xl:gap-32 justify-between mt-6 sm:mt-8">
-            <div className="flex flex-1 order-2 lg:order-1 max-w-md mx-auto lg:max-w-none items-center">
+            <div className="flex flex-1 order-1 lg:order-1 w-full max-w-sm sm:max-w-md mx-auto lg:max-w-none items-center">
               <div className="relative aspect-square w-full">
                 {fields.advantages.img ? (
                   <Image
@@ -32,7 +32,7 @@ export function ACDefault({ fields }: Props) {
                 ) : null}
               </div>
             </div>
-            <div className="flex-1 flex flex-col gap-4 sm:gap-6 order-1 lg:order-2">
+            <div className="flex-1 flex flex-col gap-4 sm:gap-6 order-2 lg:order-2">
               {fields.advantages.advantages.map((advantage, index) => (
                 <div key={index} className="flex gap-3 sm:gap-4">
                   <Check className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-accent flex-shrink-0 mt-1" />
@@ -63,7 +63,7 @@ export function ACDefault({ fields }: Props) {
             )}
           </div>
           <div className="flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 xl:gap-32 justify-between mt-6 sm:mt-8">
-            <div className="flex-1 flex flex-col gap-4 sm:gap-6 order-1 lg:order-1">
+            <div className="flex-1 flex flex-col gap-4 sm:gap-6 order-2 lg:order-1">
               {fields.challenges.challenges.map((challenge, index) => (
                 <div key={index} className="flex gap-3 sm:gap-4">
                   <Check className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-accent flex-shrink-0 mt-1" />
@@ -80,7 +80,7 @@ export function ACDefault({ fields }: Props) {
                 </div>
               ))}
             </div>
-            <div className="flex flex-1 order-2 lg:order-2 max-w-md mx-auto lg:max-w-none items-center">
+            <div className="flex flex-1 order-1 lg:order-2 w-full max-w-sm sm:max-w-md mx-auto lg:max-w-none items-center">
               <div className="relative aspect-square w-full">
                 {fields.challenges.img ? (
                   <Image

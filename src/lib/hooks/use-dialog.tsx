@@ -22,7 +22,7 @@ export function useDialogWithForm(form?: Form) {
   const dialog = (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="w-[95vw] max-w-[500px] max-h-[90vh] overflow-y-auto px-0 pt-0 border-0">
-        <div className="w-full h-72 relative">
+        <div className="w-full h-84 relative">
           <MediaRenderer media={form?.img as Media} />
         </div>
         <div>

@@ -8,7 +8,7 @@ type Props = {
 
 export function HeroBlockDefault({ fields }: Props) {
   return (
-    <div className="w-screen min-h-screen h-fit -mt-16">
+    <div className="w-screen min-h-screen h-fit -mt-16 md:-mt-24">
       <div className="w-full h-full relative lg:absolute flex flex-col items-center justify-between lg:justify-center z-10 lg:gap-y-4">
         <div className="mb-4 my-16 sm:my-32 lg:my-0">
           {fields.beforeHeading && (

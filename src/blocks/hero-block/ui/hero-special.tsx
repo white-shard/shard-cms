@@ -14,7 +14,7 @@ type Props = {
 
 export function HeroBlockSpecial({ fields }: Props) {
   return (
-    <div className="flex justify-center w-full min-h-screen bg-white relative -mt-20 sm:-mt-24">
+    <div className="flex justify-center w-full min-h-screen bg-white relative -mt-12 sm:-mt-16">
       <div className="w-full flex flex-col justify-center items-center min-h-full z-10 px-4 sm:px-6 lg:px-8">
         <div className="mt-16 sm:mt-20 flex-col flex gap-4 sm:gap-6 items-center w-full lg:w-auto">
           {fields.logo?.url ? (

@@ -1,5 +1,8 @@
+"use client"
+
 import { VideoPlayer } from "@/components/ui/video-player"
-import { ClipboardList } from "lucide-react"
+import { ChevronLeft, ChevronRight, ClipboardList } from "lucide-react"
+import { useState } from "react"
 import { ExpertTeamBlockFields } from "../types"
 
 type Props = {
@@ -12,6 +15,22 @@ const isVideo = (media: { mimeType?: string | null }) => {
 }
 
 export function ExpertTeamBlockDefault({ fields }: Props) {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % fields.experts.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + fields.experts.length) % fields.experts.length,
+    )
+  }
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index)
+  }
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
       <div className="text-center mb-8 sm:mb-10 lg:mb-12">
@@ -20,56 +39,101 @@ export function ExpertTeamBlockDefault({ fields }: Props) {
         </h2>
       </div>
 
-      {/* Мобильная версия - вертикальная компоновка */}
-      <div className="block lg:hidden space-y-4 sm:space-y-6">
-        {fields.experts.map((expert) => {
-          const alternativeSpecialty =
-            expert.alternativeSpecialty ||
-            expert.specialty.map((spec) => spec.name).join(", ")
-
-          return (
+      {/* Мобильная версия - слайдер */}
+      <div className="block lg:hidden">
+        <div className="relative">
+          {/* Слайдер */}
+          <div className="overflow-hidden rounded-lg">
             <div
-              key={expert.id}
-              className="bg-white rounded-lg overflow-hidden"
+              className="flex transition-transform duration-300 ease-in-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
-              <div className="flex flex-col sm:flex-row">
-                <div className="w-full sm:w-48 aspect-square sm:h-64 flex-shrink-0">
-                  {isVideo(expert.img) ? (
-                    <VideoPlayer
-                      src={expert.img.url || ""}
-                      className="w-full h-full"
-                    />
-                  ) : (
-                    <div
-                      style={{ backgroundImage: `url(${expert.img.url})` }}
-                      className="w-full h-full bg-no-repeat bg-contain md:bg-cover bg-center"
-                    />
-                  )}
-                </div>
-                <div className="p-4 sm:p-6 flex flex-col justify-center space-y-2 sm:space-y-3">
-                  <h3 className="text-xl sm:text-2xl text-primary">
-                    {expert.fullname}
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600">
-                    стоматолог {alternativeSpecialty}
-                  </p>
-                  <p className="text-sm sm:text-base text-gray-500">
-                    Опыт работы: {expert.experience}
-                  </p>
-                  {expert.bookingLink && (
-                    <a
-                      href={expert.bookingLink || `/${expert.staffPage?.slug}`}
-                      className="flex items-center gap-2 text-accent text-sm sm:text-base hover:underline mt-2 sm:mt-3"
-                    >
-                      <ClipboardList className="size-4 sm:size-5" />
-                      Записаться на прием
-                    </a>
-                  )}
-                </div>
-              </div>
+              {fields.experts.map((expert) => {
+                const alternativeSpecialty =
+                  expert.alternativeSpecialty ||
+                  expert.specialty.map((spec) => spec.name).join(", ")
+
+                return (
+                  <div key={expert.id} className="w-full flex-shrink-0">
+                    <div className="bg-white rounded-lg overflow-hidden">
+                      <div className="flex flex-col">
+                        <div className="w-full aspect-square flex-shrink-0">
+                          {isVideo(expert.img) ? (
+                            <VideoPlayer
+                              src={expert.img.url || ""}
+                              className="w-full h-full"
+                            />
+                          ) : (
+                            <div
+                              style={{
+                                backgroundImage: `url(${expert.img.url})`,
+                              }}
+                              className="w-full h-full bg-no-repeat bg-cover bg-center"
+                            />
+                          )}
+                        </div>
+                        <div className="p-4 sm:p-6 flex flex-col justify-center space-y-2 sm:space-y-3">
+                          <h3 className="text-xl sm:text-2xl text-primary">
+                            {expert.fullname}
+                          </h3>
+                          <p className="text-sm sm:text-base text-gray-600">
+                            стоматолог {alternativeSpecialty}
+                          </p>
+                          <p className="text-sm sm:text-base text-gray-500">
+                            Опыт работы: {expert.experience}
+                          </p>
+                          {expert.bookingLink && (
+                            <a
+                              href={
+                                expert.bookingLink ||
+                                `/${expert.staffPage?.slug}`
+                              }
+                              className="flex items-center gap-2 text-accent text-sm sm:text-base hover:underline mt-2 sm:mt-3"
+                            >
+                              <ClipboardList className="size-4 sm:size-5" />
+                              Записаться на прием
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
-          )
-        })}
+          </div>
+
+          {/* Кнопки навигации */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-colors"
+            disabled={fields.experts.length <= 1}
+          >
+            <ChevronLeft className="w-5 h-5 text-gray-700" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-lg transition-colors"
+            disabled={fields.experts.length <= 1}
+          >
+            <ChevronRight className="w-5 h-5 text-gray-700" />
+          </button>
+        </div>
+
+        {/* Индикаторы */}
+        {fields.experts.length > 1 && (
+          <div className="flex justify-center mt-4 space-x-2">
+            {fields.experts.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentSlide ? "bg-accent" : "bg-gray-300"
+                }`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Десктопная версия - горизонтальная компоновка с hover эффектами */}

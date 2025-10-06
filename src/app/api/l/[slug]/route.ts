@@ -56,7 +56,7 @@ export async function GET(
             ? redirectOptions.defaultRedirect
             : await payload.findByID({
                 collection: "pages",
-                id: redirectOptions.defaultRedirect as string,
+                id: String(redirectOptions.defaultRedirect),
               })
 
         if (defaultPage?.slug) {

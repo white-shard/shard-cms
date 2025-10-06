@@ -71,7 +71,7 @@ export default async function RedirectPage(props: RedirectPageProps) {
             ? redirectOptions.defaultRedirect
             : await payload.findByID({
                 collection: "pages",
-                id: redirectOptions.defaultRedirect as string,
+                id: String(redirectOptions.defaultRedirect),
               })
 
         if (defaultPage?.slug) {

@@ -11,6 +11,7 @@ import { Documents } from "./collections/Documents"
 import { Forms } from "./collections/Forms"
 import { Media } from "./collections/Media"
 import { Pages } from "./collections/Pages"
+import { Redirects } from "./collections/Redirects"
 import { Services } from "./collections/Services"
 import { Specialties } from "./collections/Specialties"
 import { Staff } from "./collections/Staff"
@@ -18,6 +19,7 @@ import { Users } from "./collections/Users"
 import { AmoCRM } from "./collections/globals/AmoCRM"
 import { FooterOptions } from "./collections/globals/FooterOptions"
 import { HeaderOptions } from "./collections/globals/HeaderOptions"
+import { RedirectOptions } from "./collections/globals/RedirectOptions"
 import { SEOOptions } from "./collections/globals/SEOptions"
 import { SiteOptions } from "./collections/globals/SiteOptions"
 
@@ -42,12 +44,20 @@ export default buildConfig({
     Media,
     Documents,
     Pages,
+    Redirects,
     Services,
     Staff,
     Specialties,
     Forms,
   ],
-  globals: [HeaderOptions, FooterOptions, SiteOptions, SEOOptions, AmoCRM],
+  globals: [
+    HeaderOptions,
+    FooterOptions,
+    SiteOptions,
+    SEOOptions,
+    AmoCRM,
+    RedirectOptions,
+  ],
   // email: nodemailerAdapter(smtpNodemailerConfig),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

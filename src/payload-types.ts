@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     documents: Document;
     pages: Page;
+    redirects: Redirect;
     services: Service;
     staff: Staff;
     specialties: Specialty;
@@ -85,6 +86,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     services: ServicesSelect<false> | ServicesSelect<true>;
     staff: StaffSelect<false> | StaffSelect<true>;
     specialties: SpecialtiesSelect<false> | SpecialtiesSelect<true>;
@@ -102,6 +104,7 @@ export interface Config {
     options: Option;
     'seo-options': SeoOption;
     'amo-crm': AmoCrm;
+    'redirect-options': RedirectOption;
   };
   globalsSelect: {
     'header-options': HeaderOptionsSelect<false> | HeaderOptionsSelect<true>;
@@ -109,6 +112,7 @@ export interface Config {
     options: OptionsSelect<false> | OptionsSelect<true>;
     'seo-options': SeoOptionsSelect<false> | SeoOptionsSelect<true>;
     'amo-crm': AmoCrmSelect<false> | AmoCrmSelect<true>;
+    'redirect-options': RedirectOptionsSelect<false> | RedirectOptionsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -737,6 +741,55 @@ export interface Specialty {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: number;
+  /**
+   * Короткая ссылка для переадресации (2-50 символов, только буквы, цифры, дефисы и подчеркивания). Будет доступна по адресу http://localhost:3000/l/<ваша-ссылка>
+   */
+  shortUrl: string;
+  /**
+   * Полная ссылка, на которую будет перенаправлен пользователь
+   */
+  targetUrl: string;
+  /**
+   * Описание переадресации для удобства управления
+   */
+  title?: string | null;
+  /**
+   * Включить или отключить переадресацию
+   */
+  active?: boolean | null;
+  /**
+   * Автоматически подсчитывается при каждом переходе
+   */
+  clicks?: number | null;
+  /**
+   * Дата и время последнего перехода
+   */
+  lastClick?: string | null;
+  /**
+   * Дата истечения переадресации (необязательно)
+   */
+  expiresAt?: string | null;
+  /**
+   * Источник трафика для аналитики
+   */
+  utmSource?: string | null;
+  /**
+   * Канал трафика для аналитики
+   */
+  utmMedium?: string | null;
+  /**
+   * Название кампании для аналитики
+   */
+  utmCampaign?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -757,6 +810,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'redirects';
+        value: number | Redirect;
       } | null)
     | ({
         relationTo: 'services';
@@ -1294,6 +1351,24 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  shortUrl?: T;
+  targetUrl?: T;
+  title?: T;
+  active?: T;
+  clicks?: T;
+  lastClick?: T;
+  expiresAt?: T;
+  utmSource?: T;
+  utmMedium?: T;
+  utmCampaign?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services_select".
  */
 export interface ServicesSelect<T extends boolean = true> {
@@ -1574,6 +1649,27 @@ export interface AmoCrm {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirect-options".
+ */
+export interface RedirectOption {
+  id: number;
+  /**
+   * Включить или отключить обработку коротких ссылок
+   */
+  enabled?: boolean | null;
+  /**
+   * Страница, на которую будет перенаправлен пользователь, если короткая ссылка не найдена
+   */
+  defaultRedirect?: (number | null) | Page;
+  /**
+   * Включить подсчет количества переходов по коротким ссылкам
+   */
+  trackClicks?: boolean | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header-options_select".
  */
 export interface HeaderOptionsSelect<T extends boolean = true> {
@@ -1737,6 +1833,18 @@ export interface AmoCrmSelect<T extends boolean = true> {
   refresh_token?: T;
   server_time?: T;
   expires_in?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirect-options_select".
+ */
+export interface RedirectOptionsSelect<T extends boolean = true> {
+  enabled?: T;
+  defaultRedirect?: T;
+  trackClicks?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

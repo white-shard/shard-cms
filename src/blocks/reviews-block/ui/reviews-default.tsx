@@ -160,8 +160,8 @@ export function ReviewsBlockDefault({ fields }: Props) {
       {/* Отзывы из внешних сервисов */}
       <div className="space-y-8">
         <ReviewsWidget
-          uuid="ec266945-eb68-4ac4-a893-e1136c775355"
-          name="g3932357"
+          uuid="caede5b7-79ae-4a01-a3af-a6a3a8033e70"
+          name="g60851189"
           additionalFrame="none"
           lang="ru"
           widgetId="1"

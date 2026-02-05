@@ -25,15 +25,21 @@ export const revalidate = 60 // Кеширование на 60 секунд
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-  const payload = await getPayload({ config })
+  
+  let seoOptions = null
+  try {
+    const payload = await getPayload({ config })
 
-  const headerOptions = await payload.findGlobal({
-    slug: "header-options",
-  })
+    await payload.findGlobal({
+      slug: "header-options",
+    })
 
-  const seoOptions = await payload.findGlobal({
-    slug: "seo-options",
-  })
+    seoOptions = await payload.findGlobal({
+      slug: "seo-options",
+    })
+  } catch {
+    // Если база данных недоступна, продолжаем без данных
+  }
 
   return (
     <html lang="ru">

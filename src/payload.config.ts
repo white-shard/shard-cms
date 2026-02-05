@@ -65,9 +65,9 @@ export default buildConfig({
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   db: postgresAdapter({
-    pool: {
-      connectionString: process.env.DATABASE_URI || "",
-    },
+    connectionString: process.env.DATABASE_URI || (() => {
+      throw new Error("DATABASE_URI environment variable is not set. Please set it in your .env file or environment variables.")
+    })(),
   }),
   sharp,
   plugins: [

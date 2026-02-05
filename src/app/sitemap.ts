@@ -5,14 +5,6 @@ import { getPayload } from "payload"
 export const revalidate = 60 // Кеширование на 60 секунд
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const payload = await getPayload({ config })
-
-  // Получаем все страницы
-  const pages = await payload.find({
-    collection: "pages",
-    limit: 1000,
-  })
-
   // Базовый URL сайта
   const baseUrl = process.env.NEXT_PUBLIC_ORIGIN || "https://example.com"
 
@@ -44,13 +36,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // Динамические маршруты из страниц
-  const dynamicRoutes: MetadataRoute.Sitemap = pages.docs.map((page) => ({
-    url: `${baseUrl}/${page.slug}`,
-    lastModified: new Date(page.updatedAt),
-    changeFrequency: "weekly" as const,
-    priority: page.slug === "index" ? 1 : 0.7,
-  }))
+  try {
+    const payload = await getPayload({ config })
 
-  return [...staticRoutes, ...dynamicRoutes]
+    // Получаем все страницы
+    const pages = await payload.find({
+      collection: "pages",
+      limit: 1000,
+    })
+
+    // Динамические маршруты из страниц
+    const dynamicRoutes: MetadataRoute.Sitemap = pages.docs.map((page) => ({
+      url: `${baseUrl}/${page.slug}`,
+      lastModified: new Date(page.updatedAt),
+      changeFrequency: "weekly" as const,
+      priority: page.slug === "index" ? 1 : 0.7,
+    }))
+
+    return [...staticRoutes, ...dynamicRoutes]
+  } catch {
+    // Если база данных недоступна, возвращаем только статические маршруты
+    return staticRoutes
+  }
 }

@@ -1,8 +1,8 @@
 // storage-adapter-import-placeholder
 // Загружаем переменные окружения из .env файла
 import { config } from "dotenv"
-import { fileURLToPath } from "url"
 import path from "path"
+import { fileURLToPath } from "url"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -87,7 +87,6 @@ export default buildConfig({
         return uri
       })(),
     },
-    push: true, // Автоматическое создание схемы из конфигурации
     prodMigrations: migrations, // Миграции для production
   }),
   sharp,

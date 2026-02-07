@@ -1,13 +1,20 @@
 // storage-adapter-import-placeholder
 // Загружаем переменные окружения из .env файла
-import "dotenv/config"
+import { config } from "dotenv"
+import { fileURLToPath } from "url"
+import path from "path"
+
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
+// Определяем корневую директорию проекта (на уровень выше src)
+const rootDir = path.resolve(dirname, "..")
+// Загружаем .env файл из корневой директории
+config({ path: path.resolve(rootDir, ".env") })
 
 import { postgresAdapter } from "@payloadcms/db-postgres"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
-import path from "path"
 import { buildConfig } from "payload"
 import sharp from "sharp"
-import { fileURLToPath } from "url"
 
 import { s3Storage } from "@payloadcms/storage-s3"
 import { Documents } from "./collections/Documents"
@@ -26,9 +33,6 @@ import { RedirectOptions } from "./collections/globals/RedirectOptions"
 import { SEOOptions } from "./collections/globals/SEOptions"
 import { SiteOptions } from "./collections/globals/SiteOptions"
 import { migrations } from "./migrations"
-
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
@@ -73,7 +77,12 @@ export default buildConfig({
       connectionString: (() => {
         const uri = process.env.DATABASE_URI
         if (!uri) {
-          throw new Error("DATABASE_URI environment variable is not set. Please set it in your .env file or environment variables.")
+          const envPath = path.resolve(rootDir, ".env")
+          throw new Error(
+            `DATABASE_URI environment variable is not set. ` +
+            `Please set it in your .env file (expected at: ${envPath}) or environment variables. ` +
+            `Current working directory: ${process.cwd()}`
+          )
         }
         return uri
       })(),

@@ -32,7 +32,6 @@ import { HeaderOptions } from "./collections/globals/HeaderOptions"
 import { RedirectOptions } from "./collections/globals/RedirectOptions"
 import { SEOOptions } from "./collections/globals/SEOptions"
 import { SiteOptions } from "./collections/globals/SiteOptions"
-import { migrations } from "./migrations"
 
 export default buildConfig({
   admin: {
@@ -87,7 +86,6 @@ export default buildConfig({
         return uri
       })(),
     },
-    prodMigrations: migrations, // Миграции для production
   }),
   sharp,
   plugins: [

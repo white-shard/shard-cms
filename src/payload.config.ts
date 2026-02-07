@@ -1,4 +1,7 @@
 // storage-adapter-import-placeholder
+// Загружаем переменные окружения из .env файла
+import "dotenv/config"
+
 import { postgresAdapter } from "@payloadcms/db-postgres"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import path from "path"
@@ -67,8 +70,12 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || (() => {
-        throw new Error("DATABASE_URI environment variable is not set. Please set it in your .env file or environment variables.")
+      connectionString: (() => {
+        const uri = process.env.DATABASE_URI
+        if (!uri) {
+          throw new Error("DATABASE_URI environment variable is not set. Please set it in your .env file or environment variables.")
+        }
+        return uri
       })(),
     },
     push: true, // Автоматическое создание схемы из конфигурации

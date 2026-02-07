@@ -5,6 +5,8 @@ import { Header } from "@/widgets/header"
 import { getPayload } from "payload"
 import React from "react"
 
+export const dynamic = 'force-dynamic' // Принудительный динамический рендеринг
+
 export default async function Layout(props: { children: React.ReactNode }) {
   const { children } = props
   const payload = await getPayload({ config })

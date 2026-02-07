@@ -21,6 +21,7 @@ const roboto = Roboto({
   variable: "--font-roboto",
 })
 
+export const dynamic = 'force-dynamic' // Принудительный динамический рендеринг
 export const revalidate = 60 // Кеширование на 60 секунд
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

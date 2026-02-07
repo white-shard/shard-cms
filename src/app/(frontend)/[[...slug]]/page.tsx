@@ -39,6 +39,7 @@ export async function generateMetadata(
   return metadata
 }
 
+export const dynamic = 'force-dynamic' // Принудительный динамический рендеринг
 export const revalidate = 60 // Кеширование на 60 секунд
 
 export default async function SitePage(props: SitePageProps) {

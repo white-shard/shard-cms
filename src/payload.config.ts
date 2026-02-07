@@ -22,6 +22,7 @@ import { HeaderOptions } from "./collections/globals/HeaderOptions"
 import { RedirectOptions } from "./collections/globals/RedirectOptions"
 import { SEOOptions } from "./collections/globals/SEOptions"
 import { SiteOptions } from "./collections/globals/SiteOptions"
+import { migrations } from "./migrations"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -65,9 +66,13 @@ export default buildConfig({
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   db: postgresAdapter({
-    connectionString: process.env.DATABASE_URI || (() => {
-      throw new Error("DATABASE_URI environment variable is not set. Please set it in your .env file or environment variables.")
-    })(),
+    pool: {
+      connectionString: process.env.DATABASE_URI || (() => {
+        throw new Error("DATABASE_URI environment variable is not set. Please set it in your .env file or environment variables.")
+      })(),
+    },
+    push: true, // Автоматическое создание схемы из конфигурации
+    prodMigrations: migrations, // Миграции для production
   }),
   sharp,
   plugins: [

@@ -2,6 +2,7 @@ import config from "@/payload.config"
 import { MetadataRoute } from "next"
 import { getPayload } from "payload"
 
+export const dynamic = 'force-dynamic' // Принудительный динамический рендеринг
 export const revalidate = 60 // Кеширование на 60 секунд
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

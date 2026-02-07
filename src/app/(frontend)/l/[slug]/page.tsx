@@ -20,6 +20,7 @@ export async function generateMetadata(
   }
 }
 
+export const dynamic = 'force-dynamic' // Принудительный динамический рендеринг
 export const revalidate = 0 // Не кешируем переадресации
 
 export default async function RedirectPage(props: RedirectPageProps) {

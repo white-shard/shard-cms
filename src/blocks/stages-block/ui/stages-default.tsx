@@ -1,3 +1,6 @@
+'use client'
+
+import { StagesBlockAnimation } from '../pattern/animation'
 import { StagesBlockFields } from "../types"
 
 type Props = {
@@ -6,7 +9,7 @@ type Props = {
 
 export function StagesBlockDefault({ fields }: Props) {
   return (
-    <div className="flex flex-col container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 gap-6 sm:gap-8">
+    <div className="flex flex-col container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 gap-6 sm:gap-8 relative">
       <div className="grid gap-3 sm:gap-4">
         <span className="text-3xl sm:text-4xl lg:text-5xl leading-tight">
           {fields.heading}
@@ -18,10 +21,18 @@ export function StagesBlockDefault({ fields }: Props) {
         )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 sm:mt-8 gap-4 sm:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 sm:mt-8 gap-4 sm:gap-6 lg:gap-8 relative xl:px-32">
+      <StagesBlockAnimation className="-top-28" />
         {fields.stages.map((stage, index) => (
+          <>
+          { (index % 3 === 0 && index !== 0) && <StagesBlockAnimation style={{
+            top: `${(index / 3) * 268}px`,
+          }} delay={(index / 3) * 5} /> }
           <div
             key={index}
+            style={{
+              marginTop: window.innerWidth >= 1280 ? `${(index % 3) * 64}px` : '0',
+            }}
             className="flex flex-col gap-2 sm:gap-3 bg-gray-200 rounded-lg p-3 sm:p-4 lg:p-6 h-40 sm:h-48 lg:h-56 overflow-hidden"
           >
             <span className="text-base sm:text-lg lg:text-xl leading-tight line-clamp-2">
@@ -33,6 +44,7 @@ export function StagesBlockDefault({ fields }: Props) {
               </p>
             )}
           </div>
+          </>
         ))}
       </div>
     </div>

@@ -18,7 +18,7 @@ export const Redirects: CollectionConfig = {
       required: true,
       unique: true,
       admin: {
-        description: `Короткая ссылка для переадресации (2-50 символов, только буквы, цифры, дефисы и подчеркивания). Будет доступна по адресу ${process.env.NEXT_PUBLIC_ORIGIN}/l/<ваша-ссылка>`,
+        description: `Короткая ссылка для переадресации (2-50 символов, только буквы, цифры, дефисы и подчеркивания). Будет доступна по адресу https://drkoshakov.ru/l/<ваша-ссылка>`,
       },
       validate: (val: any) => {
         if (!val || typeof val !== "string")

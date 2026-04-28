@@ -19,7 +19,7 @@ export class AmoCRMService {
           client_id: this.integrationId,
           client_secret: this.integrationSecret,
           grant_type: "authorization_code",
-          redirect_uri: `${process.env.NEXT_PUBLIC_ORIGIN}/admin/amo-setup`,
+          redirect_uri: `https://drkoshakov.ru/admin/amo-setup`,
         }),
       },
     )
@@ -55,7 +55,7 @@ export class AmoCRMService {
           client_id: this.integrationId,
           client_secret: this.integrationSecret,
           grant_type: "refresh_token",
-          redirect_uri: `${process.env.NEXT_PUBLIC_ORIGIN}/admin/amo-setup`,
+          redirect_uri: `https://drkoshakov.ru/admin/amo-setup`,
         }),
       },
     )
@@ -93,7 +93,7 @@ export class AmoCRMService {
             custom_fields_values: contact.fields,
             tags_to_add: [
               {
-                name: `Источник: ${process.env.NEXT_PUBLIC_ORIGIN}`,
+                name: `Источник: https://drkoshakov.ru`,
               },
             ],
           },
@@ -129,7 +129,7 @@ export class AmoCRMService {
             custom_fields_values: lead.fields,
             tags_to_add: [
               {
-                name: `Источник: ${process.env.NEXT_PUBLIC_ORIGIN}`,
+                name: `Источник: https://drkoshakov.ru`,
               },
             ],
             _embedded: {

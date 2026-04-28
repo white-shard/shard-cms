@@ -1,6 +1,7 @@
 import { Chat } from "@/components/icons/chat"
 import { Cog } from "@/components/icons/cog"
 import { HH } from "@/components/icons/hh"
+import { Instagram } from "@/components/icons/instagram"
 import { Star } from "@/components/icons/star"
 import {
   Armchair,
@@ -13,7 +14,6 @@ import {
   HandPlatter,
   Handshake,
   HeartHandshake,
-  Instagram,
   Mail,
   MapPin,
   MessageCircle,

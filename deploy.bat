@@ -1,7 +1,7 @@
 @echo off
 
-set SERVER=deploy@193.160.208.49
-set REMOTE_PATH=/home/deploy/shard-cms
+set SERVER=admin@drkoshakov.ru
+set REMOTE_PATH=/home/admin/shard-cms
 
 echo Copying Next.js build...
 

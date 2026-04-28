@@ -182,13 +182,18 @@ export function Footer() {
       <div className="w-full uppercase text-center text-accent/25 hover:text-accent/50 transition-colors text-lg sm:text-2xl lg:text-4xl xl:text-6xl my-4 sm:my-6 px-4 sm:px-6 lg:px-8 leading-tight">
         ИМЕЮТСЯ ПРОТИВОПОКАЗАНИЯ НЕОБХОДИМА КОНСУЛЬТАЦИЯ СПЕЦИАЛИСТА
       </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <span className="text-accent mr-1 text-lg">*</span>Деятельность Meta
+        Platforms Inc. (владелец Facebook и Instagram) признана экстремистской и
+        запрещена на территории РФ.
+      </div>
       <hr className="opacity-25" />
       <div className="container mx-auto py-6 sm:py-8 px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
         <span className="text-sm sm:text-base text-white">
           {footerOptions?.rights}
         </span>
         <Link
-          href="https://white-shard.ru"
+          href="https://wshard.ru"
           className="text-gray-400 opacity-25 hover:opacity-100 transition-opacity text-sm sm:text-base"
           target="_blank"
         >
@@ -199,6 +204,16 @@ export function Footer() {
           </span>
         </Link>
       </div>
+      {/* Онлайн запись */}
+      <div
+        id="medflexRoundWidgetData"
+        data-src="https://booking.medflex.ru/?user=c5fc4c6f57a852430bbac4fe6e3b7de7&isRoundWidget=true"
+      ></div>
+      <script
+        defer
+        src="https://booking.medflex.ru/components/round/round_widget_button.js"
+        charSet="utf-8"
+      ></script>
     </footer>
   )
 }

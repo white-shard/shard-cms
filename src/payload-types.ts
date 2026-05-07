@@ -657,6 +657,13 @@ export interface Page {
             blockName?: string | null;
             blockType: 'gbt-subscribe';
           }
+        | {
+            img?: (number | null) | Media;
+            imgRight?: (number | null) | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'gbt-subscription-content';
+          }
       )[]
     | null;
   updatedAt: string;
@@ -746,7 +753,7 @@ export interface Specialty {
 export interface Redirect {
   id: number;
   /**
-   * Короткая ссылка для переадресации (2-50 символов, только буквы, цифры, дефисы и подчеркивания). Будет доступна по адресу http://193.160.208.49:3000/l/<ваша-ссылка>
+   * Короткая ссылка для переадресации (2-50 символов, только буквы, цифры, дефисы и подчеркивания). Будет доступна по адресу https://drkoshakov.ru/l/<ваша-ссылка>
    */
   shortUrl: string;
   /**
@@ -1342,6 +1349,14 @@ export interface PagesSelect<T extends boolean = true> {
               motivation?: T;
               features?: T;
               subscribe_form?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'gbt-subscription-content'?:
+          | T
+          | {
+              img?: T;
+              imgRight?: T;
               id?: T;
               blockName?: T;
             };

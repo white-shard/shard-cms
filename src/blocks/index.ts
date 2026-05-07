@@ -8,6 +8,7 @@ import { Founder } from "./founder-block"
 import { Gallery } from "./gallery-block"
 import { GbtHello } from "./gbt-hello-block"
 import { GbtSubscribe } from "./gbt-subscribe-block"
+import { GbtSubscriptionContentBlock } from "./gbt-subscription-content-block"
 import { Hero } from "./hero-block"
 import { History } from "./history-block"
 import { Image } from "./image-block"
@@ -55,6 +56,7 @@ export const registeredPageBlocks: RegisteredBlockData[] = [
   Documents,
   Reviews,
   GbtSubscribe,
+  GbtSubscriptionContentBlock,
 ]
 
 export function getBlockRenderer(blockType: string) {
